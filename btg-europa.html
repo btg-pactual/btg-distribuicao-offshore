@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>BTG Europa — Distribuição Offshore | BTG Pactual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="./hub.css"/>
+<script src="./contas-internacionais.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-brand">btg pactual <span>distribuição offshore</span></div>
+  <div class="topbar-right">Distribuição · Offshore · Uso interno</div>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Navegação">
+    <a class="nav-item active" href="./index.html">Visão Global</a>
+    <a class="nav-item" href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
+    <a class="nav-item" href="./educacional.html">Educacional</a>
+  </nav>
+  <main class="main">
+    <div class="page-head"><div><h1>BTG Europa</h1><p class="sub">Luxemburgo</p></div></div>
+    <div class="section-cards">
+      <a class="section-card" href="./faq-btg-europa.html">
+        <span class="section-card-title">FAQ</span>
+        <span class="section-card-detail">Dúvidas frequentes</span>
+      </a>
+    </div>
+    <section class="product-section" id="produtos" aria-label="Produtos">
+      <div class="product-browser">
+        <aside class="product-menu">
+          <h2>Produtos</h2>
+          <div class="product-tabs" role="tablist" aria-label="Categorias de produtos" aria-orientation="vertical">
+            <button class="product-tab" id="europa-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="europa-panel-fundos" tabindex="0">Fundos de investimentos</button>
+            <button class="product-tab" id="europa-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
+            <button class="product-tab" id="europa-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-etfs" tabindex="-1">ETFs UCITs</button>
+          </div>
+        </aside>
+        <div class="product-content">
+          <section class="product-panel" id="europa-panel-fundos" role="tabpanel" aria-labelledby="europa-tab-fundos">
+            <p class="product-rate-notice">Alocação disponível em USD e EUR.</p>
+            <div class="investment-products">
+              <article class="investment-card">
+                <h3>BTG Pactual Sicav Balanced Fund</h3>
+                <p class="investment-type">Balanceado</p>
+                <p class="investment-return"><strong>+1.89%</strong> <span>Retorno 12 M</span></p>
+                <dl class="investment-details">
+                  <div><dt>Moedas</dt><dd>USD / EUR</dd></div>
+                  <div><dt>Aporte mínimo</dt><dd>EUR 1.000,00</dd></div>
+                  <div><dt>Resgate</dt><dd>D+2/D+6</dd></div>
+                  <div><dt>ISIN</dt><dd>LU2451829373</dd></div>
+                </dl>
+              </article>
+              <article class="investment-card">
+                <h3>BTG Pactual Sicav Global Credit Fund</h3>
+                <p class="investment-type">Crédito Global</p>
+                <p class="investment-return"><strong>Yield 7.44% a.a.</strong></p>
+                <dl class="investment-details">
+                  <div><dt>Moedas</dt><dd>USD / EUR</dd></div>
+                  <div><dt>Aporte mínimo</dt><dd>EUR 1.000,00</dd></div>
+                  <div><dt>Resgate</dt><dd>D+2/D+6</dd></div>
+                  <div><dt>ISIN</dt><dd>LU3435271443</dd></div>
+                </dl>
+              </article>
+              <article class="investment-card">
+                <h3>BTG Pactual Sicav Global Equities</h3>
+                <p class="investment-type">Ações</p>
+                <p class="investment-return"><strong>+6.31%</strong> <span>Retorno 12 M</span></p>
+                <dl class="investment-details">
+                  <div><dt>Moedas</dt><dd>USD / EUR</dd></div>
+                  <div><dt>Aporte mínimo</dt><dd>EUR 1.000,00</dd></div>
+                  <div><dt>Resgate</dt><dd>D+2/D+6</dd></div>
+                  <div><dt>ISIN</dt><dd>LU3060589838</dd></div>
+                </dl>
+              </article>
+            </div>
+          </section>
+          <section class="product-panel" id="europa-panel-renda-fixa" role="tabpanel" aria-labelledby="europa-tab-renda-fixa" hidden><p class="product-empty">Produtos de Renda Fixa Internacional serão adicionados aqui.</p></section>
+          <section class="product-panel" id="europa-panel-etfs" role="tabpanel" aria-labelledby="europa-tab-etfs" hidden><p class="product-empty">Produtos de ETFs UCITs serão adicionados aqui.</p></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -158,6 +158,30 @@ const etfGroups = [
   ]}
 ];
 
+function renderEtfCard(group, product) {
+  const performance = Number.parseFloat(product[4].replace(",", "."));
+  const performanceClass = Number.isNaN(performance) || performance === 0
+    ? "is-neutral"
+    : performance > 0 ? "is-positive" : "is-negative";
+
+  return `
+    <article class="etf-card card">
+      <div class="card__head">
+        <span class="card__eyebrow">Categoria · ${group.name}</span>
+        <span class="badge badge--ticker">Ticker · ${product[1]}</span>
+        <h4 class="card__title card__title--sm">${product[0]}</h4>
+      </div>
+      <div class="metric">
+        <span class="metric__value ${performanceClass}">${product[4]}</span>
+        <span class="metric__label">Ano atual</span>
+      </div>
+      <dl class="etf-details stats stats--2">
+        <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${product[3]}</dd></div>
+        <div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[2]}</dd></div>
+      </dl>
+    </article>`;
+}
+
 const etfPanel = document.getElementById("panel-etfs");
 
 if (etfPanel) {
@@ -174,18 +198,8 @@ if (etfPanel) {
 
   function renderEtfGroup(index) {
     const group = etfGroups[index];
-    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="etf-products grid grid--2">${
-      group.products.map((product)=>`
-        <article class="etf-card card">
-          <h4 class="card__title card__title--sm">${product[0]}</h4>
-          <dl class="etf-details stats stats--2">
-            <div class="stat"><dt class="stat__label">Categoria</dt><dd class="stat__value">${group.name}</dd></div>
-            <div class="stat"><dt class="stat__label">Ticker</dt><dd class="stat__value">${product[1]}</dd></div>
-            <div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[2]}</dd></div>
-            <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${product[3]}</dd></div>
-            <div class="stat stat--full"><dt class="stat__label">Ano atual</dt><dd class="stat__value">${product[4]}</dd></div>
-          </dl>
-        </article>`).join("")
+    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="etf-products grid grid--3">${
+      group.products.map((product)=>renderEtfCard(group, product)).join("")
     }</div>`;
   }
 
@@ -267,18 +281,8 @@ function renderPlatformEtfs(panelId, groups, currencyNotice) {
 
   function render(index) {
     const group = groups[index];
-    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">${currencyNotice}</p><div class="etf-products grid grid--2">${
-      group.products.map((product)=>`
-        <article class="etf-card card">
-          <h4 class="card__title card__title--sm">${product[0]}</h4>
-          <dl class="etf-details stats stats--2">
-            <div class="stat"><dt class="stat__label">Categoria</dt><dd class="stat__value">${group.name}</dd></div>
-            <div class="stat"><dt class="stat__label">Ticker</dt><dd class="stat__value">${product[1]}</dd></div>
-            <div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[2]}</dd></div>
-            <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${product[3]}</dd></div>
-            <div class="stat stat--full"><dt class="stat__label">Ano atual</dt><dd class="stat__value">${product[4]}</dd></div>
-          </dl>
-        </article>`).join("")
+    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">${currencyNotice}</p><div class="etf-products grid grid--3">${
+      group.products.map((product)=>renderEtfCard(group, product)).join("")
     }</div>`;
   }
 
@@ -359,6 +363,60 @@ const europaFixedIncomeGroups = [
   ]}
 ];
 
+function renderFixedIncomeCard(product, isSovereign, pieceLabel = "Peça", durationLabel = "Duration") {
+  const issuer = product[0];
+  const sector = product[1];
+  const symbol = product[2];
+  const coupon = product[3];
+  const maturity = product[4];
+  const price = isSovereign ? product[8] : product[5];
+  const yieldToWorst = isSovereign ? product[5] : product[6];
+  const duration = isSovereign ? product[6] : product[7];
+  const rating = isSovereign ? product[7] : product[8];
+  const isin = isSovereign ? product[11] : product[13];
+  const details = isSovereign
+    ? `
+        <div class="stat"><span class="stat__label">${durationLabel}</span><span class="stat__value">${duration}</span></div>
+        <div class="stat"><span class="stat__label">Rating</span><span class="stat__value">${rating}</span></div>
+        <div class="stat"><span class="stat__label">Tipo</span><span class="stat__value">Soberano</span></div>
+        <div class="stat"><span class="stat__label">Preço</span><span class="stat__value">${price}</span></div>
+        <div class="stat"><span class="stat__label">Emissão</span><span class="stat__value">${product[9]}</span></div>
+        <div class="stat"><span class="stat__label">País</span><span class="stat__value">${product[10]}</span></div>`
+    : `
+        <div class="stat"><span class="stat__label">Preço</span><span class="stat__value">${price}</span></div>
+        <div class="stat"><span class="stat__label">${durationLabel}</span><span class="stat__value">${duration}</span></div>
+        <div class="stat"><span class="stat__label">Rating</span><span class="stat__value">${rating}</span></div>
+        <div class="stat"><span class="stat__label">Senioridade</span><span class="stat__value">${product[9]}</span></div>
+        <div class="stat"><span class="stat__label">País / Listing</span><span class="stat__value">${product[10]}</span></div>
+        <div class="stat"><span class="stat__label">${pieceLabel}</span><span class="stat__value">${product[11]}</span></div>
+        <div class="stat"><span class="stat__label">Emissão</span><span class="stat__value">${product[12]}</span></div>`;
+
+  return `
+    <article class="fixed-income-card card">
+      <div class="card__head">
+        <span class="card__eyebrow">${issuer} · Setor: ${sector}</span>
+        <h4 class="card__title">${symbol} · ${coupon} · ${maturity}</h4>
+        <span class="badge">${rating}</span>
+      </div>
+      <div class="metric">
+        <span class="metric__value is-positive">${yieldToWorst}</span>
+        <span class="metric__label">${isSovereign ? "YTW / Retorno indicativo" : "YTW"}</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat__label">Cupom</span><span class="stat__value">${coupon}</span></div>
+        <div class="stat"><span class="stat__label">Vencimento</span><span class="stat__value">${maturity}</span></div>
+        <div class="stat"><span class="stat__label">Símbolo</span><span class="stat__value">${symbol}</span></div>
+      </div>
+      <details class="details">
+        <summary>Ver detalhes</summary>
+        <div class="details__body">
+          ${details}
+          <div class="stat stat--full"><span class="stat__label">ISIN</span><span class="isin">${isin}</span></div>
+        </div>
+      </details>
+    </article>`;
+}
+
 const fixedIncomePanel = document.getElementById("panel-renda-fixa") || document.getElementById("us-panel-renda-fixa");
 
 if (fixedIncomePanel) {
@@ -375,38 +433,8 @@ if (fixedIncomePanel) {
 
   function renderFixedIncomeGroup(index) {
     const group = fixedIncomeGroups[index];
-    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="fixed-income-products grid grid--2">${
-      group.products.map((product)=>`
-        <article class="fixed-income-card card">
-          <h4 class="card__title card__title--sm">${product[0]}</h4>
-          <dl class="fixed-income-details stats stats--2">
-            <div class="stat"><dt class="stat__label">Setor</dt><dd class="stat__value">${product[1]}</dd></div>
-            <div class="stat"><dt class="stat__label">Símbolo</dt><dd class="stat__value">${product[2]}</dd></div>
-            <div class="stat"><dt class="stat__label">Cupom</dt><dd class="stat__value">${product[3]}</dd></div>
-            ${index === 0 ? `
-            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">${product[4]}</dd></div>
-            <div class="stat"><dt class="stat__label">YTW / Retorno indicativo</dt><dd class="stat__value">${product[5]}</dd></div>
-            <div class="stat"><dt class="stat__label">Duration</dt><dd class="stat__value">${product[6]}</dd></div>
-            <div class="stat"><dt class="stat__label">Rating</dt><dd class="stat__value">${product[7]}</dd></div>
-            <div class="stat"><dt class="stat__label">Tipo</dt><dd class="stat__value">Soberano</dd></div>
-            <div class="stat"><dt class="stat__label">Preço</dt><dd class="stat__value">${product[8]}</dd></div>
-            <div class="stat"><dt class="stat__label">Emissão</dt><dd class="stat__value">${product[9]}</dd></div>
-            <div class="stat"><dt class="stat__label">País</dt><dd class="stat__value">${product[10]}</dd></div>
-            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[11]}</dd></div>
-            ` : `
-            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">${product[4]}</dd></div>
-            <div class="stat"><dt class="stat__label">Preço</dt><dd class="stat__value">${product[5]}</dd></div>
-            <div class="stat"><dt class="stat__label">YTW</dt><dd class="stat__value">${product[6]}</dd></div>
-            <div class="stat"><dt class="stat__label">Duration</dt><dd class="stat__value">${product[7]}</dd></div>
-            <div class="stat"><dt class="stat__label">Rating</dt><dd class="stat__value">${product[8]}</dd></div>
-            <div class="stat"><dt class="stat__label">Senioridade</dt><dd class="stat__value">${product[9]}</dd></div>
-            <div class="stat"><dt class="stat__label">País / Listing</dt><dd class="stat__value">${product[10]}</dd></div>
-            <div class="stat"><dt class="stat__label">Peça</dt><dd class="stat__value">${product[11]}</dd></div>
-            <div class="stat"><dt class="stat__label">Emissão</dt><dd class="stat__value">${product[12]}</dd></div>
-            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[13]}</dd></div>
-            `}
-          </dl>
-        </article>`).join("")
+    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="fixed-income-products grid grid--3">${
+      group.products.map((product)=>renderFixedIncomeCard(product, index === 0)).join("")
     }</div>`;
   }
 
@@ -443,26 +471,8 @@ if (europaFixedIncomePanel) {
 
   function renderEuropaFixedIncomeGroup(index) {
     const group = europaFixedIncomeGroups[index];
-    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</p><div class="fixed-income-products grid grid--2">${
-      group.products.map((product)=>`
-        <article class="fixed-income-card card">
-          <h4 class="card__title card__title--sm">${product[0]}</h4>
-          <dl class="fixed-income-details stats stats--2">
-            <div class="stat"><dt class="stat__label">Setor</dt><dd class="stat__value">${product[1]}</dd></div>
-            <div class="stat"><dt class="stat__label">Símbolo</dt><dd class="stat__value">${product[2]}</dd></div>
-            <div class="stat"><dt class="stat__label">Cupom</dt><dd class="stat__value">${product[3]}</dd></div>
-            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">${product[4]}</dd></div>
-            <div class="stat"><dt class="stat__label">Preço</dt><dd class="stat__value">${product[5]}</dd></div>
-            <div class="stat"><dt class="stat__label">YTW</dt><dd class="stat__value">${product[6]}</dd></div>
-            <div class="stat"><dt class="stat__label">Duration modificada</dt><dd class="stat__value">${product[7]}</dd></div>
-            <div class="stat"><dt class="stat__label">Rating</dt><dd class="stat__value">${product[8]}</dd></div>
-            <div class="stat"><dt class="stat__label">Senioridade</dt><dd class="stat__value">${product[9]}</dd></div>
-            <div class="stat"><dt class="stat__label">País / Listing</dt><dd class="stat__value">${product[10]}</dd></div>
-            <div class="stat"><dt class="stat__label">Peça mínima</dt><dd class="stat__value">${product[11]}</dd></div>
-            <div class="stat"><dt class="stat__label">Emissão</dt><dd class="stat__value">${product[12]}</dd></div>
-            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[13]}</dd></div>
-          </dl>
-        </article>`).join("")
+    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</p><div class="fixed-income-products grid grid--3">${
+      group.products.map((product)=>renderFixedIncomeCard(product, false, "Peça mínima", "Duration modificada")).join("")
     }</div>`;
   }
 

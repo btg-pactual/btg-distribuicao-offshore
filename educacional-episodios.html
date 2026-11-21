@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Episódios — Educacional | BTG Pactual</title>
+<link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__inner">
+    <div class="brand">
+      <span class="brand__name">btg pactual</span>
+      <span class="brand__sub">distribuição offshore</span>
+    </div>
+    <nav class="nav" aria-label="Navegação">
+      <a href="./index.html">Visão Global</a>
+      <a href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
+      <a href="./educacional.html" aria-current="page">Educacional</a>
+    </nav>
+    <span class="topbar__tag">Distribuição · Offshore · Uso interno</span>
+  </div>
+</header>
+<main class="container page">
+  <header class="page-header page-header--row">
+    <div>
+      <a class="back-link" href="./educacional.html">← Educacional</a>
+      <h1 id="topic-title">Episódios</h1>
+      <p id="topic-description">Selecione um tema da série para ver os episódios.</p>
+    </div>
+    <a class="btn" href="./materiais/Investindo_pelo_Mundo_Resumo_por_Tema_11.26.pdf" target="_blank" rel="noopener">Ver documento completo (PDF)</a>
+  </header>
+  <section class="product-section" aria-labelledby="episodes-heading">
+    <div class="section-title">
+      <h2 id="episodes-heading">Episódios</h2>
+      <span class="count" id="episode-count"></span>
+    </div>
+    <div class="grid grid--3" id="episode-list" aria-live="polite"></div>
+    <p class="note" id="topic-message" role="status" hidden></p>
+  </section>
+</main>
+<script>
+const topics = {
+  "diversificacao-global": {
+    title: "Diversificação Global",
+    description: "Por que, quando e como começar a investir fora do Brasil: dólar, dúvidas comuns e tributação.",
+    episodes: [
+      ["Dolarizar a carteira é a melhor proteção para o brasileiro | Investindo pelo Mundo", "otcJBavQ11Q"],
+      ["A importância de diversificar globalmente | Investindo pelo Mundo", "ZdOQS4m4h-8"],
+      ["Dólar: existe um momento certo para comprar?", "0tpPLc8dxvc"],
+      ["6 dúvidas comuns para quem vai começar a investir no exterior | Investindo pelo Mundo", "l0zDxl65Nt8"],
+      ["Como fazer preço médio com dólar | Investindo pelo Mundo", "Hrgcl9KFnPc"],
+      ["Diferenças entre o investidor brasileiro e o americano | Investindo pelo Mundo", "Q2tQrZj54Mk"],
+      ["As principais dúvidas de quem investe no exterior | Investindo pelo Mundo", "3x4AwXomP9Y"],
+      ["Como funciona a tributação sobre investimentos no exterior para pessoa física?", "bN36xh9WUKs"],
+      ["Investir todo mês: quais são as vantagens? | Investindo pelo Mundo", "zvmbvPgaS9Q"]
+    ]
+  },
+  "cambio": {
+    title: "Câmbio",
+    description: "Como funciona o câmbio na prática: dólar comercial, turismo e PTAX, e as principais dúvidas.",
+    episodes: [
+      ["Dólar comercial, turismo e PTAX: entenda as diferenças | Investindo pelo Mundo", "L9gEaBJI0Xs"],
+      ["As principais dúvidas ao fazer câmbio | Investindo pelo Mundo", "WkCtuw2ZKSE"]
+    ]
+  },
+  "renda-fixa-global": {
+    title: "Renda Fixa Global",
+    description: "Como funciona a renda fixa fora do país e como ela é tributada nos EUA.",
+    episodes: [
+      ["5 coisas sobre renda fixa global que todo investidor precisa saber | Investindo pelo Mundo", "xCn6pz0hTKs"],
+      ["Como funciona a Renda Fixa global (parte 1) | Investindo pelo Mundo", "cHXF6Wg48Zs"],
+      ["Como funciona a Renda Fixa global (parte 2) | Investindo pelo Mundo", "Y6bD5P_y2zQ"],
+      ["Tributação na renda fixa dos EUA: o que o investidor precisa saber | Investindo pelo Mundo", "DtEfMbfJE64"]
+    ]
+  },
+  "renda-variavel-global": {
+    title: "Renda Variável Global",
+    description: "Como investir em ações nos EUA e entender a tributação da renda variável.",
+    episodes: [
+      ["5 coisas que você precisa saber antes de investir em renda variável global | Investindo pelo Mundo", "Mwg1wNz8POQ"],
+      ["Como investir em ações nos EUA? (parte 1) | Investindo pelo Mundo", "k8xSI5GlDz4"],
+      ["Como investir em ações nos EUA? (parte 2) | Investindo pelo Mundo", "S8TDGbOkUyE"],
+      ["Entenda como funciona a tributação na renda variável dos EUA | Investindo pelo Mundo", "42kSB8svMaY"]
+    ]
+  },
+  "alternativos": {
+    title: "Alternativos",
+    description: "O que são investimentos alternativos, hedge funds e opções semilíquidas e ilíquidas.",
+    episodes: [
+      ["O que são investimentos alternativos? | Investindo pelo Mundo", "euSuWdwJQqs"],
+      ["Investimentos alternativos semilíquidos e ilíquidos | Investindo pelo Mundo", "WWfns0uAyhs"],
+      ["Como funcionam os Hedge Funds? | Investindo pelo Mundo", "v-5MGgCsj6I"]
+    ]
+  },
+  "produtos-de-investimentos": {
+    title: "Produtos de Investimentos",
+    description: "Dólar, mutual funds, investimentos temáticos, ETFs UCITS e bonds.",
+    episodes: [
+      ["5 formas práticas de investir em dólar | Investindo pelo Mundo", "JLeanxzrwxk"],
+      ["O que são Mutual Funds e como funcionam? | Investindo pelo Mundo", "wdRY6fKqYxM"],
+      ["Mutual Funds: como investir em fundos no exterior | Investindo pelo Mundo", "8oumq5kcO5E"],
+      ["Investimentos Temáticos: como investir em IA, energia limpa e tecnologia | Investindo pelo Mundo", "_mk4852cSVk"],
+      ["ETFs UCITS: como investir no exterior pagando menos imposto | Investindo pelo Mundo", "unQ4CCrmL30"],
+      ["Como escolher ETFs globais: erros e acertos de quem está começando | Investindo pelo Mundo", "qcx3PnwxAqU"],
+      ["Bonds: conheça a renda fixa no exterior | Investindo pelo Mundo", "Olx8UhFjw7E"],
+      ["Bonds: principais termos usados pelo mercado (parte 1) | Investindo pelo Mundo", "vc2IHNqda_c"],
+      ["Bonds: principais termos usados pelo mercado (parte 2) | Investindo pelo Mundo", "UuuGtSs4ZBc"]
+    ]
+  }
+};
+
+const topic = topics[new URLSearchParams(window.location.search).get("tema")];
+const topicTitle = document.getElementById("topic-title");
+const topicDescription = document.getElementById("topic-description");
+const episodeCount = document.getElementById("episode-count");
+const episodeList = document.getElementById("episode-list");
+const topicMessage = document.getElementById("topic-message");
+
+if (topic) {
+  document.title = `${topic.title} — Educacional | BTG Pactual`;
+  topicTitle.textContent = topic.title;
+  topicDescription.textContent = topic.description;
+  episodeCount.textContent = `${topic.episodes.length} episódios`;
+
+  topic.episodes.forEach(([title, videoId], index) => {
+    const episode = document.createElement("a");
+    episode.className = "card theme-card";
+    episode.href = `https://www.youtube.com/watch?v=${videoId}`;
+    episode.target = "_blank";
+    episode.rel = "noopener noreferrer";
+    episode.setAttribute("aria-label", `Assistir episódio ${index + 1}: ${title}`);
+
+    const top = document.createElement("div");
+    top.className = "theme-card__top";
+    const badge = document.createElement("span");
+    badge.className = "badge";
+    badge.textContent = `Episódio ${String(index + 1).padStart(2, "0")}`;
+    const playIcon = document.createElement("span");
+    playIcon.className = "theme-card__icon";
+    playIcon.setAttribute("aria-hidden", "true");
+    playIcon.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>';
+    top.append(badge, playIcon);
+
+    const heading = document.createElement("h2");
+    heading.className = "card__title card__title--sm";
+    heading.textContent = title;
+    const action = document.createElement("span");
+    action.className = "theme-card__link";
+    action.textContent = "Assistir no YouTube →";
+    episode.append(top, heading, action);
+    episodeList.append(episode);
+  });
+} else {
+  topicTitle.textContent = "Tema não encontrado";
+  topicDescription.textContent = "Escolha um dos temas disponíveis na página Educacional.";
+  topicMessage.hidden = false;
+  topicMessage.textContent = "O tema solicitado não existe. Volte à página Educacional e selecione um tema da série.";
+}
+</script>
+</body>
+</html>

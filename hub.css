@@ -43,13 +43,11 @@ body{font-family:var(--font);color:var(--ink);background:var(--bg);min-height:10
 .global-card-title,.global-card-detail{position:relative;z-index:2}
 .global-card-title{font-size:23px;font-weight:700;line-height:1.2;text-shadow:0 1px 5px rgba(0,0,0,.4)}
 .global-card-detail{margin-top:5px;font-size:14px;font-weight:500;opacity:.92}
-.global-card-contas{background-image:url("./white-house.jpg");background-position:center 60%}
-.global-card-us{background-image:url("./miami-finance.jpg");background-position:center 52%}
-.global-card-cayman{background-image:url("./cayman.jpg");background-position:center 58%}
-.global-card-europa{background-image:url("./luxembourg.jpg")}
+.global-card-contas{background-image:url("./card-btg-contas-internacionais.jpeg");background-position:center 60%}
+.global-card-us{background-image:url("./card-btg-us.jpeg");background-position:center 52%}
+.global-card-cayman{background-image:url("./card-btg-cayman.jpeg");background-position:center 58%}
+.global-card-europa{background-image:url("./card-btg-europa.jpeg")}
 .global-card-europa{background-position:center 76%}
-.image-credits{margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6}
-.image-credits a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .pipeline-section+.pipeline-section{margin-top:28px}
 .pipeline-cards,.section-cards{display:grid;gap:16px}
 .pipeline-cards-three{grid-template-columns:repeat(3,minmax(0,1fr))}

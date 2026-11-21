@@ -163,8 +163,8 @@ const etfPanel = document.getElementById("panel-etfs");
 if (etfPanel) {
   etfPanel.innerHTML = `
     <div class="etf-browser">
-      <aside class="etf-class-menu" aria-label="Classes de ETFs UCITS">
-        ${etfGroups.map((group,index)=>`<button class="etf-class-tab${index===0?" active":""}" type="button" data-etf-class="${index}" aria-pressed="${index===0}">${group.name}</button>`).join("")}
+      <aside class="etf-class-menu chips" aria-label="Classes de ETFs UCITS">
+        ${etfGroups.map((group,index)=>`<button class="etf-class-tab chip${index===0?" is-active":""}" type="button" data-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
       </aside>
       <div class="etf-class-content"></div>
     </div>`;
@@ -174,16 +174,16 @@ if (etfPanel) {
 
   function renderEtfGroup(index) {
     const group = etfGroups[index];
-    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="etf-products">${
+    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="etf-products grid grid--2">${
       group.products.map((product)=>`
-        <article class="etf-card">
-          <h4>${product[0]}</h4>
-          <dl class="etf-details">
-            <div><dt>Categoria</dt><dd>${group.name}</dd></div>
-            <div><dt>Ticker</dt><dd>${product[1]}</dd></div>
-            <div><dt>ISIN</dt><dd>${product[2]}</dd></div>
-            <div><dt>Taxa anual</dt><dd>${product[3]}</dd></div>
-            <div><dt>Ano atual</dt><dd>${product[4]}</dd></div>
+        <article class="etf-card card">
+          <h4 class="card__title card__title--sm">${product[0]}</h4>
+          <dl class="etf-details stats stats--2">
+            <div class="stat"><dt class="stat__label">Categoria</dt><dd class="stat__value">${group.name}</dd></div>
+            <div class="stat"><dt class="stat__label">Ticker</dt><dd class="stat__value">${product[1]}</dd></div>
+            <div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[2]}</dd></div>
+            <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${product[3]}</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">Ano atual</dt><dd class="stat__value">${product[4]}</dd></div>
           </dl>
         </article>`).join("")
     }</div>`;
@@ -192,11 +192,13 @@ if (etfPanel) {
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
       classTabs.forEach((item)=>{
-        item.classList.remove("active");
+        item.classList.remove("is-active");
         item.setAttribute("aria-pressed","false");
+        item.setAttribute("aria-selected","false");
       });
-      tab.classList.add("active");
+      tab.classList.add("is-active");
       tab.setAttribute("aria-pressed","true");
+      tab.setAttribute("aria-selected","true");
       renderEtfGroup(Number(tab.dataset.etfClass));
     });
   });
@@ -254,8 +256,8 @@ function renderPlatformEtfs(panelId, groups, currencyNotice) {
 
   panel.innerHTML = `
     <div class="etf-browser">
-      <aside class="etf-class-menu" aria-label="Classes de ETFs UCITS">
-        ${groups.map((group,index)=>`<button class="etf-class-tab${index===0?" active":""}" type="button" data-platform-etf-class="${index}" aria-pressed="${index===0}">${group.name}</button>`).join("")}
+      <aside class="etf-class-menu chips" aria-label="Classes de ETFs UCITS">
+        ${groups.map((group,index)=>`<button class="etf-class-tab chip${index===0?" is-active":""}" type="button" data-platform-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
       </aside>
       <div class="etf-class-content"></div>
     </div>`;
@@ -265,16 +267,16 @@ function renderPlatformEtfs(panelId, groups, currencyNotice) {
 
   function render(index) {
     const group = groups[index];
-    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice">${currencyNotice}</p><div class="etf-products">${
+    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">${currencyNotice}</p><div class="etf-products grid grid--2">${
       group.products.map((product)=>`
-        <article class="etf-card">
-          <h4>${product[0]}</h4>
-          <dl class="etf-details">
-            <div><dt>Categoria</dt><dd>${group.name}</dd></div>
-            <div><dt>Ticker</dt><dd>${product[1]}</dd></div>
-            <div><dt>ISIN</dt><dd>${product[2]}</dd></div>
-            <div><dt>Taxa anual</dt><dd>${product[3]}</dd></div>
-            <div><dt>Ano atual</dt><dd>${product[4]}</dd></div>
+        <article class="etf-card card">
+          <h4 class="card__title card__title--sm">${product[0]}</h4>
+          <dl class="etf-details stats stats--2">
+            <div class="stat"><dt class="stat__label">Categoria</dt><dd class="stat__value">${group.name}</dd></div>
+            <div class="stat"><dt class="stat__label">Ticker</dt><dd class="stat__value">${product[1]}</dd></div>
+            <div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[2]}</dd></div>
+            <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${product[3]}</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">Ano atual</dt><dd class="stat__value">${product[4]}</dd></div>
           </dl>
         </article>`).join("")
     }</div>`;
@@ -283,11 +285,13 @@ function renderPlatformEtfs(panelId, groups, currencyNotice) {
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
       classTabs.forEach((item)=>{
-        item.classList.remove("active");
+        item.classList.remove("is-active");
         item.setAttribute("aria-pressed","false");
+        item.setAttribute("aria-selected","false");
       });
-      tab.classList.add("active");
+      tab.classList.add("is-active");
       tab.setAttribute("aria-pressed","true");
+      tab.setAttribute("aria-selected","true");
       render(Number(tab.dataset.platformEtfClass));
     });
   });
@@ -360,8 +364,8 @@ const fixedIncomePanel = document.getElementById("panel-renda-fixa") || document
 if (fixedIncomePanel) {
   fixedIncomePanel.innerHTML = `
     <div class="fixed-income-browser">
-      <aside class="fixed-income-class-menu" aria-label="Classes de renda fixa internacional">
-        ${fixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab${index===0?" active":""}" type="button" data-fixed-income-class="${index}" aria-pressed="${index===0}">${group.name}</button>`).join("")}
+      <aside class="fixed-income-class-menu chips" aria-label="Classes de renda fixa internacional">
+        ${fixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab chip${index===0?" is-active":""}" type="button" data-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
       </aside>
       <div class="fixed-income-class-content"></div>
     </div>`;
@@ -371,35 +375,35 @@ if (fixedIncomePanel) {
 
   function renderFixedIncomeGroup(index) {
     const group = fixedIncomeGroups[index];
-    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="fixed-income-products">${
+    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="fixed-income-products grid grid--2">${
       group.products.map((product)=>`
-        <article class="fixed-income-card">
-          <h4>${product[0]}</h4>
-          <dl class="fixed-income-details">
-            <div><dt>Setor</dt><dd>${product[1]}</dd></div>
-            <div><dt>Símbolo</dt><dd>${product[2]}</dd></div>
-            <div><dt>Cupom</dt><dd>${product[3]}</dd></div>
+        <article class="fixed-income-card card">
+          <h4 class="card__title card__title--sm">${product[0]}</h4>
+          <dl class="fixed-income-details stats stats--2">
+            <div class="stat"><dt class="stat__label">Setor</dt><dd class="stat__value">${product[1]}</dd></div>
+            <div class="stat"><dt class="stat__label">Símbolo</dt><dd class="stat__value">${product[2]}</dd></div>
+            <div class="stat"><dt class="stat__label">Cupom</dt><dd class="stat__value">${product[3]}</dd></div>
             ${index === 0 ? `
-            <div><dt>Vencimento</dt><dd>${product[4]}</dd></div>
-            <div><dt>YTW / Retorno indicativo</dt><dd>${product[5]}</dd></div>
-            <div><dt>Duration</dt><dd>${product[6]}</dd></div>
-            <div><dt>Rating</dt><dd>${product[7]}</dd></div>
-            <div><dt>Tipo</dt><dd>Soberano</dd></div>
-            <div><dt>Preço</dt><dd>${product[8]}</dd></div>
-            <div><dt>Emissão</dt><dd>${product[9]}</dd></div>
-            <div><dt>País</dt><dd>${product[10]}</dd></div>
-            <div><dt>ISIN</dt><dd>${product[11]}</dd></div>
+            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">${product[4]}</dd></div>
+            <div class="stat"><dt class="stat__label">YTW / Retorno indicativo</dt><dd class="stat__value">${product[5]}</dd></div>
+            <div class="stat"><dt class="stat__label">Duration</dt><dd class="stat__value">${product[6]}</dd></div>
+            <div class="stat"><dt class="stat__label">Rating</dt><dd class="stat__value">${product[7]}</dd></div>
+            <div class="stat"><dt class="stat__label">Tipo</dt><dd class="stat__value">Soberano</dd></div>
+            <div class="stat"><dt class="stat__label">Preço</dt><dd class="stat__value">${product[8]}</dd></div>
+            <div class="stat"><dt class="stat__label">Emissão</dt><dd class="stat__value">${product[9]}</dd></div>
+            <div class="stat"><dt class="stat__label">País</dt><dd class="stat__value">${product[10]}</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[11]}</dd></div>
             ` : `
-            <div><dt>Vencimento</dt><dd>${product[4]}</dd></div>
-            <div><dt>Preço</dt><dd>${product[5]}</dd></div>
-            <div><dt>YTW</dt><dd>${product[6]}</dd></div>
-            <div><dt>Duration</dt><dd>${product[7]}</dd></div>
-            <div><dt>Rating</dt><dd>${product[8]}</dd></div>
-            <div><dt>Senioridade</dt><dd>${product[9]}</dd></div>
-            <div><dt>País / Listing</dt><dd>${product[10]}</dd></div>
-            <div><dt>Peça</dt><dd>${product[11]}</dd></div>
-            <div><dt>Emissão</dt><dd>${product[12]}</dd></div>
-            <div><dt>ISIN</dt><dd>${product[13]}</dd></div>
+            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">${product[4]}</dd></div>
+            <div class="stat"><dt class="stat__label">Preço</dt><dd class="stat__value">${product[5]}</dd></div>
+            <div class="stat"><dt class="stat__label">YTW</dt><dd class="stat__value">${product[6]}</dd></div>
+            <div class="stat"><dt class="stat__label">Duration</dt><dd class="stat__value">${product[7]}</dd></div>
+            <div class="stat"><dt class="stat__label">Rating</dt><dd class="stat__value">${product[8]}</dd></div>
+            <div class="stat"><dt class="stat__label">Senioridade</dt><dd class="stat__value">${product[9]}</dd></div>
+            <div class="stat"><dt class="stat__label">País / Listing</dt><dd class="stat__value">${product[10]}</dd></div>
+            <div class="stat"><dt class="stat__label">Peça</dt><dd class="stat__value">${product[11]}</dd></div>
+            <div class="stat"><dt class="stat__label">Emissão</dt><dd class="stat__value">${product[12]}</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[13]}</dd></div>
             `}
           </dl>
         </article>`).join("")
@@ -409,11 +413,13 @@ if (fixedIncomePanel) {
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
       classTabs.forEach((item)=>{
-        item.classList.remove("active");
+        item.classList.remove("is-active");
         item.setAttribute("aria-pressed","false");
+        item.setAttribute("aria-selected","false");
       });
-      tab.classList.add("active");
+      tab.classList.add("is-active");
       tab.setAttribute("aria-pressed","true");
+      tab.setAttribute("aria-selected","true");
       renderFixedIncomeGroup(Number(tab.dataset.fixedIncomeClass));
     });
   });
@@ -426,8 +432,8 @@ const europaFixedIncomePanel = document.getElementById("europa-panel-renda-fixa"
 if (europaFixedIncomePanel) {
   europaFixedIncomePanel.innerHTML = `
     <div class="fixed-income-browser">
-      <aside class="fixed-income-class-menu" aria-label="Classes de renda fixa internacional">
-        ${europaFixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab${index===0?" active":""}" type="button" data-europa-fixed-income-class="${index}" aria-pressed="${index===0}">${group.name}</button>`).join("")}
+      <aside class="fixed-income-class-menu chips" aria-label="Classes de renda fixa internacional">
+        ${europaFixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab chip${index===0?" is-active":""}" type="button" data-europa-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
       </aside>
       <div class="fixed-income-class-content"></div>
     </div>`;
@@ -437,24 +443,24 @@ if (europaFixedIncomePanel) {
 
   function renderEuropaFixedIncomeGroup(index) {
     const group = europaFixedIncomeGroups[index];
-    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</p><div class="fixed-income-products">${
+    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</p><div class="fixed-income-products grid grid--2">${
       group.products.map((product)=>`
-        <article class="fixed-income-card">
-          <h4>${product[0]}</h4>
-          <dl class="fixed-income-details">
-            <div><dt>Setor</dt><dd>${product[1]}</dd></div>
-            <div><dt>Símbolo</dt><dd>${product[2]}</dd></div>
-            <div><dt>Cupom</dt><dd>${product[3]}</dd></div>
-            <div><dt>Vencimento</dt><dd>${product[4]}</dd></div>
-            <div><dt>Preço</dt><dd>${product[5]}</dd></div>
-            <div><dt>YTW</dt><dd>${product[6]}</dd></div>
-            <div><dt>Duration modificada</dt><dd>${product[7]}</dd></div>
-            <div><dt>Rating</dt><dd>${product[8]}</dd></div>
-            <div><dt>Senioridade</dt><dd>${product[9]}</dd></div>
-            <div><dt>País / Listing</dt><dd>${product[10]}</dd></div>
-            <div><dt>Peça mínima</dt><dd>${product[11]}</dd></div>
-            <div><dt>Emissão</dt><dd>${product[12]}</dd></div>
-            <div><dt>ISIN</dt><dd>${product[13]}</dd></div>
+        <article class="fixed-income-card card">
+          <h4 class="card__title card__title--sm">${product[0]}</h4>
+          <dl class="fixed-income-details stats stats--2">
+            <div class="stat"><dt class="stat__label">Setor</dt><dd class="stat__value">${product[1]}</dd></div>
+            <div class="stat"><dt class="stat__label">Símbolo</dt><dd class="stat__value">${product[2]}</dd></div>
+            <div class="stat"><dt class="stat__label">Cupom</dt><dd class="stat__value">${product[3]}</dd></div>
+            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">${product[4]}</dd></div>
+            <div class="stat"><dt class="stat__label">Preço</dt><dd class="stat__value">${product[5]}</dd></div>
+            <div class="stat"><dt class="stat__label">YTW</dt><dd class="stat__value">${product[6]}</dd></div>
+            <div class="stat"><dt class="stat__label">Duration modificada</dt><dd class="stat__value">${product[7]}</dd></div>
+            <div class="stat"><dt class="stat__label">Rating</dt><dd class="stat__value">${product[8]}</dd></div>
+            <div class="stat"><dt class="stat__label">Senioridade</dt><dd class="stat__value">${product[9]}</dd></div>
+            <div class="stat"><dt class="stat__label">País / Listing</dt><dd class="stat__value">${product[10]}</dd></div>
+            <div class="stat"><dt class="stat__label">Peça mínima</dt><dd class="stat__value">${product[11]}</dd></div>
+            <div class="stat"><dt class="stat__label">Emissão</dt><dd class="stat__value">${product[12]}</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[13]}</dd></div>
           </dl>
         </article>`).join("")
     }</div>`;
@@ -463,11 +469,13 @@ if (europaFixedIncomePanel) {
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
       classTabs.forEach((item)=>{
-        item.classList.remove("active");
+        item.classList.remove("is-active");
         item.setAttribute("aria-pressed","false");
+        item.setAttribute("aria-selected","false");
       });
-      tab.classList.add("active");
+      tab.classList.add("is-active");
       tab.setAttribute("aria-pressed","true");
+      tab.setAttribute("aria-selected","true");
       renderEuropaFixedIncomeGroup(Number(tab.dataset.europaFixedIncomeClass));
     });
   });

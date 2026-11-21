@@ -4,99 +4,97 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Pipeline Offshore - Produtos da semana — Distribuição Offshore | BTG Pactual</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="./hub.css"/>
+<link rel="stylesheet" href="./style.css"/>
 </head>
 <body>
 <header class="topbar">
-  <div class="topbar-brand">btg pactual <span>distribuição offshore</span></div>
-  <div class="topbar-right">Distribuição · Offshore · Uso interno</div>
-</header>
-<div class="layout">
-  <nav class="sidebar" aria-label="Navegação">
-    <a class="nav-item" href="./index.html">Visão Global</a>
-    <a class="nav-item active" href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
-    <a class="nav-item" href="./educacional.html">Educacional</a>
-  </nav>
-  <main class="main">
-    <div class="page-head">
-      <div>
-        <h1>Pipeline Offshore - Produtos da semana</h1>
-        <p class="sub">Produtos da semana</p>
-      </div>
+  <div class="topbar__inner">
+    <div class="brand">
+      <span class="brand__name">btg pactual</span>
+      <span class="brand__sub">distribuição offshore</span>
     </div>
+    <nav class="nav" aria-label="Navegação">
+      <a href="./index.html">Visão Global</a>
+      <a href="./empresas.html" aria-current="page">Pipeline Offshore - Produtos da semana</a>
+      <a href="./educacional.html">Educacional</a>
+    </nav>
+    <span class="topbar__tag">Distribuição · Offshore · Uso interno</span>
+  </div>
+</header>
+<main class="container page">
+    <header class="page-header">
+        <h1>Pipeline Offshore - Produtos da semana</h1>
+        <p>Produtos da semana</p>
+    </header>
     <section class="pipeline-section" aria-labelledby="fundos-globais">
-      <div class="sec-head">
+      <div class="section-title">
         <h2 id="fundos-globais">Fundos Globais</h2>
       </div>
-      <div class="pipeline-cards pipeline-cards-three">
-        <article class="pipeline-card">
-          <h3>Schroder Gaia Egerton</h3>
-          <p class="pipeline-description">Fundo Long/Short global com gestão fundamentalista, que busca capturar a valorização de empresas globais e reduzir a dependência do movimento geral do mercado.</p>
-          <img class="pipeline-chart" src="./schroder-gaia-egerton-setores.png" alt="Exposição short, long e líquida por setor do fundo Schroder Gaia Egerton"/>
-          <dl class="pipeline-details">
-            <div><dt>Retorno 12M</dt><dd>3,30%</dd></div>
-            <div><dt>Aporte mínimo</dt><dd>USD 1.000,00</dd></div>
-            <div><dt>Resgate</dt><dd>D+6</dd></div>
-            <div><dt>ISIN</dt><dd>LU0548376150</dd></div>
+      <div class="pipeline-cards grid grid--3">
+        <article class="pipeline-card card">
+          <h3 class="card__title">Schroder Gaia Egerton</h3>
+          <p class="pipeline-description card__desc">Fundo Long/Short global com gestão fundamentalista, que busca capturar a valorização de empresas globais e reduzir a dependência do movimento geral do mercado.</p>
+          <figure class="chart"><img class="pipeline-chart" src="./schroder-gaia-egerton-setores.png" alt="Exposição short, long e líquida por setor do fundo Schroder Gaia Egerton"/></figure>
+          <dl class="pipeline-details stats stats--2">
+            <div class="stat"><dt class="stat__label">Retorno 12M</dt><dd class="stat__value">3,30%</dd></div>
+            <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">USD 1.000,00</dd></div>
+            <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+6</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU0548376150</dd></div>
           </dl>
         </article>
-        <article class="pipeline-card">
-          <h3>BTG Pactual SICAV Global Credit Fund</h3>
-          <p class="pipeline-description">Estratégia de alocação internacional com foco em crédito global, gerenciada ativamente pela equipe de Portfolio Solutions do BTG Pactual. O fundo investe em fundos mútuos, ETFs e títulos diretos de crédito, com o objetivo de gerar renda e apreciação do capital no longo prazo.</p>
-          <img class="pipeline-chart" src="./btg-global-credit-subestrategia.png" alt="Composição por subestratégia e classificação de crédito do fundo Global Credit"/>
-          <dl class="pipeline-details">
-            <div><dt>Yield</dt><dd>7,44% a.a.</dd></div>
-            <div><dt>Aporte mínimo</dt><dd>USD 1.000,00</dd></div>
-            <div><dt>Resgate</dt><dd>D+2 / D+6</dd></div>
-            <div><dt>ISIN</dt><dd>LU3435271443</dd></div>
+        <article class="pipeline-card card">
+          <h3 class="card__title">BTG Pactual SICAV Global Credit Fund</h3>
+          <p class="pipeline-description card__desc">Estratégia de alocação internacional com foco em crédito global, gerenciada ativamente pela equipe de Portfolio Solutions do BTG Pactual. O fundo investe em fundos mútuos, ETFs e títulos diretos de crédito, com o objetivo de gerar renda e apreciação do capital no longo prazo.</p>
+          <figure class="chart"><img class="pipeline-chart" src="./btg-global-credit-subestrategia.png" alt="Composição por subestratégia e classificação de crédito do fundo Global Credit"/></figure>
+          <dl class="pipeline-details stats stats--2">
+            <div class="stat"><dt class="stat__label">Yield</dt><dd class="stat__value">7,44% a.a.</dd></div>
+            <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">USD 1.000,00</dd></div>
+            <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2 / D+6</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU3435271443</dd></div>
           </dl>
         </article>
-        <article class="pipeline-card">
-          <h3>BTG Pactual SICAV Global Equities</h3>
-          <p class="pipeline-description">Estratégia global de alocação com foco em mercados globais de ações, gerenciada ativamente pela equipe de Portfolio Solutions do BTG Pactual. O fundo investe estrategicamente em fundos mútuos de ações, ETFs e ações diretas em regiões e setores. O objetivo é alcançar a valorização do capital a longo prazo por meio de exposição diversificada a mercados desenvolvidos e emergentes. <span class="pipeline-footnote">* Drive Wealth / USD Share Class A (acc)</span></p>
-          <img class="pipeline-chart" src="./btg-global-equities-alocacao.png" alt="Alocação regional e setorial do fundo Global Equities"/>
-          <dl class="pipeline-details">
-            <div><dt>Retorno 12M</dt><dd>6,31%</dd></div>
-            <div><dt>Aporte mínimo</dt><dd>USD 1.000,00</dd></div>
-            <div><dt>Resgate</dt><dd>D+2 / D+6</dd></div>
-            <div><dt>ISIN</dt><dd>LU3060589838</dd></div>
+        <article class="pipeline-card card">
+          <h3 class="card__title">BTG Pactual SICAV Global Equities</h3>
+          <p class="pipeline-description card__desc">Estratégia global de alocação com foco em mercados globais de ações, gerenciada ativamente pela equipe de Portfolio Solutions do BTG Pactual. O fundo investe estrategicamente em fundos mútuos de ações, ETFs e ações diretas em regiões e setores. O objetivo é alcançar a valorização do capital a longo prazo por meio de exposição diversificada a mercados desenvolvidos e emergentes. <span class="pipeline-footnote card__footnote">* Drive Wealth / USD Share Class A (acc)</span></p>
+          <figure class="chart"><img class="pipeline-chart" src="./btg-global-equities-alocacao.png" alt="Alocação regional e setorial do fundo Global Equities"/></figure>
+          <dl class="pipeline-details stats stats--2">
+            <div class="stat"><dt class="stat__label">Retorno 12M</dt><dd class="stat__value">6,31%</dd></div>
+            <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">USD 1.000,00</dd></div>
+            <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2 / D+6</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU3060589838</dd></div>
           </dl>
         </article>
       </div>
     </section>
     <section class="pipeline-section" aria-labelledby="renda-fixa-internacional">
-      <div class="sec-head">
+      <div class="section-title">
         <h2 id="renda-fixa-internacional">Renda Fixa Internacional</h2>
       </div>
-      <div class="pipeline-cards pipeline-cards-two">
-        <article class="pipeline-card">
-          <h3>T-Mobile US Inc.</h3>
-          <p class="pipeline-description">Telecomunicações</p>
-          <dl class="pipeline-details">
-            <div><dt>Retorno indicativo</dt><dd>6,11% a.a.</dd></div>
-            <div><dt>Vencimento</dt><dd>15/05/2035</dd></div>
-            <div><dt>ISIN</dt><dd>US87264ADT97</dd></div>
+      <div class="pipeline-cards grid grid--2">
+        <article class="pipeline-card card">
+          <h3 class="card__title">T-Mobile US Inc.</h3>
+          <p class="pipeline-description card__desc">Telecomunicações</p>
+          <dl class="pipeline-details stats">
+            <div class="stat"><dt class="stat__label">Retorno indicativo</dt><dd class="stat__value">6,11% a.a.</dd></div>
+            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">15/05/2035</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">US87264ADT97</dd></div>
           </dl>
         </article>
-        <article class="pipeline-card">
-          <h3>Morgan Stanley</h3>
-          <p class="pipeline-description">Bancos</p>
-          <dl class="pipeline-details">
-            <div><dt>Retorno indicativo</dt><dd>5,82% a.a.</dd></div>
-            <div><dt>Vencimento</dt><dd>18/10/2033</dd></div>
-            <div><dt>ISIN</dt><dd>US61747YEY77</dd></div>
+        <article class="pipeline-card card">
+          <h3 class="card__title">Morgan Stanley</h3>
+          <p class="pipeline-description card__desc">Bancos</p>
+          <dl class="pipeline-details stats">
+            <div class="stat"><dt class="stat__label">Retorno indicativo</dt><dd class="stat__value">5,82% a.a.</dd></div>
+            <div class="stat"><dt class="stat__label">Vencimento</dt><dd class="stat__value">18/10/2033</dd></div>
+            <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">US61747YEY77</dd></div>
           </dl>
         </article>
       </div>
     </section>
-    <p class="footer-alert">
+    <p class="footer-alert disclaimer">
       <strong>MATERIAL DE USO INTERNO, NÃO ENVIAR AOS CLIENTES</strong><br />
       <strong>PARA INFORMAÇÕES OFICIAIS, ACESSAR O DIE DA OPERAÇÃO DISPONIBILIZADO NO ADMIN BTG</strong>
     </p>
-  </main>
-</div>
+</main>
 </body>
 </html>

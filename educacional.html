@@ -4,47 +4,43 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Educacional — Distribuição Offshore | BTG Pactual</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="./hub.css"/>
+<link rel="stylesheet" href="./style.css"/>
 </head>
 <body>
 <header class="topbar">
-  <div class="topbar-brand">btg pactual <span>distribuição offshore</span></div>
-  <div class="topbar-right">Distribuição · Offshore · Uso interno</div>
+  <div class="topbar__inner">
+    <div class="brand">
+      <span class="brand__name">btg pactual</span>
+      <span class="brand__sub">distribuição offshore</span>
+    </div>
+    <nav class="nav" aria-label="Navegação">
+      <a href="./index.html">Visão Global</a>
+      <a href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
+      <a href="./educacional.html" aria-current="page">Educacional</a>
+    </nav>
+    <span class="topbar__tag">Distribuição · Offshore · Uso interno</span>
+  </div>
 </header>
-<div class="layout">
-  <nav class="sidebar" aria-label="Navegação">
-    <a class="nav-item" href="./index.html">Visão Global</a>
-    <a class="nav-item" href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
-    <a class="nav-item active" href="./educacional.html">Educacional</a>
-  </nav>
-  <main class="main">
-    <div class="page-head">
-      <div>
+<main class="container page">
+    <header class="page-header">
         <h1>Educacional</h1>
-        <p class="sub">Conteúdo educacional Offshore.</p>
-      </div>
-    </div>
-    <div class="section-cards">
-      <a class="section-card" href="./materiais/Investindo_pelo_Mundo_Resumo_por_Tema_11.26.pdf" target="_blank" rel="noopener">
-        <span class="section-card-title">Investindo pelo Mundo</span>
-        <span class="section-card-detail">Episódios educativos sobre produtos Offshore e diversificação global</span>
-      </a>
-    </div>
+        <p>Conteúdo educacional Offshore.</p>
+    </header>
+    <a class="card theme-card" href="./materiais/Investindo_pelo_Mundo_Resumo_por_Tema_11.26.pdf" target="_blank" rel="noopener">
+      <h2 class="card__title">Investindo pelo Mundo</h2>
+      <p class="card__desc">Episódios educativos sobre produtos Offshore e diversificação global</p>
+    </a>
     <section class="product-section" aria-label="Temas de Investindo pelo Mundo">
-      <h2>Temas da série</h2>
-      <div class="investment-products">
-        <article class="investment-card"><h3>Diversificação Global</h3><p class="investment-type">9 episódios</p><p>Por que, quando e como começar a investir fora do Brasil: dólar, dúvidas comuns e tributação.</p></article>
-        <article class="investment-card"><h3>Câmbio</h3><p class="investment-type">2 episódios</p><p>Como funciona o câmbio na prática: dólar comercial, turismo e PTAX, e as principais dúvidas.</p></article>
-        <article class="investment-card"><h3>Renda Fixa Global</h3><p class="investment-type">4 episódios</p><p>Como funciona a renda fixa fora do país e como ela é tributada nos EUA.</p></article>
-        <article class="investment-card"><h3>Renda Variável Global</h3><p class="investment-type">4 episódios</p><p>Como investir em ações nos EUA e entender a tributação da renda variável.</p></article>
-        <article class="investment-card"><h3>Alternativos</h3><p class="investment-type">3 episódios</p><p>O que são investimentos alternativos, hedge funds e opções semilíquidas e ilíquidas.</p></article>
-        <article class="investment-card"><h3>Produtos de Investimentos</h3><p class="investment-type">9 episódios</p><p>Dólar, mutual funds, investimentos temáticos, ETFs UCITS e bonds.</p></article>
+      <div class="section-title"><h2>Temas da série</h2></div>
+      <div class="investment-products grid grid--3">
+        <article class="investment-card card theme-card"><span class="badge">9 episódios</span><h3 class="card__title card__title--sm">Diversificação Global</h3><p class="card__desc">Por que, quando e como começar a investir fora do Brasil: dólar, dúvidas comuns e tributação.</p></article>
+        <article class="investment-card card theme-card"><span class="badge">2 episódios</span><h3 class="card__title card__title--sm">Câmbio</h3><p class="card__desc">Como funciona o câmbio na prática: dólar comercial, turismo e PTAX, e as principais dúvidas.</p></article>
+        <article class="investment-card card theme-card"><span class="badge">4 episódios</span><h3 class="card__title card__title--sm">Renda Fixa Global</h3><p class="card__desc">Como funciona a renda fixa fora do país e como ela é tributada nos EUA.</p></article>
+        <article class="investment-card card theme-card"><span class="badge">4 episódios</span><h3 class="card__title card__title--sm">Renda Variável Global</h3><p class="card__desc">Como investir em ações nos EUA e entender a tributação da renda variável.</p></article>
+        <article class="investment-card card theme-card"><span class="badge">3 episódios</span><h3 class="card__title card__title--sm">Alternativos</h3><p class="card__desc">O que são investimentos alternativos, hedge funds e opções semilíquidas e ilíquidas.</p></article>
+        <article class="investment-card card theme-card"><span class="badge">9 episódios</span><h3 class="card__title card__title--sm">Produtos de Investimentos</h3><p class="card__desc">Dólar, mutual funds, investimentos temáticos, ETFs UCITS e bonds.</p></article>
       </div>
     </section>
-  </main>
-</div>
+</main>
 </body>
 </html>

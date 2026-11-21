@@ -43,16 +43,17 @@ const faqContent = document.getElementById("faq-content");
 faqTopics.forEach((topic, topicIndex) => {
   const topicId = `faq-topic-${topicIndex + 1}`;
   const button = document.createElement("button");
-  button.className = "faq-topic-button";
+  button.className = "faq-topic-button faq-theme";
   button.type = "button";
   button.dataset.topicIndex = String(topicIndex);
   button.setAttribute("aria-controls", topicId);
   button.setAttribute("aria-pressed", topicIndex === 0 ? "true" : "false");
+  button.setAttribute("aria-current", topicIndex === 0 ? "true" : "false");
   button.textContent = topic.title;
   topicList.append(button);
 
   const category = document.createElement("section");
-  category.className = "faq-category";
+  category.className = "faq-category faq-main";
   category.id = topicId;
   category.hidden = topicIndex !== 0;
   const title = document.createElement("h2");
@@ -61,27 +62,35 @@ faqTopics.forEach((topic, topicIndex) => {
 
   topic.sections.forEach((section) => {
     const sectionTitle = document.createElement("h3");
-    sectionTitle.className = "faq-subtopic";
+    sectionTitle.className = "faq-subtopic faq-group";
     sectionTitle.textContent = section.title;
     category.append(sectionTitle);
+    const questionList = document.createElement("div");
+    questionList.className = "faq-list";
     section.questions.forEach((entry, questionIndex) => {
       const question = document.createElement("details");
-      question.className = "faq-question";
+      question.className = "faq-question faq-item";
       const summary = document.createElement("summary");
       const number = document.createElement("span");
-      number.className = "faq-question-number";
+      number.className = "faq-question-number faq-item__num";
       number.textContent = String(questionIndex + 1).padStart(2, "0");
       const text = document.createElement("span");
+      text.className = "faq-item__q";
       text.textContent = entry.question;
-      summary.append(number, text);
+      const chevron = document.createElement("span");
+      chevron.className = "faq-item__chev";
+      chevron.setAttribute("aria-hidden", "true");
+      chevron.textContent = "⌄";
+      summary.append(number, text, chevron);
       const answer = document.createElement("div");
-      answer.className = "faq-answer";
+      answer.className = "faq-answer faq-item__a";
       const answerText = document.createElement("p");
       answerText.textContent = entry.answer;
       answer.append(answerText);
       question.append(summary, answer);
-      category.append(question);
+      questionList.append(question);
     });
+    category.append(questionList);
   });
   faqContent.append(category);
 });
@@ -90,8 +99,9 @@ const buttons = Array.from(topicList.querySelectorAll(".faq-topic-button"));
 buttons.forEach((button) => button.addEventListener("click", () => {
   buttons.forEach((item, index) => {
     const active = item === button;
-    item.classList.toggle("active", active);
+    item.classList.toggle("is-active", active);
     item.setAttribute("aria-pressed", String(active));
+    item.setAttribute("aria-current", String(active));
   });
   Array.from(faqContent.querySelectorAll(".faq-category")).forEach((category, index) => {
     category.hidden = index !== Number(button.dataset.topicIndex);

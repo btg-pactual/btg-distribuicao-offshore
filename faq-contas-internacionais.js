@@ -453,16 +453,17 @@ const faqContent = document.getElementById("faq-content");
 faqTopics.forEach((topic, topicIndex) => {
   const topicId = `faq-topic-${topicIndex + 1}`;
   const topicButton = document.createElement("button");
-  topicButton.className = "faq-topic-button";
+  topicButton.className = "faq-topic-button faq-theme";
   topicButton.type = "button";
   topicButton.dataset.topicIndex = String(topicIndex);
   topicButton.setAttribute("aria-controls", topicId);
   topicButton.setAttribute("aria-pressed", topicIndex === 0 ? "true" : "false");
+  topicButton.setAttribute("aria-current", topicIndex === 0 ? "true" : "false");
   topicButton.textContent = topic.title;
   topicList.append(topicButton);
 
   const category = document.createElement("section");
-  category.className = "faq-category";
+  category.className = "faq-category faq-main";
   category.id = topicId;
   category.hidden = topicIndex !== 0;
 
@@ -472,34 +473,42 @@ faqTopics.forEach((topic, topicIndex) => {
 
   topic.sections.forEach((section, sectionIndex) => {
     const sectionTitle = document.createElement("h3");
-    sectionTitle.className = "faq-subtopic";
+    sectionTitle.className = "faq-subtopic faq-group";
     sectionTitle.textContent = section.title;
     category.append(sectionTitle);
+    const questionList = document.createElement("div");
+    questionList.className = "faq-list";
 
     section.questions.forEach((entry, questionIndex) => {
       const questionId = `faq-question-${topicIndex + 1}-${sectionIndex + 1}-${questionIndex + 1}`;
 
       const question = document.createElement("details");
-      question.className = "faq-question";
+      question.className = "faq-question faq-item";
       question.id = questionId;
 
       const summary = document.createElement("summary");
       const number = document.createElement("span");
-      number.className = "faq-question-number";
+      number.className = "faq-question-number faq-item__num";
       number.textContent = String(questionIndex + 1).padStart(2, "0");
       const questionText = document.createElement("span");
+      questionText.className = "faq-item__q";
       questionText.textContent = entry.question;
-      summary.append(number, questionText);
+      const chevron = document.createElement("span");
+      chevron.className = "faq-item__chev";
+      chevron.setAttribute("aria-hidden", "true");
+      chevron.textContent = "⌄";
+      summary.append(number, questionText, chevron);
 
       const answer = document.createElement("div");
-      answer.className = "faq-answer";
+      answer.className = "faq-answer faq-item__a";
       const answerText = document.createElement("p");
       answerText.textContent = entry.answer;
       answer.append(answerText);
 
       question.append(summary, answer);
-      category.append(question);
+      questionList.append(question);
     });
+    category.append(questionList);
   });
   faqContent.append(category);
 });
@@ -509,8 +518,9 @@ const topicButtons = Array.from(topicList.querySelectorAll(".faq-topic-button"))
 function activateTopic(topicIndex, openQuestionId = null) {
   topicButtons.forEach((button, index) => {
     const active = index === topicIndex;
-    button.classList.toggle("active", active);
+    button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("aria-current", String(active));
   });
 
   Array.from(faqContent.querySelectorAll(".faq-category")).forEach((category, index) => {
@@ -524,7 +534,7 @@ function activateTopic(topicIndex, openQuestionId = null) {
 }
 
 topicButtons.forEach((button, topicIndex) => {
-  button.classList.toggle("active", topicIndex === 0);
+  button.classList.toggle("is-active", topicIndex === 0);
   button.addEventListener("click", () => activateTopic(topicIndex));
 });
 

@@ -357,6 +357,35 @@ a:hover { color: var(--azul-escuro); }
 }
 .theme-card__link:hover { text-decoration: underline; }
 
+/* Product browsers keep the existing tab behavior while using shared primitives. */
+.product-section { scroll-margin-top: 24px; }
+.product-browser, .etf-browser, .fixed-income-browser {
+  display: grid; grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
+  gap: 24px; align-items: start;
+}
+.product-menu, .etf-class-menu, .fixed-income-class-menu {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 18px; background: #fff; border: 1px solid var(--borda);
+  border-radius: var(--raio);
+}
+.product-menu .product-tabs { flex-direction: column; align-items: stretch; }
+.product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab {
+  width: 100%; text-align: left;
+}
+.product-content, .etf-class-content, .fixed-income-class-content { min-width: 0; }
+.product-panel[hidden] { display: none; }
+.product-panel .investment-products { margin-top: 0; }
+.etf-class-menu, .fixed-income-class-menu { max-height: 620px; overflow-y: auto; }
+.etf-products, .fixed-income-products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.etf-card, .fixed-income-card { min-width: 0; }
+.etf-details, .fixed-income-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.etf-details div, .fixed-income-details div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.etf-details dt, .fixed-income-details dt, .etf-details dd, .fixed-income-details dd { margin: 0; }
+.etf-details dt, .fixed-income-details dt { font-size: 12px; color: var(--muted); }
+.etf-details dd, .fixed-income-details dd { font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
+.etf-group-head, .fixed-income-group-head { margin-bottom: 12px; }
+.product-rate-notice { margin-bottom: 16px; }
+
 /* 10. FAQ (temas na lateral + acordeão) ---------------------------------- */
 .faq-layout { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px; }
 
@@ -380,6 +409,7 @@ a:hover { color: var(--azul-escuro); }
 }
 
 .faq-main { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.faq-category[hidden] { display: none; }
 .faq-main h2 { font-size: 24px; font-weight: 700; }
 .faq-group { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--azul); }
 
@@ -408,6 +438,13 @@ a:hover { color: var(--azul-escuro); }
   .faq-side { flex-basis: 100%; padding: 14px 12px; }
   .faq-side__list { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
   .faq-theme { width: auto; white-space: nowrap; }
+  .product-browser, .etf-browser, .fixed-income-browser { grid-template-columns: 1fr; }
+  .product-menu .product-tabs, .etf-class-menu, .fixed-income-class-menu {
+    flex-direction: row; flex-wrap: nowrap; overflow-x: auto; max-height: none;
+  }
+  .product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab {
+    width: auto; flex: 0 0 auto; white-space: nowrap;
+  }
 }
 
 @media (max-width: 640px) {
@@ -444,6 +481,8 @@ a:hover { color: var(--azul-escuro); }
 
   .faq-item summary { padding: 16px; gap: 12px; }
   .faq-item__a { padding: 0 16px 16px 16px; }
+  .etf-products, .fixed-income-products { grid-template-columns: 1fr; }
+  .product-menu, .etf-class-menu, .fixed-income-class-menu { padding: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

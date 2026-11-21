@@ -4,63 +4,63 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>BTG US — Distribuição Offshore | BTG Pactual</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="./hub.css"/>
+<link rel="stylesheet" href="./style.css"/>
 <script src="./contas-internacionais.js" defer></script>
 </head>
 <body>
 <header class="topbar">
-  <div class="topbar-brand">btg pactual <span>distribuição offshore</span></div>
-  <div class="topbar-right">Distribuição · Offshore · Uso interno</div>
-</header>
-<div class="layout">
-  <nav class="sidebar" aria-label="Navegação">
-    <a class="nav-item active" href="./index.html">Visão Global</a>
-    <a class="nav-item" href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
-    <a class="nav-item" href="./educacional.html">Educacional</a>
-  </nav>
-  <main class="main">
-    <div class="page-head"><div><h1>BTG US</h1><p class="sub">Pershing</p></div></div>
-    <div class="section-cards">
-      <a class="section-card" href="./faq-btg-us.html">
-        <span class="section-card-title">FAQ</span>
-        <span class="section-card-detail">Dúvidas frequentes</span>
-      </a>
+  <div class="topbar__inner">
+    <div class="brand">
+      <span class="brand__name">btg pactual</span>
+      <span class="brand__sub">distribuição offshore</span>
     </div>
+    <nav class="nav" aria-label="Navegação">
+      <a href="./index.html">Visão Global</a>
+      <a href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
+      <a href="./educacional.html">Educacional</a>
+    </nav>
+    <span class="topbar__tag">Distribuição · Offshore · Uso interno</span>
+  </div>
+</header>
+<main class="container page">
+    <header class="page-header page-header--row">
+      <div>
+        <h1>BTG US</h1>
+        <p>Pershing</p>
+      </div>
+      <a class="btn" href="./faq-btg-us.html"><span>FAQ</span><span>Dúvidas frequentes</span></a>
+    </header>
     <section class="product-section" id="produtos" aria-label="Produtos">
       <div class="product-browser">
         <aside class="product-menu">
-          <h2>Produtos</h2>
-          <div class="product-tabs" role="tablist" aria-label="Categorias de produtos" aria-orientation="vertical">
-            <button class="product-tab" id="us-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="us-panel-fundos" tabindex="0">Fundos de investimentos</button>
-            <button class="product-tab" id="us-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="us-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
-            <button class="product-tab" id="us-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="us-panel-etfs" tabindex="-1">ETFs UCITs</button>
-            <button class="product-tab" id="us-tab-notas" type="button" role="tab" aria-selected="false" aria-controls="us-panel-notas" tabindex="-1">Notas estruturadas</button>
+          <div class="section-title"><h2>Produtos</h2></div>
+          <div class="product-tabs pills" role="tablist" aria-label="Categorias de produtos" aria-orientation="vertical">
+            <button class="product-tab pill" id="us-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="us-panel-fundos" tabindex="0">Fundos de investimentos</button>
+            <button class="product-tab pill" id="us-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="us-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
+            <button class="product-tab pill" id="us-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="us-panel-etfs" tabindex="-1">ETFs UCITs</button>
+            <button class="product-tab pill" id="us-tab-notas" type="button" role="tab" aria-selected="false" aria-controls="us-panel-notas" tabindex="-1">Notas estruturadas</button>
           </div>
         </aside>
         <div class="product-content">
           <section class="product-panel" id="us-panel-fundos" role="tabpanel" aria-labelledby="us-tab-fundos">
-            <p class="product-empty">Produtos serão adicionados aqui.</p>
+            <p class="product-empty note">Produtos serão adicionados aqui.</p>
           </section>
           <section class="product-panel" id="us-panel-renda-fixa" role="tabpanel" aria-labelledby="us-tab-renda-fixa" hidden>
-            <p class="product-empty">Produtos de Renda Fixa Internacional serão adicionados aqui.</p>
+            <p class="product-empty note">Produtos de Renda Fixa Internacional serão adicionados aqui.</p>
           </section>
           <section class="product-panel" id="us-panel-etfs" role="tabpanel" aria-labelledby="us-tab-etfs" hidden>
-            <p class="product-empty">Produtos de ETFs UCITs serão adicionados aqui.</p>
+            <p class="product-empty note">Produtos de ETFs UCITs serão adicionados aqui.</p>
           </section>
           <section class="product-panel" id="us-panel-notas" role="tabpanel" aria-labelledby="us-tab-notas" hidden>
-            <p class="product-empty">Produtos de Notas Estruturadas serão adicionados aqui.</p>
+            <p class="product-empty note">Produtos de Notas Estruturadas serão adicionados aqui.</p>
           </section>
         </div>
       </div>
     </section>
-    <section class="product-section" id="faq">
+    <section class="product-section card" id="faq">
       <h2>FAQ — Dúvidas frequentes</h2>
-      <p class="faq-notice">Conteúdo em breve.</p>
+      <p class="faq-notice note">Conteúdo em breve.</p>
     </section>
-  </main>
-</div>
+</main>
 </body>
 </html>

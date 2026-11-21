@@ -4,96 +4,96 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>BTG Contas Internacionais — Distribuição Offshore | BTG Pactual</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="./hub.css"/>
+<link rel="stylesheet" href="./style.css"/>
 <script src="./contas-internacionais.js" defer></script>
 </head>
 <body>
 <header class="topbar">
-  <div class="topbar-brand">btg pactual <span>distribuição offshore</span></div>
-  <div class="topbar-right">Distribuição · Offshore · Uso interno</div>
-</header>
-<div class="layout">
-  <nav class="sidebar" aria-label="Navegação">
-    <a class="nav-item active" href="./index.html">Visão Global</a>
-    <a class="nav-item" href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
-    <a class="nav-item" href="./educacional.html">Educacional</a>
-  </nav>
-  <main class="main">
-    <div class="page-head"><div><h1>BTG Contas Internacionais</h1><p class="sub">DriveWealth</p></div></div>
-    <div class="section-cards">
-      <a class="section-card" href="./faq-contas-internacionais.html">
-        <span class="section-card-title">FAQ</span>
-        <span class="section-card-detail">Dúvidas frequentes</span>
-      </a>
+  <div class="topbar__inner">
+    <div class="brand">
+      <span class="brand__name">btg pactual</span>
+      <span class="brand__sub">distribuição offshore</span>
     </div>
+    <nav class="nav" aria-label="Navegação">
+      <a href="./index.html">Visão Global</a>
+      <a href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
+      <a href="./educacional.html">Educacional</a>
+    </nav>
+    <span class="topbar__tag">Distribuição · Offshore · Uso interno</span>
+  </div>
+</header>
+<main class="container page">
+    <header class="page-header page-header--row">
+      <div>
+        <h1>BTG Contas Internacionais</h1>
+        <p>DriveWealth</p>
+      </div>
+      <a class="btn" href="./faq-contas-internacionais.html"><span>FAQ</span><span>Dúvidas frequentes</span></a>
+    </header>
     <section class="product-section" id="produtos" aria-label="Produtos">
       <div class="product-browser">
         <aside class="product-menu">
-          <h2>Produtos</h2>
-          <div class="product-tabs" role="tablist" aria-label="Categorias de produtos" aria-orientation="vertical">
-            <button class="product-tab" id="tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="panel-fundos" tabindex="0">Fundos de investimentos</button>
-            <button class="product-tab" id="tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
-            <button class="product-tab" id="tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="panel-etfs" tabindex="-1">ETFs UCITs</button>
+          <div class="section-title"><h2>Produtos</h2></div>
+          <div class="product-tabs pills" role="tablist" aria-label="Categorias de produtos" aria-orientation="vertical">
+            <button class="product-tab pill" id="tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="panel-fundos" tabindex="0">Fundos de investimentos</button>
+            <button class="product-tab pill" id="tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
+            <button class="product-tab pill" id="tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="panel-etfs" tabindex="-1">ETFs UCITs</button>
           </div>
         </aside>
         <div class="product-content">
           <section class="product-panel" id="panel-fundos" role="tabpanel" aria-labelledby="tab-fundos">
-            <div class="investment-products">
-              <article class="investment-card">
-                <h3>INVESCO US DOLLAR LIQUIDITY PORTFOLIO "RES" (USD) ACC</h3>
-                <p class="investment-type">Money Market</p>
-                <p class="investment-return"><strong>3.32%</strong> <span>Retorno 12 M</span></p>
-                <dl class="investment-details">
-                  <div><dt>Aporte mínimo</dt><dd>USD 1.000,00</dd></div>
-                  <div><dt>Resgate</dt><dd>D+1</dd></div>
-                  <div><dt>ISIN</dt><dd>IE00BLDGKV28</dd></div>
+            <div class="investment-products grid grid--2">
+              <article class="investment-card card">
+                <h3 class="card__title card__title--sm">INVESCO US DOLLAR LIQUIDITY PORTFOLIO "RES" (USD) ACC</h3>
+                <p class="investment-type badge">Money Market</p>
+                <p class="investment-return metric"><strong class="metric__value">3.32%</strong> <span class="metric__label">Retorno 12 M</span></p>
+                <dl class="investment-details stats stats--2">
+                  <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">USD 1.000,00</dd></div>
+                  <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+1</dd></div>
+                  <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">IE00BLDGKV28</dd></div>
                 </dl>
               </article>
-              <article class="investment-card">
-                <h3>BTG Pactual Sicav Balanced Fund</h3>
-                <p class="investment-type">Balanceado</p>
-                <p class="investment-return"><strong>+1.89%</strong> <span>Retorno 12 M</span></p>
-                <dl class="investment-details">
-                  <div><dt>Aporte mínimo</dt><dd>USD 1.000,00</dd></div>
-                  <div><dt>Resgate</dt><dd>D+2/D+6</dd></div>
-                  <div><dt>ISIN</dt><dd>LU2451829373</dd></div>
+              <article class="investment-card card">
+                <h3 class="card__title card__title--sm">BTG Pactual Sicav Balanced Fund</h3>
+                <p class="investment-type badge">Balanceado</p>
+                <p class="investment-return metric"><strong class="metric__value is-positive">+1.89%</strong> <span class="metric__label">Retorno 12 M</span></p>
+                <dl class="investment-details stats stats--2">
+                  <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">USD 1.000,00</dd></div>
+                  <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2/D+6</dd></div>
+                  <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU2451829373</dd></div>
                 </dl>
               </article>
-              <article class="investment-card">
-                <h3>BTG Pactual Sicav Global Credit Fund</h3>
-                <p class="investment-type">Crédito Global</p>
-                <p class="investment-return"><strong>Yield 7.44% a.a.</strong></p>
-                <dl class="investment-details">
-                  <div><dt>Aporte mínimo</dt><dd>USD 1.000,00</dd></div>
-                  <div><dt>Resgate</dt><dd>D+2/D+6</dd></div>
-                  <div><dt>ISIN</dt><dd>LU3435271443</dd></div>
+              <article class="investment-card card">
+                <h3 class="card__title card__title--sm">BTG Pactual Sicav Global Credit Fund</h3>
+                <p class="investment-type badge">Crédito Global</p>
+                <p class="investment-return metric"><strong class="metric__value">Yield 7.44% a.a.</strong></p>
+                <dl class="investment-details stats stats--2">
+                  <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">USD 1.000,00</dd></div>
+                  <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2/D+6</dd></div>
+                  <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU3435271443</dd></div>
                 </dl>
               </article>
-              <article class="investment-card">
-                <h3>BTG Pactual Sicav Global Equities</h3>
-                <p class="investment-type">Ações</p>
-                <p class="investment-return"><strong>+6.31%</strong> <span>Retorno 12 M</span></p>
-                <dl class="investment-details">
-                  <div><dt>Aporte mínimo</dt><dd>USD 1.000,00</dd></div>
-                  <div><dt>Resgate</dt><dd>D+2/D+6</dd></div>
-                  <div><dt>ISIN</dt><dd>LU3060589838</dd></div>
+              <article class="investment-card card">
+                <h3 class="card__title card__title--sm">BTG Pactual Sicav Global Equities</h3>
+                <p class="investment-type badge">Ações</p>
+                <p class="investment-return metric"><strong class="metric__value is-positive">+6.31%</strong> <span class="metric__label">Retorno 12 M</span></p>
+                <dl class="investment-details stats stats--2">
+                  <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">USD 1.000,00</dd></div>
+                  <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2/D+6</dd></div>
+                  <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU3060589838</dd></div>
                 </dl>
               </article>
             </div>
           </section>
           <section class="product-panel" id="panel-renda-fixa" role="tabpanel" aria-labelledby="tab-renda-fixa" hidden>
-            <p class="product-empty">Selecione uma classe para consultar os títulos disponíveis.</p>
+            <p class="product-empty note">Selecione uma classe para consultar os títulos disponíveis.</p>
           </section>
           <section class="product-panel" id="panel-etfs" role="tabpanel" aria-labelledby="tab-etfs" hidden>
-            <p class="product-empty">Produtos de ETFs UCITs serão adicionados aqui.</p>
+            <p class="product-empty note">Produtos de ETFs UCITs serão adicionados aqui.</p>
           </section>
         </div>
       </div>
     </section>
-  </main>
-</div>
+</main>
 </body>
 </html>

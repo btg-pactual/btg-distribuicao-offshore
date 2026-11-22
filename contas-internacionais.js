@@ -1,12 +1,27 @@
 const tabList = document.querySelector('[role="tablist"]');
 
+function selectTab(tabs, selectedTab) {
+  tabs.forEach((tab) => {
+    tab.classList.remove("is-active");
+    tab.setAttribute("aria-selected", "false");
+    tab.tabIndex = -1;
+  });
+  selectedTab.classList.add("is-active");
+  selectedTab.setAttribute("aria-selected", "true");
+  selectedTab.tabIndex = 0;
+}
+
+function formatDecimalComma(value) {
+  return String(value).replace(/(\d)\.(\d)/g, "$1,$2");
+}
+
 if (tabList) {
   const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
 
   function activateTab(tab, moveFocus = false) {
+    selectTab(tabs, tab);
     tabs.forEach((currentTab) => {
       const selected = currentTab === tab;
-      currentTab.setAttribute("aria-selected", String(selected));
       currentTab.tabIndex = selected ? 0 : -1;
 
       const panel = document.getElementById(currentTab.getAttribute("aria-controls"));
@@ -165,9 +180,9 @@ function renderFundCard(group, fund) {
     ? "is-neutral"
     : performance > 0 ? "is-positive" : "is-negative";
   const performanceMarkup = fund.yield
-    ? `<div class="metric"><span class="metric__value">Yield ${fund.yield}</span></div>`
+    ? `<div class="metric"><span class="metric__value">Yield ${formatDecimalComma(fund.yield)}</span></div>`
     : performance !== undefined && performance !== null
-      ? `<div class="metric"><span class="metric__value ${performanceClass}">${performance > 0 ? "+" : ""}${performance.toFixed(2)}%</span><span class="metric__label">Retorno 12M</span></div>`
+      ? `<div class="metric"><span class="metric__value ${performanceClass}">${performance > 0 ? "+" : ""}${performance.toFixed(2).replace(".", ",")}%</span><span class="metric__label">Retorno 12M</span></div>`
       : "";
   const details = [
     `<div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${fund.isin}</dd></div>`
@@ -191,33 +206,24 @@ function renderFundBrowser(panel) {
   if (!panel) return;
 
   panel.innerHTML = `
-    <div class="fund-browser">
-      <nav class="fund-class-menu shop__list" role="tablist" aria-label="Temas de fundos de investimentos">
-        ${fundGroups.map((group,index)=>`<button class="fund-class-tab side-sub${index===0?" is-active":""}" type="button" data-fund-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </nav>
-      <div class="fund-class-content"></div>
-    </div>`;
+    <nav class="shop__list" role="tablist" aria-label="Temas de fundos de investimentos">
+      ${fundGroups.map((group,index)=>`<button class="side-sub${index===0?" is-active":""}" type="button" role="tab" data-fund-class="${index}" aria-selected="${index===0}" tabindex="${index===0?0:-1}">${group.name}</button>`).join("")}
+    </nav>
+    <div class="shop__content" data-category-content></div>`;
 
-  const content = panel.querySelector(".fund-class-content");
-  const classTabs = Array.from(panel.querySelectorAll(".fund-class-tab"));
+  const content = panel.querySelector("[data-category-content]");
+  const classTabs = Array.from(panel.querySelectorAll("[data-fund-class]"));
 
   function renderGroup(index) {
     const group = fundGroups[index];
-    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">Confira na plataforma as taxas atualizadas.</div><div class="grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">Confira na plataforma as taxas atualizadas.</div><div class="grid grid--cards">${
       group.products.map((fund)=>renderFundCard(group, fund)).join("")
     }</div>`;
   }
 
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
-      classTabs.forEach((item)=>{
-        item.classList.remove("is-active");
-        item.setAttribute("aria-pressed","false");
-        item.setAttribute("aria-selected","false");
-      });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-pressed","true");
-      tab.setAttribute("aria-selected","true");
+      selectTab(classTabs, tab);
       renderGroup(Number(tab.dataset.fundClass));
     });
   });
@@ -358,11 +364,11 @@ function renderEtfCard(group, product) {
         <h4 class="card__title card__title--sm">${product[0]}</h4>
       </div>
       <div class="metric">
-        <span class="metric__value ${performanceClass}">${product[4]}</span>
+        <span class="metric__value ${performanceClass}">${formatDecimalComma(product[4])}</span>
         <span class="metric__label">Ano atual</span>
       </div>
       <dl class="stats stats--2">
-        <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${product[3]}</dd></div>
+        <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${formatDecimalComma(product[3])}</dd></div>
         <div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[2]}</dd></div>
       </dl>
     </article>`;
@@ -372,33 +378,24 @@ const etfPanel = document.getElementById("panel-etfs");
 
 if (etfPanel) {
   etfPanel.innerHTML = `
-    <div class="etf-browser">
-    <nav class="etf-class-menu shop__list" role="tablist" aria-label="Classes de ETFs UCITS">
-      ${etfGroups.map((group,index)=>`<button class="etf-class-tab side-sub${index===0?" is-active":""}" type="button" data-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
+    <nav class="shop__list" role="tablist" aria-label="Classes de ETFs UCITS">
+      ${etfGroups.map((group,index)=>`<button class="side-sub${index===0?" is-active":""}" type="button" role="tab" data-etf-class="${index}" aria-selected="${index===0}" tabindex="${index===0?0:-1}">${group.name}</button>`).join("")}
     </nav>
-      <div class="etf-class-content"></div>
-    </div>`;
+    <div class="shop__content" data-category-content></div>`;
 
-  const content = etfPanel.querySelector(".etf-class-content");
-  const classTabs = Array.from(etfPanel.querySelectorAll(".etf-class-tab"));
+  const content = etfPanel.querySelector("[data-category-content]");
+  const classTabs = Array.from(etfPanel.querySelectorAll("[data-etf-class]"));
 
   function renderEtfGroup(index) {
     const group = etfGroups[index];
-    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</div><div class="grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</div><div class="grid grid--cards">${
       group.products.map((product)=>renderEtfCard(group, product)).join("")
     }</div>`;
   }
 
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
-      classTabs.forEach((item)=>{
-        item.classList.remove("is-active");
-        item.setAttribute("aria-pressed","false");
-        item.setAttribute("aria-selected","false");
-      });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-pressed","true");
-      tab.setAttribute("aria-selected","true");
+      selectTab(classTabs, tab);
       renderEtfGroup(Number(tab.dataset.etfClass));
     });
   });
@@ -455,33 +452,24 @@ function renderPlatformEtfs(panelId, groups, panelNotice) {
   if (!panel) return;
 
   panel.innerHTML = `
-    <div class="etf-browser">
-      <nav class="etf-class-menu shop__list" role="tablist" aria-label="Classes de ETFs UCITS">
-        ${groups.map((group,index)=>`<button class="etf-class-tab side-sub${index===0?" is-active":""}" type="button" data-platform-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </nav>
-      <div class="etf-class-content"></div>
-    </div>`;
+    <nav class="shop__list" role="tablist" aria-label="Classes de ETFs UCITS">
+      ${groups.map((group,index)=>`<button class="side-sub${index===0?" is-active":""}" type="button" role="tab" data-platform-etf-class="${index}" aria-selected="${index===0}" tabindex="${index===0?0:-1}">${group.name}</button>`).join("")}
+    </nav>
+    <div class="shop__content" data-category-content></div>`;
 
-  const content = panel.querySelector(".etf-class-content");
-  const classTabs = Array.from(panel.querySelectorAll(".etf-class-tab"));
+  const content = panel.querySelector("[data-category-content]");
+  const classTabs = Array.from(panel.querySelectorAll("[data-platform-etf-class]"));
 
   function render(index) {
     const group = groups[index];
-    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">${panelNotice}</div><div class="grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">${panelNotice}</div><div class="grid grid--cards">${
       group.products.map((product)=>renderEtfCard(group, product)).join("")
     }</div>`;
   }
 
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
-      classTabs.forEach((item)=>{
-        item.classList.remove("is-active");
-        item.setAttribute("aria-pressed","false");
-        item.setAttribute("aria-selected","false");
-      });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-pressed","true");
-      tab.setAttribute("aria-selected","true");
+      selectTab(classTabs, tab);
       render(Number(tab.dataset.platformEtfClass));
     });
   });
@@ -658,17 +646,21 @@ function renderFixedIncomeCard(product, isSovereign, pieceLabel = "Peça", durat
   const duration = isSovereign ? product[6] : product[7];
   const rating = isSovereign ? product[7] : product[8];
   const isin = isSovereign ? product[11] : product[13];
+  const formattedCoupon = formatDecimalComma(coupon);
+  const formattedPrice = formatDecimalComma(price);
+  const formattedYield = formatDecimalComma(yieldToWorst);
+  const formattedDuration = formatDecimalComma(duration);
   const details = isSovereign
     ? `
-        <div class="stat"><span class="stat__label">${durationLabel}</span><span class="stat__value">${duration}</span></div>
+        <div class="stat"><span class="stat__label">${durationLabel}</span><span class="stat__value">${formattedDuration}</span></div>
         <div class="stat"><span class="stat__label">Rating</span><span class="stat__value">${rating}</span></div>
         <div class="stat"><span class="stat__label">Tipo</span><span class="stat__value">Soberano</span></div>
-        <div class="stat"><span class="stat__label">Preço</span><span class="stat__value">${price}</span></div>
+        <div class="stat"><span class="stat__label">Preço</span><span class="stat__value">${formattedPrice}</span></div>
         <div class="stat"><span class="stat__label">Emissão</span><span class="stat__value">${product[9]}</span></div>
         <div class="stat"><span class="stat__label">País</span><span class="stat__value">${product[10]}</span></div>`
     : `
-        <div class="stat"><span class="stat__label">Preço</span><span class="stat__value">${price}</span></div>
-        <div class="stat"><span class="stat__label">${durationLabel}</span><span class="stat__value">${duration}</span></div>
+        <div class="stat"><span class="stat__label">Preço</span><span class="stat__value">${formattedPrice}</span></div>
+        <div class="stat"><span class="stat__label">${durationLabel}</span><span class="stat__value">${formattedDuration}</span></div>
         <div class="stat"><span class="stat__label">Rating</span><span class="stat__value">${rating}</span></div>
         <div class="stat"><span class="stat__label">Senioridade</span><span class="stat__value">${product[9]}</span></div>
         <div class="stat"><span class="stat__label">País / Listing</span><span class="stat__value">${product[10]}</span></div>
@@ -676,18 +668,18 @@ function renderFixedIncomeCard(product, isSovereign, pieceLabel = "Peça", durat
         <div class="stat"><span class="stat__label">Emissão</span><span class="stat__value">${product[12]}</span></div>`;
 
   return `
-    <article class="fixed-income-card card">
+    <article class="card">
       <div class="card__head">
         <span class="card__eyebrow">${issuer} · Setor: ${sector}</span>
-        <h4 class="card__title">${symbol} · ${coupon} · ${maturity}</h4>
+        <h4 class="card__title">${symbol} · ${formattedCoupon} · ${maturity}</h4>
         <span class="badge">${rating}</span>
       </div>
       <div class="metric">
-        <span class="metric__value is-positive">${yieldToWorst}</span>
+        <span class="metric__value is-positive">${formattedYield}</span>
         <span class="metric__label">${isSovereign ? "YTW / Retorno indicativo" : "YTW"}</span>
       </div>
-      <div class="stats fixed-income-primary-stats">
-        <div class="stat"><span class="stat__label">Cupom</span><span class="stat__value">${coupon}</span></div>
+      <div class="stats">
+        <div class="stat"><span class="stat__label">Cupom</span><span class="stat__value">${formattedCoupon}</span></div>
         <div class="stat"><span class="stat__label">Vencimento</span><span class="stat__value">${maturity}</span></div>
         <div class="stat"><span class="stat__label">Símbolo</span><span class="stat__value">${symbol}</span></div>
         <div class="stat stat--full"><span class="stat__label">ISIN</span><span class="isin">${isin}</span></div>
@@ -706,33 +698,24 @@ const fixedIncomePanel = document.getElementById("panel-renda-fixa") || document
 
 if (fixedIncomePanel) {
   fixedIncomePanel.innerHTML = `
-    <div class="fixed-income-browser">
-      <nav class="fixed-income-class-menu shop__list" role="tablist" aria-label="Classes de renda fixa internacional">
-        ${fixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab side-sub${index===0?" is-active":""}" type="button" data-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </nav>
-      <div class="fixed-income-class-content"></div>
-    </div>`;
+    <nav class="shop__list" role="tablist" aria-label="Classes de renda fixa internacional">
+      ${fixedIncomeGroups.map((group,index)=>`<button class="side-sub${index===0?" is-active":""}" type="button" role="tab" data-fixed-income-class="${index}" aria-selected="${index===0}" tabindex="${index===0?0:-1}">${group.name}</button>`).join("")}
+    </nav>
+    <div class="shop__content" data-category-content></div>`;
 
-  const content = fixedIncomePanel.querySelector(".fixed-income-class-content");
-  const classTabs = Array.from(fixedIncomePanel.querySelectorAll(".fixed-income-class-tab"));
+  const content = fixedIncomePanel.querySelector("[data-category-content]");
+  const classTabs = Array.from(fixedIncomePanel.querySelectorAll("[data-fixed-income-class]"));
 
   function renderFixedIncomeGroup(index) {
     const group = fixedIncomeGroups[index];
-    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</div><div class="fixed-income-products grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</div><div class="grid grid--cards grid--top">${
       group.products.map((product)=>renderFixedIncomeCard(product, index === 0)).join("")
     }</div>`;
   }
 
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
-      classTabs.forEach((item)=>{
-        item.classList.remove("is-active");
-        item.setAttribute("aria-pressed","false");
-        item.setAttribute("aria-selected","false");
-      });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-pressed","true");
-      tab.setAttribute("aria-selected","true");
+      selectTab(classTabs, tab);
       renderFixedIncomeGroup(Number(tab.dataset.fixedIncomeClass));
     });
   });
@@ -744,33 +727,24 @@ const europaFixedIncomePanel = document.getElementById("europa-panel-renda-fixa"
 
 if (europaFixedIncomePanel) {
   europaFixedIncomePanel.innerHTML = `
-    <div class="fixed-income-browser">
-      <nav class="fixed-income-class-menu shop__list" role="tablist" aria-label="Classes de renda fixa internacional">
-        ${europaFixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab side-sub${index===0?" is-active":""}" type="button" data-europa-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </nav>
-      <div class="fixed-income-class-content"></div>
-    </div>`;
+    <nav class="shop__list" role="tablist" aria-label="Classes de renda fixa internacional">
+      ${europaFixedIncomeGroups.map((group,index)=>`<button class="side-sub${index===0?" is-active":""}" type="button" role="tab" data-europa-fixed-income-class="${index}" aria-selected="${index===0}" tabindex="${index===0?0:-1}">${group.name}</button>`).join("")}
+    </nav>
+    <div class="shop__content" data-category-content></div>`;
 
-  const content = europaFixedIncomePanel.querySelector(".fixed-income-class-content");
-  const classTabs = Array.from(europaFixedIncomePanel.querySelectorAll(".fixed-income-class-tab"));
+  const content = europaFixedIncomePanel.querySelector("[data-category-content]");
+  const classTabs = Array.from(europaFixedIncomePanel.querySelectorAll("[data-europa-fixed-income-class]"));
 
   function renderEuropaFixedIncomeGroup(index) {
     const group = europaFixedIncomeGroups[index];
-    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</div><div class="fixed-income-products grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</div><div class="grid grid--cards grid--top">${
       group.products.map((product)=>renderFixedIncomeCard(product, false, "Peça mínima", "Duration modificada")).join("")
     }</div>`;
   }
 
   classTabs.forEach((tab)=>{
     tab.addEventListener("click",()=>{
-      classTabs.forEach((item)=>{
-        item.classList.remove("is-active");
-        item.setAttribute("aria-pressed","false");
-        item.setAttribute("aria-selected","false");
-      });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-pressed","true");
-      tab.setAttribute("aria-selected","true");
+      selectTab(classTabs, tab);
       renderEuropaFixedIncomeGroup(Number(tab.dataset.europaFixedIncomeClass));
     });
   });
@@ -783,26 +757,18 @@ document.querySelectorAll(".shop").forEach((shop)=>{
   const subcategoryContent = shop.querySelector(".shop__subs-content");
   const productTabs = Array.from(shop.querySelectorAll(".shop__products [role='tab']"));
 
-  if (!subcategoryAside || !subcategoryContent) {
-    shop.classList.add("shop--no-categories");
-    return;
-  }
+  if (!subcategoryAside || !subcategoryContent) return;
 
-  shop.querySelectorAll(".product-panel").forEach((panel)=>{
-    const browser = panel.querySelector(".fund-browser, .etf-browser, .fixed-income-browser");
-    if (!browser) return;
-
-    const menu = browser.querySelector(".fund-class-menu, .etf-class-menu, .fixed-income-class-menu");
-    const content = browser.querySelector(".fund-class-content, .etf-class-content, .fixed-income-class-content");
+  shop.querySelectorAll('[role="tabpanel"]').forEach((panel)=>{
+    const menu = panel.querySelector('[role="tablist"].shop__list');
+    const content = panel.querySelector("[data-category-content]");
     if (!menu || !content) return;
 
     const menuGroup = document.createElement("div");
-    menuGroup.className = "shop-category-list";
     menuGroup.dataset.productPanel = panel.id;
     menuGroup.hidden = true;
     menuGroup.append(menu);
     subcategoryContent.append(menuGroup);
-    content.classList.add("shop__content");
     panel.replaceChildren(content);
   });
 
@@ -816,7 +782,6 @@ document.querySelectorAll(".shop").forEach((shop)=>{
       group.hidden = group.dataset.productPanel!==activePanelId;
     });
     subcategoryAside.hidden = !hasCategories;
-    shop.classList.toggle("shop--no-categories", !hasCategories);
   }
 
   productTabs.forEach((tab)=>tab.addEventListener("click",updateShopCategories));

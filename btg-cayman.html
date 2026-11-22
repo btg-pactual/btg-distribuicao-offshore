@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>BTG Cayman — Distribuição Offshore | BTG Pactual</title>
-<link rel="stylesheet" href="./style.css"/>
+<link rel="stylesheet" href="style.css"/>
 <script src="./contas-internacionais.js" defer></script>
 </head>
 <body>
@@ -20,26 +20,28 @@
       <a href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
       <a href="./educacional.html">Educacional</a>
     </nav>
-    <span class="topbar__tag">Distribuição · Offshore · Uso interno</span>
   </div>
 </header>
-<main class="container page">
+<main class="container container--wide page">
     <header class="page-header">
       <div><h1>BTG Cayman</h1></div>
     </header>
-    <section class="shop shop--no-categories" id="produtos" aria-label="Produtos">
+    <section class="shop" id="produtos" aria-label="Produtos">
         <aside class="shop__products" aria-label="Produtos">
           <h2 class="shop__heading">Produtos</h2>
           <div class="shop__list" role="tablist" aria-label="Categorias de produtos">
-            <button class="side-pill product-tab is-active" id="cayman-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="cayman-panel-fundos" tabindex="0">Fundos de investimentos</button>
-            <button class="side-pill product-tab" id="cayman-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="cayman-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
-            <button class="side-pill product-tab" id="cayman-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="cayman-panel-etfs" tabindex="-1">ETFs UCITs</button>
+            <button class="side-pill is-active" id="cayman-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="cayman-panel-fundos" tabindex="0">Fundos de investimentos</button>
+            <button class="side-pill" id="cayman-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="cayman-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
+            <button class="side-pill" id="cayman-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="cayman-panel-etfs" tabindex="-1">ETFs UCITs</button>
           </div>
         </aside>
+        <aside class="shop__subs" aria-label="Categorias">
+          <h2 class="shop__heading">Categorias</h2>
+        </aside>
         <div class="shop__content">
-          <section class="product-panel shop__content" id="cayman-panel-fundos" role="tabpanel" aria-labelledby="cayman-tab-fundos"><div class="empty-state">Produtos serão adicionados aqui.</div></section>
-          <section class="product-panel shop__content" id="cayman-panel-renda-fixa" role="tabpanel" aria-labelledby="cayman-tab-renda-fixa" hidden><div class="empty-state">Produtos de Renda Fixa Internacional serão adicionados aqui.</div></section>
-          <section class="product-panel shop__content" id="cayman-panel-etfs" role="tabpanel" aria-labelledby="cayman-tab-etfs" hidden><div class="empty-state">Produtos de ETFs UCITs serão adicionados aqui.</div></section>
+          <section id="cayman-panel-fundos" role="tabpanel" aria-labelledby="cayman-tab-fundos"><div class="empty-state"><p>Produtos serão adicionados aqui.</p></div></section>
+          <section id="cayman-panel-renda-fixa" role="tabpanel" aria-labelledby="cayman-tab-renda-fixa" hidden><div class="empty-state"><p>Produtos serão adicionados aqui.</p></div></section>
+          <section id="cayman-panel-etfs" role="tabpanel" aria-labelledby="cayman-tab-etfs" hidden><div class="empty-state"><p>Produtos serão adicionados aqui.</p></div></section>
         </div>
     </section>
 </main>

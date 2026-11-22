@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>BTG Europa — Distribuição Offshore | BTG Pactual</title>
-<link rel="stylesheet" href="./style.css"/>
+<link rel="stylesheet" href="style.css"/>
 <script src="./contas-internacionais.js" defer></script>
 </head>
 <body>
@@ -20,10 +20,9 @@
       <a href="./empresas.html">Pipeline Offshore - Produtos da semana</a>
       <a href="./educacional.html">Educacional</a>
     </nav>
-    <span class="topbar__tag">Distribuição · Offshore · Uso interno</span>
   </div>
 </header>
-<main class="container page">
+<main class="container container--wide page">
     <header class="page-header">
       <div>
         <h1>BTG Europa</h1>
@@ -44,10 +43,10 @@
         <aside class="shop__products" aria-label="Produtos">
           <h2 class="shop__heading">Produtos</h2>
           <div class="shop__list" role="tablist" aria-label="Categorias de produtos">
-            <button class="side-pill product-tab is-active" id="europa-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="europa-panel-fundos" tabindex="0">Fundos de investimentos</button>
-            <button class="side-pill product-tab" id="europa-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
-            <button class="side-pill product-tab" id="europa-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-etfs" tabindex="-1">ETFs UCITs</button>
-            <button class="side-pill product-tab" id="europa-tab-amc" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-amc" tabindex="-1">AMC</button>
+            <button class="side-pill is-active" id="europa-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="europa-panel-fundos" tabindex="0">Fundos de investimentos</button>
+            <button class="side-pill" id="europa-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
+            <button class="side-pill" id="europa-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-etfs" tabindex="-1">ETFs UCITs</button>
+            <button class="side-pill" id="europa-tab-amc" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-amc" tabindex="-1">AMC</button>
           </div>
         </aside>
         <aside class="shop__subs" aria-label="Categorias" hidden>
@@ -55,13 +54,13 @@
           <div class="shop__subs-content"></div>
         </aside>
         <div class="shop__content">
-          <section class="product-panel shop__content" id="europa-panel-fundos" role="tabpanel" aria-labelledby="europa-tab-fundos">
+          <section id="europa-panel-fundos" role="tabpanel" aria-labelledby="europa-tab-fundos">
             <div class="info-note" role="note">Alocação disponível em USD e EUR.</div>
-            <div class="grid grid--2">
+            <div class="grid grid--cards">
               <article class="card">
                 <h3 class="card__title card__title--sm">BTG Pactual Sicav Balanced Fund</h3>
                 <p class="badge">Balanceado</p>
-                <div class="metric"><strong class="metric__value is-positive">+1.89%</strong> <span class="metric__label">Retorno 12 M</span></div>
+                <div class="metric"><strong class="metric__value is-positive">+1,89%</strong> <span class="metric__label">Retorno 12 M</span></div>
                 <dl class="stats stats--2">
                   <div class="stat"><dt class="stat__label">Moedas</dt><dd class="stat__value">USD / EUR</dd></div>
                   <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">EUR 1.000,00</dd></div>
@@ -72,7 +71,7 @@
               <article class="card">
                 <h3 class="card__title card__title--sm">BTG Pactual Sicav Global Credit Fund</h3>
                 <p class="badge">Crédito Global</p>
-                <div class="metric"><strong class="metric__value">Yield 7.44% a.a.</strong></div>
+                <div class="metric"><strong class="metric__value">Yield 7,44% a.a.</strong></div>
                 <dl class="stats stats--2">
                   <div class="stat"><dt class="stat__label">Moedas</dt><dd class="stat__value">USD / EUR</dd></div>
                   <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">EUR 1.000,00</dd></div>
@@ -83,7 +82,7 @@
               <article class="card">
                 <h3 class="card__title card__title--sm">BTG Pactual Sicav Global Equities</h3>
                 <p class="badge">Ações</p>
-                <div class="metric"><strong class="metric__value is-positive">+6.31%</strong> <span class="metric__label">Retorno 12 M</span></div>
+                <div class="metric"><strong class="metric__value is-positive">+6,31%</strong> <span class="metric__label">Retorno 12 M</span></div>
                 <dl class="stats stats--2">
                   <div class="stat"><dt class="stat__label">Moedas</dt><dd class="stat__value">USD / EUR</dd></div>
                   <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">EUR 1.000,00</dd></div>
@@ -93,9 +92,9 @@
               </article>
             </div>
           </section>
-          <section class="product-panel" id="europa-panel-renda-fixa" role="tabpanel" aria-labelledby="europa-tab-renda-fixa" hidden><div class="shop__content empty-state">Produtos de Renda Fixa Internacional serão adicionados aqui.</div></section>
-          <section class="product-panel" id="europa-panel-etfs" role="tabpanel" aria-labelledby="europa-tab-etfs" hidden><div class="shop__content empty-state">Produtos de ETFs UCITs serão adicionados aqui.</div></section>
-          <section class="product-panel" id="europa-panel-amc" role="tabpanel" aria-labelledby="europa-tab-amc" hidden><div class="shop__content empty-state">Produtos de AMC serão adicionados aqui.</div></section>
+          <section id="europa-panel-renda-fixa" role="tabpanel" aria-labelledby="europa-tab-renda-fixa" hidden><div class="empty-state"><p>Produtos de Renda Fixa Internacional serão adicionados aqui.</p></div></section>
+          <section id="europa-panel-etfs" role="tabpanel" aria-labelledby="europa-tab-etfs" hidden><div class="empty-state"><p>Produtos de ETFs UCITs serão adicionados aqui.</p></div></section>
+          <section id="europa-panel-amc" role="tabpanel" aria-labelledby="europa-tab-amc" hidden><div class="empty-state"><p>Produtos de AMC serão adicionados aqui.</p></div></section>
         </div>
     </section>
 </main>

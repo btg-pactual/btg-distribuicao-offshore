@@ -53,7 +53,7 @@ faqTopics.forEach((topic, topicIndex) => {
   topicList.append(button);
 
   const category = document.createElement("section");
-  category.className = "faq-category faq-main";
+  category.className = "faq-category";
   category.id = topicId;
   category.hidden = topicIndex !== 0;
   const title = document.createElement("h2");

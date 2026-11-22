@@ -57,9 +57,8 @@ const fundGroups = [
     {name:"Morgan Stanley Global Fixed Income Opportunities", isin:"LU0694238766", ytd:-0.99}
   ]},
   {name:"Money Market", products:[
-    {name:'INVESCO US DOLLAR LIQUIDITY PORTFOLIO "RES" (USD) ACC', isin:"IE00BLDGKV28", ytd:2.44, return12m:"3.32%", minimum:"USD 1.000,00", redemption:"D+1"},
-    {name:"FT Western Asset US Government Liquidity", isin:"IE00B19Z6R17", ytd:2.31},
-    {name:"BTG Pactual Yield Liquidity A", isin:"LU2857896562", ytd:2.51}
+    {name:'INVESCO US DOLLAR LIQUIDITY PORTFOLIO "RES" (USD) ACC', isin:"IE00BLDGKV28", ytd:2.44, minimum:"USD 1.000,00", redemption:"D+1"},
+    {name:"FT Western Asset US Government Liquidity", isin:"IE00B19Z6R17", ytd:2.31, minimum:"USD 100,00", redemption:"D+1"}
   ]},
   {name:"Crédito Global (posição existente)", products:[
     {name:"BTG Pactual Sicav Global Credit Fund", isin:"LU3435271443", minimum:"USD 1.000,00", redemption:"D+2/D+6", yield:"7.44% a.a."}
@@ -91,7 +90,7 @@ const fundGroups = [
     {name:"DNCA Invest Alpha Bonds", isin:"LU1860994273", ytd:2.08}
   ]},
   {name:"Ações - Global", products:[
-    {name:"BTG Pactual Sicav Global Equities", isin:"LU3060589838", ytd:9.72, return12m:"+6.31%", minimum:"USD 1.000,00", redemption:"D+2/D+6"},
+    {name:"BTG Pactual Sicav Global Equities", isin:"LU3060589838", ytd:9.72, minimum:"USD 1.000,00", redemption:"D+2/D+6"},
     {name:"Jupiter Merian World Equity", isin:"IE0005263466", ytd:12.42},
     {name:"Wellington Global Quality Growth", isin:"LU1084869962", ytd:6.76},
     {name:"WCM Select Global Growth Equity", isin:"LU2169560799", ytd:8.38},
@@ -141,7 +140,7 @@ const fundGroups = [
     {name:"Nordea 1 - Global Real Estate", isin:"LU0705260189", ytd:3.53}
   ]},
   {name:"Multi Ativos", products:[
-    {name:"BTG Pactual Sicav Balanced Fund", isin:"LU2451829373", ytd:1.89, return12m:"+1.89%", minimum:"USD 1.000,00", redemption:"D+2/D+6"},
+    {name:"BTG Pactual Sicav Balanced Fund", isin:"LU2451829373", ytd:1.89, minimum:"USD 1.000,00", redemption:"D+2/D+6"},
     {name:"Blackrock ESG Multi Asset", isin:"LU0494093205", ytd:9.17}
   ]},
   {name:"Alternativos Líquidos - Long Short Equity", products:[
@@ -161,16 +160,14 @@ const fundGroups = [
 ];
 
 function renderFundCard(group, fund) {
-  const performance = fund.return12m
-    ? Number.parseFloat(fund.return12m.replace(",", "."))
-    : Number.NaN;
-  const performanceClass = Number.isNaN(performance) || performance === 0
+  const performance = fund.ytd;
+  const performanceClass = performance === undefined || performance === null || performance === 0
     ? "is-neutral"
     : performance > 0 ? "is-positive" : "is-negative";
   const performanceMarkup = fund.yield
     ? `<div class="metric"><span class="metric__value">Yield ${fund.yield}</span></div>`
-    : fund.return12m
-      ? `<div class="metric"><span class="metric__value ${performanceClass}">${fund.return12m}</span><span class="metric__label">Retorno 12M</span></div>`
+    : performance !== undefined && performance !== null
+      ? `<div class="metric"><span class="metric__value ${performanceClass}">${performance > 0 ? "+" : ""}${performance.toFixed(2)}%</span><span class="metric__label">Retorno 12M</span></div>`
       : "";
   const details = [
     `<div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${fund.isin}</dd></div>`

@@ -388,9 +388,12 @@ a:hover { color: var(--azul-escuro); }
 .product-panel[hidden] { display: none; }
 .product-panel .investment-products { margin-top: 0; }
 .etf-class-menu, .fixed-income-class-menu, .fund-class-menu { max-height: 620px; overflow-y: auto; }
+.fixed-income-class-menu { min-width: 0; }
 .etf-class-menu { max-height: none; overflow: visible; }
 .etf-products, .fixed-income-products, .fund-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.fixed-income-products.grid--3 { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
 .etf-card, .fixed-income-card, .fund-card { min-width: 0; }
+.fixed-income-card > .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .fixed-income-card > .stats .stat__value { overflow-wrap: anywhere; line-height: 1.35; }
 .fund-card .investment-details { grid-template-columns: 1fr; }
 .fund-card .metric { flex-direction: column; align-items: flex-start; gap: 4px; }
@@ -456,13 +459,15 @@ a:hover { color: var(--azul-escuro); }
   .faq-side { flex-basis: 100%; padding: 14px 12px; }
   .faq-side__list { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
   .faq-theme { width: auto; white-space: nowrap; }
-  .product-browser, .etf-browser, .fixed-income-browser, .fund-browser { grid-template-columns: 1fr; }
+  .product-browser, .etf-browser, .fixed-income-browser, .fund-browser { grid-template-columns: minmax(0, 1fr); }
+  .product-menu, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu { min-width: 0; }
   .product-menu .product-tabs, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu {
     flex-direction: row; flex-wrap: nowrap; overflow-x: auto; max-height: none;
   }
   .product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab {
     width: auto; flex: 0 0 auto; white-space: nowrap;
   }
+  .fixed-income-products.grid--3 { grid-template-columns: minmax(0, 1fr); }
   .fund-class-tab { width: 220px; flex-basis: 220px; }
   .etf-class-menu { flex-wrap: wrap; overflow: visible; }
   .etf-class-menu .etf-class-tab { flex: 1 1 200px; white-space: normal; }

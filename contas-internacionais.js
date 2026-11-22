@@ -686,10 +686,11 @@ function renderFixedIncomeCard(product, isSovereign, pieceLabel = "Peça", durat
         <span class="metric__value is-positive">${yieldToWorst}</span>
         <span class="metric__label">${isSovereign ? "YTW / Retorno indicativo" : "YTW"}</span>
       </div>
-      <div class="stats">
+      <div class="stats fixed-income-primary-stats">
         <div class="stat"><span class="stat__label">Cupom</span><span class="stat__value">${coupon}</span></div>
         <div class="stat"><span class="stat__label">Vencimento</span><span class="stat__value">${maturity}</span></div>
         <div class="stat"><span class="stat__label">Símbolo</span><span class="stat__value">${symbol}</span></div>
+        <div class="stat stat--full"><span class="stat__label">ISIN</span><span class="isin">${isin}</span></div>
       </div>
       <details class="details">
         <summary>Ver detalhes</summary>

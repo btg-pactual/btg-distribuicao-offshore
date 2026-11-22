@@ -383,8 +383,10 @@ a:hover { color: var(--azul-escuro); }
 .product-panel[hidden] { display: none; }
 .product-panel .investment-products { margin-top: 0; }
 .etf-class-menu, .fixed-income-class-menu { max-height: 620px; overflow-y: auto; }
+.etf-class-menu { max-height: none; overflow: visible; }
 .etf-products, .fixed-income-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .etf-card, .fixed-income-card { min-width: 0; }
+.fixed-income-card > .stats .stat__value { overflow-wrap: anywhere; line-height: 1.35; }
 .etf-details, .fixed-income-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .etf-details div, .fixed-income-details div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .etf-details dt, .fixed-income-details dt, .etf-details dd, .fixed-income-details dd { margin: 0; }
@@ -453,6 +455,8 @@ a:hover { color: var(--azul-escuro); }
   .product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab {
     width: auto; flex: 0 0 auto; white-space: nowrap;
   }
+  .etf-class-menu { flex-wrap: wrap; overflow: visible; }
+  .etf-class-menu .etf-class-tab { flex: 1 1 200px; white-space: normal; }
 }
 
 @media (max-width: 640px) {

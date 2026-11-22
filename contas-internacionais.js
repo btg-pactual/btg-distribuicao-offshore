@@ -782,6 +782,7 @@ document.querySelectorAll(".shop").forEach((shop)=>{
       group.hidden = group.dataset.productPanel!==activePanelId;
     });
     subcategoryAside.hidden = !hasCategories;
+    shop.classList.toggle("shop--with-subs", hasCategories);
   }
 
   productTabs.forEach((tab)=>tab.addEventListener("click",updateShopCategories));

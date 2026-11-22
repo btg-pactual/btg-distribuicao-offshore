@@ -409,7 +409,8 @@ a:hover { color: var(--azul-escuro); }
 }
 
 /* 9c. PÁGINA DE PLATAFORMA (menu Produtos na lateral) --------------------- */
-.shop { display: grid; grid-template-columns: 220px 240px minmax(0, 1fr); gap: 24px; align-items: start; }
+.shop { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: start; }
+.shop--with-subs { grid-template-columns: 220px 240px minmax(0, 1fr); }
 
 .shop__products, .shop__subs {
   background: #fff; border: 1px solid var(--borda); border-radius: var(--raio);

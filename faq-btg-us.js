@@ -43,7 +43,7 @@ const faqContent = document.getElementById("faq-content");
 faqTopics.forEach((topic, topicIndex) => {
   const topicId = `faq-topic-${topicIndex + 1}`;
   const button = document.createElement("button");
-  button.className = "faq-topic-button faq-theme";
+  button.className = "faq-theme";
   button.type = "button";
   button.dataset.topicIndex = String(topicIndex);
   button.setAttribute("aria-controls", topicId);
@@ -62,17 +62,17 @@ faqTopics.forEach((topic, topicIndex) => {
 
   topic.sections.forEach((section) => {
     const sectionTitle = document.createElement("h3");
-    sectionTitle.className = "faq-subtopic faq-group";
+    sectionTitle.className = "faq-group";
     sectionTitle.textContent = section.title;
     category.append(sectionTitle);
     const questionList = document.createElement("div");
     questionList.className = "faq-list";
     section.questions.forEach((entry, questionIndex) => {
       const question = document.createElement("details");
-      question.className = "faq-question faq-item";
+      question.className = "faq-item";
       const summary = document.createElement("summary");
       const number = document.createElement("span");
-      number.className = "faq-question-number faq-item__num";
+      number.className = "faq-item__num";
       number.textContent = String(questionIndex + 1).padStart(2, "0");
       const text = document.createElement("span");
       text.className = "faq-item__q";
@@ -83,7 +83,7 @@ faqTopics.forEach((topic, topicIndex) => {
       chevron.textContent = "⌄";
       summary.append(number, text, chevron);
       const answer = document.createElement("div");
-      answer.className = "faq-answer faq-item__a";
+      answer.className = "faq-item__a";
       const answerText = document.createElement("p");
       answerText.textContent = entry.answer;
       answer.append(answerText);
@@ -95,7 +95,7 @@ faqTopics.forEach((topic, topicIndex) => {
   faqContent.append(category);
 });
 
-const buttons = Array.from(topicList.querySelectorAll(".faq-topic-button"));
+const buttons = Array.from(topicList.querySelectorAll(".faq-theme"));
 buttons.forEach((button) => button.addEventListener("click", () => {
   buttons.forEach((item, index) => {
     const active = item === button;

@@ -12,6 +12,7 @@
   <div class="topbar__inner">
     <div class="brand">
       <span class="brand__name">btg pactual</span>
+      <span class="brand__dot" aria-hidden="true">•</span>
       <span class="brand__sub">distribuição offshore</span>
     </div>
     <nav class="nav" aria-label="Navegação">
@@ -23,35 +24,46 @@
   </div>
 </header>
 <main class="container page">
-    <header class="page-header page-header--row">
+    <header class="page-header">
       <div>
         <h1>BTG Contas Internacionais</h1>
         <p>DriveWealth</p>
       </div>
-      <a class="btn" href="./faq-contas-internacionais.html"><span>FAQ</span><span>Dúvidas frequentes</span></a>
     </header>
-    <section class="product-section" id="produtos" aria-label="Produtos">
-      <div class="product-browser">
-        <aside class="product-menu">
-          <div class="section-title"><h2>Produtos</h2></div>
-          <div class="product-tabs pills" role="tablist" aria-label="Categorias de produtos" aria-orientation="vertical">
-            <button class="product-tab pill" id="tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="panel-fundos" tabindex="0">Fundos de investimentos</button>
-            <button class="product-tab pill" id="tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
-            <button class="product-tab pill" id="tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="panel-etfs" tabindex="-1">ETFs UCITs</button>
+    <section class="faq-banner" aria-labelledby="faq-titulo">
+      <div class="faq-banner__text">
+        <span class="faq-banner__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.2-2.5 3.6"/><circle cx="12" cy="17" r=".6"/></svg></span>
+        <div class="faq-banner__body">
+          <span class="faq-banner__eyebrow">Dúvidas frequentes</span>
+          <h2 class="faq-banner__title" id="faq-titulo">FAQ · BTG Contas Internacionais</h2>
+        </div>
+      </div>
+      <a class="btn-round" href="./faq-contas-internacionais.html">Abrir FAQ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </section>
+    <section class="shop" id="produtos" aria-label="Produtos">
+        <aside class="shop__products" aria-label="Produtos">
+          <h2 class="shop__heading">Produtos</h2>
+          <div class="shop__list" role="tablist" aria-label="Categorias de produtos">
+            <button class="side-pill product-tab is-active" id="tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="panel-fundos" tabindex="0">Fundos de investimentos</button>
+            <button class="side-pill product-tab" id="tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
+            <button class="side-pill product-tab" id="tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="panel-etfs" tabindex="-1">ETFs UCITs</button>
           </div>
         </aside>
-        <div class="product-content">
+        <aside class="shop__subs" aria-label="Categorias" hidden>
+          <h2 class="shop__heading">Categorias</h2>
+          <div class="shop__subs-content"></div>
+        </aside>
+        <div class="shop__content">
           <section class="product-panel" id="panel-fundos" role="tabpanel" aria-labelledby="tab-fundos">
             <div id="fund-browser"></div>
           </section>
           <section class="product-panel" id="panel-renda-fixa" role="tabpanel" aria-labelledby="tab-renda-fixa" hidden>
-            <p class="product-empty note">Selecione uma classe para consultar os títulos disponíveis.</p>
+            <p class="note">Selecione uma classe para consultar os títulos disponíveis.</p>
           </section>
           <section class="product-panel" id="panel-etfs" role="tabpanel" aria-labelledby="tab-etfs" hidden>
-            <p class="product-empty note">Produtos de ETFs UCITs serão adicionados aqui.</p>
+            <p class="note">Produtos de ETFs UCITs serão adicionados aqui.</p>
           </section>
         </div>
-      </div>
     </section>
 </main>
 </body>

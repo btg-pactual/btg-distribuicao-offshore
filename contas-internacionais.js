@@ -177,13 +177,13 @@ function renderFundCard(group, fund) {
   if (fund.redemption) details.push(`<div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">${fund.redemption}</dd></div>`);
 
   return `
-    <article class="fund-card investment-card card">
+    <article class="card">
       <div class="card__head">
         <span class="card__eyebrow">${group.name}</span>
         <h4 class="card__title card__title--sm">${fund.name}</h4>
       </div>
       ${performanceMarkup}
-      <dl class="investment-details stats stats--2">${details.join("")}</dl>
+      <dl class="stats stats--2">${details.join("")}</dl>
     </article>`;
 }
 
@@ -192,9 +192,9 @@ function renderFundBrowser(panel) {
 
   panel.innerHTML = `
     <div class="fund-browser">
-      <aside class="fund-class-menu chips" aria-label="Temas de fundos de investimentos">
-        ${fundGroups.map((group,index)=>`<button class="fund-class-tab chip${index===0?" is-active":""}" type="button" data-fund-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </aside>
+      <nav class="fund-class-menu shop__list" role="tablist" aria-label="Temas de fundos de investimentos">
+        ${fundGroups.map((group,index)=>`<button class="fund-class-tab side-sub${index===0?" is-active":""}" type="button" data-fund-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
+      </nav>
       <div class="fund-class-content"></div>
     </div>`;
 
@@ -203,7 +203,7 @@ function renderFundBrowser(panel) {
 
   function renderGroup(index) {
     const group = fundGroups[index];
-    content.innerHTML = `<div class="fund-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">Confira na plataforma as taxas atualizadas.</p><div class="fund-products grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">Confira na plataforma as taxas atualizadas.</div><div class="grid grid--3">${
       group.products.map((fund)=>renderFundCard(group, fund)).join("")
     }</div>`;
   }
@@ -351,7 +351,7 @@ function renderEtfCard(group, product) {
     : performance > 0 ? "is-positive" : "is-negative";
 
   return `
-    <article class="etf-card card">
+    <article class="card">
       <div class="card__head">
         <span class="card__eyebrow">Categoria · ${group.name}</span>
         <span class="badge badge--ticker">Ticker · ${product[1]}</span>
@@ -361,7 +361,7 @@ function renderEtfCard(group, product) {
         <span class="metric__value ${performanceClass}">${product[4]}</span>
         <span class="metric__label">Ano atual</span>
       </div>
-      <dl class="etf-details stats stats--2">
+      <dl class="stats stats--2">
         <div class="stat"><dt class="stat__label">Taxa anual</dt><dd class="stat__value">${product[3]}</dd></div>
         <div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${product[2]}</dd></div>
       </dl>
@@ -373,9 +373,9 @@ const etfPanel = document.getElementById("panel-etfs");
 if (etfPanel) {
   etfPanel.innerHTML = `
     <div class="etf-browser">
-      <aside class="etf-class-menu chips" aria-label="Classes de ETFs UCITS">
-        ${etfGroups.map((group,index)=>`<button class="etf-class-tab chip${index===0?" is-active":""}" type="button" data-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </aside>
+    <nav class="etf-class-menu shop__list" role="tablist" aria-label="Classes de ETFs UCITS">
+      ${etfGroups.map((group,index)=>`<button class="etf-class-tab side-sub${index===0?" is-active":""}" type="button" data-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
+    </nav>
       <div class="etf-class-content"></div>
     </div>`;
 
@@ -384,7 +384,7 @@ if (etfPanel) {
 
   function renderEtfGroup(index) {
     const group = etfGroups[index];
-    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="etf-products grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</div><div class="grid grid--3">${
       group.products.map((product)=>renderEtfCard(group, product)).join("")
     }</div>`;
   }
@@ -456,9 +456,9 @@ function renderPlatformEtfs(panelId, groups, panelNotice) {
 
   panel.innerHTML = `
     <div class="etf-browser">
-      <aside class="etf-class-menu chips" aria-label="Classes de ETFs UCITS">
-        ${groups.map((group,index)=>`<button class="etf-class-tab chip${index===0?" is-active":""}" type="button" data-platform-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </aside>
+      <nav class="etf-class-menu shop__list" role="tablist" aria-label="Classes de ETFs UCITS">
+        ${groups.map((group,index)=>`<button class="etf-class-tab side-sub${index===0?" is-active":""}" type="button" data-platform-etf-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
+      </nav>
       <div class="etf-class-content"></div>
     </div>`;
 
@@ -467,7 +467,7 @@ function renderPlatformEtfs(panelId, groups, panelNotice) {
 
   function render(index) {
     const group = groups[index];
-    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">${panelNotice}</p><div class="etf-products grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">${panelNotice}</div><div class="grid grid--3">${
       group.products.map((product)=>renderEtfCard(group, product)).join("")
     }</div>`;
   }
@@ -707,9 +707,9 @@ const fixedIncomePanel = document.getElementById("panel-renda-fixa") || document
 if (fixedIncomePanel) {
   fixedIncomePanel.innerHTML = `
     <div class="fixed-income-browser">
-      <aside class="fixed-income-class-menu chips" aria-label="Classes de renda fixa internacional">
-        ${fixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab chip${index===0?" is-active":""}" type="button" data-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </aside>
+      <nav class="fixed-income-class-menu shop__list" role="tablist" aria-label="Classes de renda fixa internacional">
+        ${fixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab side-sub${index===0?" is-active":""}" type="button" data-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
+      </nav>
       <div class="fixed-income-class-content"></div>
     </div>`;
 
@@ -718,7 +718,7 @@ if (fixedIncomePanel) {
 
   function renderFixedIncomeGroup(index) {
     const group = fixedIncomeGroups[index];
-    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</p><div class="fixed-income-products grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">As taxas são indicativas. Confira na plataforma as taxas atualizadas.</div><div class="fixed-income-products grid grid--3">${
       group.products.map((product)=>renderFixedIncomeCard(product, index === 0)).join("")
     }</div>`;
   }
@@ -745,9 +745,9 @@ const europaFixedIncomePanel = document.getElementById("europa-panel-renda-fixa"
 if (europaFixedIncomePanel) {
   europaFixedIncomePanel.innerHTML = `
     <div class="fixed-income-browser">
-      <aside class="fixed-income-class-menu chips" aria-label="Classes de renda fixa internacional">
-        ${europaFixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab chip${index===0?" is-active":""}" type="button" data-europa-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
-      </aside>
+      <nav class="fixed-income-class-menu shop__list" role="tablist" aria-label="Classes de renda fixa internacional">
+        ${europaFixedIncomeGroups.map((group,index)=>`<button class="fixed-income-class-tab side-sub${index===0?" is-active":""}" type="button" data-europa-fixed-income-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
+      </nav>
       <div class="fixed-income-class-content"></div>
     </div>`;
 
@@ -756,7 +756,7 @@ if (europaFixedIncomePanel) {
 
   function renderEuropaFixedIncomeGroup(index) {
     const group = europaFixedIncomeGroups[index];
-    content.innerHTML = `<div class="fixed-income-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</p><div class="fixed-income-products grid grid--3">${
+    content.innerHTML = `<h2 class="shop__title">${group.name}</h2><div class="info-note" role="note">Preços indicativos. Confira as taxas atualizadas junto aos bankers do BTG Europa.</div><div class="fixed-income-products grid grid--3">${
       group.products.map((product)=>renderFixedIncomeCard(product, false, "Peça mínima", "Duration modificada")).join("")
     }</div>`;
   }
@@ -777,3 +777,48 @@ if (europaFixedIncomePanel) {
 
   renderEuropaFixedIncomeGroup(0);
 }
+
+document.querySelectorAll(".shop").forEach((shop)=>{
+  const subcategoryAside = shop.querySelector(".shop__subs");
+  const subcategoryContent = shop.querySelector(".shop__subs-content");
+  const productTabs = Array.from(shop.querySelectorAll(".shop__products [role='tab']"));
+
+  if (!subcategoryAside || !subcategoryContent) {
+    shop.classList.add("shop--no-categories");
+    return;
+  }
+
+  shop.querySelectorAll(".product-panel").forEach((panel)=>{
+    const browser = panel.querySelector(".fund-browser, .etf-browser, .fixed-income-browser");
+    if (!browser) return;
+
+    const menu = browser.querySelector(".fund-class-menu, .etf-class-menu, .fixed-income-class-menu");
+    const content = browser.querySelector(".fund-class-content, .etf-class-content, .fixed-income-class-content");
+    if (!menu || !content) return;
+
+    const menuGroup = document.createElement("div");
+    menuGroup.className = "shop-category-list";
+    menuGroup.dataset.productPanel = panel.id;
+    menuGroup.hidden = true;
+    menuGroup.append(menu);
+    subcategoryContent.append(menuGroup);
+    content.classList.add("shop__content");
+    panel.replaceChildren(content);
+  });
+
+  function updateShopCategories() {
+    const activeTab = productTabs.find((tab)=>tab.getAttribute("aria-selected")==="true");
+    const activePanelId = activeTab?.getAttribute("aria-controls");
+    const menuGroups = Array.from(subcategoryContent.children);
+    const hasCategories = menuGroups.some((group)=>group.dataset.productPanel===activePanelId);
+
+    menuGroups.forEach((group)=>{
+      group.hidden = group.dataset.productPanel!==activePanelId;
+    });
+    subcategoryAside.hidden = !hasCategories;
+    shop.classList.toggle("shop--no-categories", !hasCategories);
+  }
+
+  productTabs.forEach((tab)=>tab.addEventListener("click",updateShopCategories));
+  updateShopCategories();
+});

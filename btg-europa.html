@@ -12,6 +12,7 @@
   <div class="topbar__inner">
     <div class="brand">
       <span class="brand__name">btg pactual</span>
+      <span class="brand__dot" aria-hidden="true">•</span>
       <span class="brand__sub">distribuição offshore</span>
     </div>
     <nav class="nav" aria-label="Navegação">
@@ -23,55 +24,67 @@
   </div>
 </header>
 <main class="container page">
-    <header class="page-header page-header--row">
+    <header class="page-header">
       <div>
         <h1>BTG Europa</h1>
         <p>Luxemburgo</p>
       </div>
-      <a class="btn" href="./faq-btg-europa.html"><span>FAQ</span><span>Dúvidas frequentes</span></a>
     </header>
-    <section class="product-section" id="produtos" aria-label="Produtos">
-      <div class="product-browser">
-        <aside class="product-menu">
-          <div class="section-title"><h2>Produtos</h2></div>
-          <div class="product-tabs pills" role="tablist" aria-label="Categorias de produtos" aria-orientation="vertical">
-            <button class="product-tab pill" id="europa-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="europa-panel-fundos" tabindex="0">Fundos de investimentos</button>
-            <button class="product-tab pill" id="europa-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
-            <button class="product-tab pill" id="europa-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-etfs" tabindex="-1">ETFs UCITs</button>
-            <button class="product-tab pill" id="europa-tab-amc" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-amc" tabindex="-1">AMC</button>
+    <section class="faq-banner" aria-labelledby="faq-titulo">
+      <div class="faq-banner__text">
+        <span class="faq-banner__icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.2-2.5 3.6"/><circle cx="12" cy="17" r=".6"/></svg></span>
+        <div class="faq-banner__body">
+          <span class="faq-banner__eyebrow">Dúvidas frequentes</span>
+          <h2 class="faq-banner__title" id="faq-titulo">FAQ · BTG Europa</h2>
+        </div>
+      </div>
+      <a class="btn-round" href="./faq-btg-europa.html">Abrir FAQ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </section>
+    <section class="shop" id="produtos" aria-label="Produtos">
+        <aside class="shop__products" aria-label="Produtos">
+          <h2 class="shop__heading">Produtos</h2>
+          <div class="shop__list" role="tablist" aria-label="Categorias de produtos">
+            <button class="side-pill product-tab is-active" id="europa-tab-fundos" type="button" role="tab" aria-selected="true" aria-controls="europa-panel-fundos" tabindex="0">Fundos de investimentos</button>
+            <button class="side-pill product-tab" id="europa-tab-renda-fixa" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-renda-fixa" tabindex="-1">Renda Fixa internacional</button>
+            <button class="side-pill product-tab" id="europa-tab-etfs" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-etfs" tabindex="-1">ETFs UCITs</button>
+            <button class="side-pill product-tab" id="europa-tab-amc" type="button" role="tab" aria-selected="false" aria-controls="europa-panel-amc" tabindex="-1">AMC</button>
           </div>
         </aside>
-        <div class="product-content">
-          <section class="product-panel" id="europa-panel-fundos" role="tabpanel" aria-labelledby="europa-tab-fundos">
-            <p class="product-rate-notice note">Alocação disponível em USD e EUR.</p>
-            <div class="investment-products grid grid--2">
-              <article class="investment-card card">
+        <aside class="shop__subs" aria-label="Categorias" hidden>
+          <h2 class="shop__heading">Categorias</h2>
+          <div class="shop__subs-content"></div>
+        </aside>
+        <div class="shop__content">
+          <section class="product-panel shop__content" id="europa-panel-fundos" role="tabpanel" aria-labelledby="europa-tab-fundos">
+            <div class="info-note" role="note">Alocação disponível em USD e EUR.</div>
+            <div class="grid grid--2">
+              <article class="card">
                 <h3 class="card__title card__title--sm">BTG Pactual Sicav Balanced Fund</h3>
-                <p class="investment-type badge">Balanceado</p>
-                <p class="investment-return metric"><strong class="metric__value is-positive">+1.89%</strong> <span class="metric__label">Retorno 12 M</span></p>
-                <dl class="investment-details stats stats--2">
+                <p class="badge">Balanceado</p>
+                <div class="metric"><strong class="metric__value is-positive">+1.89%</strong> <span class="metric__label">Retorno 12 M</span></div>
+                <dl class="stats stats--2">
                   <div class="stat"><dt class="stat__label">Moedas</dt><dd class="stat__value">USD / EUR</dd></div>
                   <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">EUR 1.000,00</dd></div>
                   <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2/D+6</dd></div>
                   <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU2451829373</dd></div>
                 </dl>
               </article>
-              <article class="investment-card card">
+              <article class="card">
                 <h3 class="card__title card__title--sm">BTG Pactual Sicav Global Credit Fund</h3>
-                <p class="investment-type badge">Crédito Global</p>
-                <p class="investment-return metric"><strong class="metric__value">Yield 7.44% a.a.</strong></p>
-                <dl class="investment-details stats stats--2">
+                <p class="badge">Crédito Global</p>
+                <div class="metric"><strong class="metric__value">Yield 7.44% a.a.</strong></div>
+                <dl class="stats stats--2">
                   <div class="stat"><dt class="stat__label">Moedas</dt><dd class="stat__value">USD / EUR</dd></div>
                   <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">EUR 1.000,00</dd></div>
                   <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2/D+6</dd></div>
                   <div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">LU3435271443</dd></div>
                 </dl>
               </article>
-              <article class="investment-card card">
+              <article class="card">
                 <h3 class="card__title card__title--sm">BTG Pactual Sicav Global Equities</h3>
-                <p class="investment-type badge">Ações</p>
-                <p class="investment-return metric"><strong class="metric__value is-positive">+6.31%</strong> <span class="metric__label">Retorno 12 M</span></p>
-                <dl class="investment-details stats stats--2">
+                <p class="badge">Ações</p>
+                <div class="metric"><strong class="metric__value is-positive">+6.31%</strong> <span class="metric__label">Retorno 12 M</span></div>
+                <dl class="stats stats--2">
                   <div class="stat"><dt class="stat__label">Moedas</dt><dd class="stat__value">USD / EUR</dd></div>
                   <div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">EUR 1.000,00</dd></div>
                   <div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">D+2/D+6</dd></div>
@@ -80,11 +93,10 @@
               </article>
             </div>
           </section>
-          <section class="product-panel" id="europa-panel-renda-fixa" role="tabpanel" aria-labelledby="europa-tab-renda-fixa" hidden><p class="product-empty note">Produtos de Renda Fixa Internacional serão adicionados aqui.</p></section>
-          <section class="product-panel" id="europa-panel-etfs" role="tabpanel" aria-labelledby="europa-tab-etfs" hidden><p class="product-empty note">Produtos de ETFs UCITs serão adicionados aqui.</p></section>
-          <section class="product-panel" id="europa-panel-amc" role="tabpanel" aria-labelledby="europa-tab-amc" hidden><p class="product-empty note">Produtos de AMC serão adicionados aqui.</p></section>
+          <section class="product-panel" id="europa-panel-renda-fixa" role="tabpanel" aria-labelledby="europa-tab-renda-fixa" hidden><div class="shop__content empty-state">Produtos de Renda Fixa Internacional serão adicionados aqui.</div></section>
+          <section class="product-panel" id="europa-panel-etfs" role="tabpanel" aria-labelledby="europa-tab-etfs" hidden><div class="shop__content empty-state">Produtos de ETFs UCITs serão adicionados aqui.</div></section>
+          <section class="product-panel" id="europa-panel-amc" role="tabpanel" aria-labelledby="europa-tab-amc" hidden><div class="shop__content empty-state">Produtos de AMC serão adicionados aqui.</div></section>
         </div>
-      </div>
     </section>
 </main>
 </body>

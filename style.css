@@ -82,37 +82,37 @@ a:hover { color: var(--azul-escuro); }
 }
 
 /* 2. CABEÇALHO E MENU ---------------------------------------------------- */
+/* Marca à esquerda ("BTG PACTUAL • DISTRIBUIÇÃO OFFSHORE") e menu em pílulas à direita.
+   A faixa fina "Uso interno" foi removida: o aviso fica no rodapé da Visão Global. */
 .topbar { background: var(--azul); color: #fff; }
 
 .topbar__inner {
   max-width: calc(var(--container) + 48px);
   margin: 0 auto;
-  padding: 0 24px;
-  min-height: 72px;
+  padding: 14px 24px;
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 12px 32px;
 }
 
-.brand { display: flex; align-items: baseline; gap: 12px; }
-.brand__name { font-size: 22px; font-weight: 700; letter-spacing: -0.2px; }
-.brand__sub { font-size: 15px; color: var(--azul-topo); }
+.brand {
+  display: flex; align-items: baseline; gap: 10px; white-space: nowrap;
+  font-size: 16px; letter-spacing: 0.8px; text-transform: uppercase;
+}
+.brand__name { font-weight: 700; }
+.brand__dot  { color: var(--azul-topo); }
+.brand__sub  { font-weight: 500; color: var(--azul-topo); }
 
-.nav { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: stretch; }
+.nav { display: flex; flex-wrap: wrap; gap: 10px; }
 .nav a {
-  color: var(--azul-topo);
-  text-decoration: none;
-  font-size: 15px;
-  padding: 26px 0 22px;
-  border-bottom: 3px solid transparent;
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px; padding: 0 20px; border-radius: 999px;
+  font-size: 15px; font-weight: 500; color: #fff; text-decoration: none;
+  background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: background 0.15s ease;
 }
-.nav a:hover { color: #fff; }
+.nav a:hover { background: rgba(255, 255, 255, 0.26); color: #fff; }
 .nav a.is-active, .nav a[aria-current="page"] {
-  color: #fff; font-weight: 500; border-bottom-color: #fff;
-}
-
-.topbar__tag {
-  font-size: 12px; font-weight: 500; letter-spacing: 0.6px; text-transform: uppercase;
-  color: #fff; border: 1px solid #8FA3DC; border-radius: 999px; padding: 4px 12px;
+  background: #fff; border-color: #fff; color: var(--azul); font-weight: 700;
 }
 
 /* 3. TÍTULOS E BOTÕES ---------------------------------------------------- */
@@ -148,7 +148,6 @@ a:hover { color: var(--azul-escuro); }
   background: #EAF0FC; border: 1px solid var(--azul-borda); border-radius: 12px;
   padding: 14px 18px; font-size: 14px; line-height: 1.55;
 }
-.note[hidden] { display: none; }
 
 .disclaimer { font-size: 13px; line-height: 1.5; color: var(--muted); }
 
@@ -203,10 +202,12 @@ a:hover { color: var(--azul-escuro); }
 
 /* 5. GRADES -------------------------------------------------------------- */
 /* Quebram sozinhas: 3 colunas no PC, 2 no tablet, 1 no celular. */
-.grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+.grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
 .grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); }
 .grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
-.grid--top { align-items: start; }
+.grid--top { align-items: start; } /* cards compactos de renda fixa */
+.grid > .card { height: 100%; }
+.grid--top > .card { height: auto; }
 
 /* 6. CARDS, BADGES E MÉTRICAS -------------------------------------------- */
 .card {
@@ -221,7 +222,8 @@ a:hover { color: var(--azul-escuro); }
 .card__head { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .card__eyebrow { font-size: 13px; color: var(--muted); }
 .card__title { font-size: 20px; line-height: 1.3; font-weight: 700; color: var(--texto); }
-.card__title--sm { font-size: 18px; line-height: 1.35; }
+/* Título com altura de 3 linhas: retorno, divisória e ISIN alinham entre cards da mesma fileira */
+.card__title--sm { font-size: 17px; line-height: 1.35; min-height: 4.05em; }
 .card__desc { font-size: 14px; line-height: 1.6; color: var(--texto-2); }
 .card__footnote { font-size: 12px; color: var(--muted); }
 
@@ -251,15 +253,16 @@ a:hover { color: var(--azul-escuro); }
 .stats {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
   border-top: 1px solid var(--linha); padding-top: 16px;
+  margin-top: auto; /* dados sempre na base do card */
 }
 .stats--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .stat { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .stat__label { font-size: 12px; color: var(--muted); }
-.stat__value { font-size: 15px; font-weight: 700; }
+.stat__value { font-size: 14px; font-weight: 700; }
 .stat--span-2 { grid-column: span 2; }
 .stat--full { grid-column: 1 / -1; }
 
-.isin { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; word-break: break-all; }
+.isin { display: flex; align-items: center; justify-content: flex-start; gap: 6px; font-size: 14px; font-weight: 700; word-break: break-all; }
 .copy-btn {
   position: relative; flex: none;
   display: inline-flex; align-items: center; justify-content: center;
@@ -302,10 +305,12 @@ a:hover { color: var(--azul-escuro); }
 }
 
 /* 8. VISÃO GLOBAL (cards com foto) --------------------------------------- */
-/* Foto escura com degradê azul-marinho: unifica fotos de tons diferentes. */
+/* Grade 2x2 (1 coluna no celular). Foto escura com degradê azul-marinho. */
+.photo-grid { display: grid; gap: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
 .photo-card {
   position: relative; display: flex; flex-direction: column; justify-content: flex-end;
-  aspect-ratio: 16 / 9; min-height: 220px;
+  aspect-ratio: 16 / 9;
   border-radius: var(--raio); overflow: hidden;
   background: var(--azul-escuro); color: #fff; text-decoration: none;
   box-shadow: var(--sombra);
@@ -322,12 +327,27 @@ a:hover { color: var(--azul-escuro); }
   background: linear-gradient(180deg, rgba(0, 25, 70, 0.1) 0%, rgba(0, 25, 70, 0.92) 100%);
 }
 .photo-card__body {
-  position: relative; z-index: 2; padding: 28px;
-  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 16px;
+  position: relative; z-index: 2; padding: 26px;
+  display: flex; flex-wrap: nowrap; align-items: flex-end; justify-content: space-between; gap: 12px 16px;
 }
+.photo-card__text { min-width: 0; }
 .photo-card__title { font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -0.3px; }
-.photo-card__sub { font-size: 15px; color: #E3E9F8; margin-top: 4px; }
-.photo-card__go { font-size: 14px; font-weight: 500; }
+.photo-card__sub { font-size: 14px; color: #E3E9F8; margin-top: 4px; }
+
+/* Botão arredondado "Acessar" (mesmo padrão em todos os cards) */
+.photo-card__go, .btn-round {
+  display: inline-flex; flex: none; align-items: center; justify-content: center; gap: 8px;
+  white-space: nowrap; text-decoration: none;
+  background: #fff; color: var(--azul); font-weight: 700; border-radius: 999px;
+}
+.photo-card__go { font-size: 14px; padding: 10px 18px; }
+.photo-card:hover .photo-card__go, .btn-round:hover { background: var(--azul-claro); color: var(--azul-escuro); }
+
+/* Aviso de uso interno (rodapé da Visão Global) */
+.internal-note {
+  font-size: 12px; line-height: 1.6; font-weight: 500; letter-spacing: 0.3px;
+  text-transform: uppercase; color: var(--muted);
+}
 
 /* 9. EDUCACIONAL --------------------------------------------------------- */
 .hero-banner {
@@ -346,13 +366,7 @@ a:hover { color: var(--azul-escuro); }
 .hero-banner__stat strong { font-size: 28px; line-height: 1.1; }
 .hero-banner__stat span { font-size: 13px; color: #E3E9F8; }
 
-.theme-card {
-  gap: 14px; padding: 24px;
-  color: inherit; text-decoration: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-.theme-card:hover { border-color: var(--azul-borda); box-shadow: var(--sombra); transform: translateY(-2px); }
-.theme-card:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+.theme-card { gap: 14px; padding: 24px; }
 .theme-card__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .theme-card__icon {
   display: inline-flex; align-items: center; justify-content: center;
@@ -364,47 +378,74 @@ a:hover { color: var(--azul-escuro); }
 }
 .theme-card__link:hover { text-decoration: underline; }
 
-/* Product browsers keep the existing tab behavior while using shared primitives. */
-.product-section { scroll-margin-top: 24px; }
-.product-browser, .etf-browser, .fixed-income-browser, .fund-browser {
-  display: grid; grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
-  gap: 24px; align-items: start;
+/* 9b. FAQ EM DESTAQUE E ESTADO VAZIO (páginas de plataforma) -------------- */
+/* Banner no topo de BTG Contas Internacionais, BTG US, BTG Cayman e BTG Europa.
+   Só aparece se a plataforma tiver FAQ. Sem FAQ, não mostrar nada ("em breve" removido). */
+.faq-banner {
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 100%);
+  color: #fff; border-radius: 16px; padding: 28px 36px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 20px 32px; box-shadow: 0 6px 18px rgba(20, 33, 61, 0.14);
 }
-.product-menu, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu {
-  display: flex; flex-direction: column; gap: 8px;
-  padding: 18px; background: #fff; border: 1px solid var(--borda);
-  border-radius: var(--raio);
+.faq-banner__text { display: flex; align-items: center; gap: 20px; flex: 1 1 320px; min-width: 0; }
+.faq-banner__icon {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, 0.16);
 }
-.fund-class-menu { flex-wrap: nowrap; overflow-x: hidden; }
-.product-menu .product-tabs { flex-direction: column; align-items: stretch; }
-.product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab, .fund-class-tab {
-  width: 100%; text-align: left;
+.faq-banner__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.faq-banner__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--azul-topo); }
+.faq-banner__title { font-size: 26px; line-height: 1.2; font-weight: 700; letter-spacing: -0.3px; }
+.faq-banner .btn-round { font-size: 16px; min-height: 52px; padding: 0 28px; }
+
+.empty-state {
+  background: #fff; border: 1px dashed #AEBBDD; border-radius: var(--raio);
+  padding: 40px 24px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center; color: var(--muted);
 }
-.fund-class-tab {
-  box-sizing: border-box; flex: 0 0 auto; height: auto;
-  line-height: 1.35; white-space: normal; overflow-wrap: anywhere;
+
+/* 9c. PÁGINA DE PLATAFORMA (menu Produtos na lateral) --------------------- */
+.shop { display: grid; grid-template-columns: 220px 240px minmax(0, 1fr); gap: 24px; align-items: start; }
+
+.shop__products, .shop__subs {
+  background: #fff; border: 1px solid var(--borda); border-radius: var(--raio);
 }
-.product-content, .etf-class-content, .fixed-income-class-content, .fund-class-content { min-width: 0; }
-.product-panel[hidden] { display: none; }
-.product-panel .investment-products { margin-top: 0; }
-.etf-class-menu, .fixed-income-class-menu, .fund-class-menu { max-height: 620px; overflow-y: auto; }
-.fixed-income-class-menu { min-width: 0; }
-.etf-class-menu { max-height: none; overflow: visible; }
-.etf-products, .fixed-income-products, .fund-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.fixed-income-products.grid--3 { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
-.etf-card, .fixed-income-card, .fund-card { min-width: 0; }
-.fixed-income-card > .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.fixed-income-card > .stats .stat__value { overflow-wrap: anywhere; line-height: 1.35; }
-.fund-card .investment-details { grid-template-columns: 1fr; }
-.fund-card .metric { flex-direction: column; align-items: flex-start; gap: 4px; }
-.fund-card .stat__value { font-size: 13px; line-height: 1.35; white-space: nowrap; }
-.etf-details, .fixed-income-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.etf-details div, .fixed-income-details div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.etf-details dt, .fixed-income-details dt, .etf-details dd, .fixed-income-details dd { margin: 0; }
-.etf-details dt, .fixed-income-details dt { font-size: 12px; color: var(--muted); }
-.etf-details dd, .fixed-income-details dd { font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
-.etf-group-head, .fixed-income-group-head, .fund-group-head { margin-bottom: 12px; }
-.product-rate-notice { margin-bottom: 16px; }
+.shop__products { padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+.shop__subs { padding: 12px; max-height: 520px; overflow-y: auto; }
+.shop__heading { padding: 0 4px; font-size: 18px; font-weight: 700; }
+.shop__list { display: flex; flex-direction: column; gap: 8px; }
+.shop__content { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.shop__title { font-size: 22px; font-weight: 700; }
+
+.side-pill {
+  display: block; width: 100%; text-align: left;
+  font: inherit; font-size: 15px; color: var(--texto); background: #fff;
+  border: 1px solid var(--azul-borda); border-radius: 999px;
+  padding: 11px 18px; min-height: 44px; cursor: pointer;
+}
+.side-pill:hover { border-color: var(--azul); }
+.side-pill.is-active, .side-pill[aria-selected="true"] {
+  background: var(--azul); border-color: var(--azul); color: #fff; font-weight: 700;
+}
+
+.side-sub {
+  display: block; width: 100%; text-align: left;
+  font: inherit; font-size: 14px; line-height: 1.35; color: var(--muted); background: #fff;
+  border: 1px solid var(--azul-borda); border-radius: 8px;
+  padding: 10px 14px; min-height: 44px; cursor: pointer;
+}
+.side-sub:hover { border-color: var(--azul); }
+.side-sub.is-active, .side-sub[aria-selected="true"] {
+  color: var(--azul); background: var(--azul-claro); border-color: var(--azul); font-weight: 500;
+}
+
+/* Aviso "Confira na plataforma as taxas atualizadas." */
+.info-note {
+  display: flex; align-items: center; gap: 12px;
+  background: #EAF0FC; border: 1px solid var(--azul-borda); border-left: 4px solid var(--azul);
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 15px; font-weight: 500; color: var(--azul-escuro);
+}
+.info-note svg { flex: none; color: var(--azul); }
 
 /* 10. FAQ (temas na lateral + acordeão) ---------------------------------- */
 .faq-layout { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px; }
@@ -429,7 +470,6 @@ a:hover { color: var(--azul-escuro); }
 }
 
 .faq-main { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
-.faq-category[hidden] { display: none; }
 .faq-main h2 { font-size: 24px; font-weight: 700; }
 .faq-group { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--azul); }
 
@@ -452,36 +492,29 @@ a:hover { color: var(--azul-escuro); }
 /* 11. RESPONSIVO ---------------------------------------------------------- */
 @media (max-width: 1023px) {
   .photo-card__title { font-size: 24px; }
-  .etf-products, .fixed-income-products, .fund-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shop { grid-template-columns: minmax(0, 1fr); }
+  .shop__subs { max-height: none; }
 }
 
 @media (max-width: 760px) {
-  .faq-side { flex-basis: 100%; padding: 14px 12px; }
+  /* Produtos e subcategorias viram faixas horizontais */
+  .shop__list { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
+  .side-pill, .side-sub { width: auto; flex: none; white-space: nowrap; }
+  .shop__products { padding: 14px 12px; }
+
+  .faq-side { flex-basis: 100%; min-width: 0; max-width: 100%; padding: 14px 12px; }
   .faq-side__list { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
   .faq-theme { width: auto; white-space: nowrap; }
-  .product-browser, .etf-browser, .fixed-income-browser, .fund-browser { grid-template-columns: minmax(0, 1fr); }
-  .product-menu, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu { min-width: 0; }
-  .product-menu .product-tabs, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu {
-    flex-direction: row; flex-wrap: nowrap; overflow-x: auto; max-height: none;
-  }
-  .product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab {
-    width: auto; flex: 0 0 auto; white-space: nowrap;
-  }
-  .fixed-income-products.grid--3 { grid-template-columns: minmax(0, 1fr); }
-  .fund-class-tab { width: 220px; flex-basis: 220px; }
-  .etf-class-menu { flex-wrap: wrap; overflow: visible; }
-  .etf-class-menu .etf-class-tab { flex: 1 1 200px; white-space: normal; }
 }
 
 @media (max-width: 640px) {
   .container { padding: 0 16px; }
   .page { padding-top: 24px; padding-bottom: 40px; gap: 24px; }
 
-  .topbar__inner { padding: 12px 16px; gap: 8px; }
-  .brand__name { font-size: 20px; }
-  .nav { width: 100%; flex-wrap: nowrap; overflow-x: auto; gap: 20px; }
-  .nav a { padding: 10px 0 8px; white-space: nowrap; }
-  .topbar__tag { display: none; }
+  .topbar__inner { padding: 12px 16px; gap: 10px; }
+  .brand { font-size: 14px; }
+  .nav { width: 100%; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .nav a { white-space: nowrap; flex: none; }
 
   .page-header h1 { font-size: 28px; }
   .section-title h2 { font-size: 21px; }
@@ -499,16 +532,28 @@ a:hover { color: var(--azul-escuro); }
   .subtabs { gap: 20px; overflow-x: auto; flex-wrap: nowrap; }
   .subtab { white-space: nowrap; }
 
-  .photo-card { aspect-ratio: 4 / 3; }
+  .photo-grid { grid-template-columns: 1fr; }
   .photo-card__body { padding: 20px; }
+  .photo-card__title { font-size: 22px; }
+
+  .faq-banner { padding: 24px; }
+  .faq-banner__title { font-size: 22px; }
+  .faq-banner .btn-round { width: 100%; }
 
   .hero-banner { padding: 24px; }
   .hero-banner h2 { font-size: 26px; }
 
   .faq-item summary { padding: 16px; gap: 12px; }
   .faq-item__a { padding: 0 16px 16px 16px; }
-  .etf-products, .fixed-income-products, .fund-products { grid-template-columns: 1fr; }
-  .product-menu, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu { padding: 14px; }
+}
+
+.shop.shop--no-categories { grid-template-columns: 220px minmax(0, 1fr); }
+.shop__subs[hidden], .shop-category-list[hidden], .product-panel[hidden] { display: none; }
+.fixed-income-card > .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fixed-income-card > .stats .stat__value { overflow-wrap: anywhere; line-height: 1.35; }
+
+@media (max-width: 1023px) {
+  .shop.shop--no-categories { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

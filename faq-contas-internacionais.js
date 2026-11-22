@@ -453,7 +453,7 @@ const faqContent = document.getElementById("faq-content");
 faqTopics.forEach((topic, topicIndex) => {
   const topicId = `faq-topic-${topicIndex + 1}`;
   const topicButton = document.createElement("button");
-  topicButton.className = "faq-topic-button faq-theme";
+  topicButton.className = "faq-theme";
   topicButton.type = "button";
   topicButton.dataset.topicIndex = String(topicIndex);
   topicButton.setAttribute("aria-controls", topicId);
@@ -473,7 +473,7 @@ faqTopics.forEach((topic, topicIndex) => {
 
   topic.sections.forEach((section, sectionIndex) => {
     const sectionTitle = document.createElement("h3");
-    sectionTitle.className = "faq-subtopic faq-group";
+    sectionTitle.className = "faq-group";
     sectionTitle.textContent = section.title;
     category.append(sectionTitle);
     const questionList = document.createElement("div");
@@ -483,12 +483,12 @@ faqTopics.forEach((topic, topicIndex) => {
       const questionId = `faq-question-${topicIndex + 1}-${sectionIndex + 1}-${questionIndex + 1}`;
 
       const question = document.createElement("details");
-      question.className = "faq-question faq-item";
+      question.className = "faq-item";
       question.id = questionId;
 
       const summary = document.createElement("summary");
       const number = document.createElement("span");
-      number.className = "faq-question-number faq-item__num";
+      number.className = "faq-item__num";
       number.textContent = String(questionIndex + 1).padStart(2, "0");
       const questionText = document.createElement("span");
       questionText.className = "faq-item__q";
@@ -500,7 +500,7 @@ faqTopics.forEach((topic, topicIndex) => {
       summary.append(number, questionText, chevron);
 
       const answer = document.createElement("div");
-      answer.className = "faq-answer faq-item__a";
+      answer.className = "faq-item__a";
       const answerText = document.createElement("p");
       answerText.textContent = entry.answer;
       answer.append(answerText);
@@ -513,7 +513,7 @@ faqTopics.forEach((topic, topicIndex) => {
   faqContent.append(category);
 });
 
-const topicButtons = Array.from(topicList.querySelectorAll(".faq-topic-button"));
+const topicButtons = Array.from(topicList.querySelectorAll(".faq-theme"));
 
 function activateTopic(topicIndex, openQuestionId = null) {
   topicButtons.forEach((button, index) => {

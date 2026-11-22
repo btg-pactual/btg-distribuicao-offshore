@@ -366,33 +366,36 @@ a:hover { color: var(--azul-escuro); }
 
 /* Product browsers keep the existing tab behavior while using shared primitives. */
 .product-section { scroll-margin-top: 24px; }
-.product-browser, .etf-browser, .fixed-income-browser {
+.product-browser, .etf-browser, .fixed-income-browser, .fund-browser {
   display: grid; grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
   gap: 24px; align-items: start;
 }
-.product-menu, .etf-class-menu, .fixed-income-class-menu {
+.product-menu, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu {
   display: flex; flex-direction: column; gap: 8px;
   padding: 18px; background: #fff; border: 1px solid var(--borda);
   border-radius: var(--raio);
 }
+.fund-class-menu { flex-wrap: nowrap; overflow-x: hidden; }
 .product-menu .product-tabs { flex-direction: column; align-items: stretch; }
-.product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab {
+.product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab, .fund-class-tab {
   width: 100%; text-align: left;
 }
-.product-content, .etf-class-content, .fixed-income-class-content { min-width: 0; }
+.product-content, .etf-class-content, .fixed-income-class-content, .fund-class-content { min-width: 0; }
 .product-panel[hidden] { display: none; }
 .product-panel .investment-products { margin-top: 0; }
-.etf-class-menu, .fixed-income-class-menu { max-height: 620px; overflow-y: auto; }
+.etf-class-menu, .fixed-income-class-menu, .fund-class-menu { max-height: 620px; overflow-y: auto; }
 .etf-class-menu { max-height: none; overflow: visible; }
-.etf-products, .fixed-income-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.etf-card, .fixed-income-card { min-width: 0; }
+.etf-products, .fixed-income-products, .fund-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.etf-card, .fixed-income-card, .fund-card { min-width: 0; }
 .fixed-income-card > .stats .stat__value { overflow-wrap: anywhere; line-height: 1.35; }
+.fund-card .investment-details { grid-template-columns: 1fr; }
+.fund-card .stat__value { font-size: 13px; line-height: 1.35; white-space: nowrap; }
 .etf-details, .fixed-income-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .etf-details div, .fixed-income-details div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .etf-details dt, .fixed-income-details dt, .etf-details dd, .fixed-income-details dd { margin: 0; }
 .etf-details dt, .fixed-income-details dt { font-size: 12px; color: var(--muted); }
 .etf-details dd, .fixed-income-details dd { font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
-.etf-group-head, .fixed-income-group-head { margin-bottom: 12px; }
+.etf-group-head, .fixed-income-group-head, .fund-group-head { margin-bottom: 12px; }
 .product-rate-notice { margin-bottom: 16px; }
 
 /* 10. FAQ (temas na lateral + acordeão) ---------------------------------- */
@@ -441,15 +444,15 @@ a:hover { color: var(--azul-escuro); }
 /* 11. RESPONSIVO ---------------------------------------------------------- */
 @media (max-width: 1023px) {
   .photo-card__title { font-size: 24px; }
-  .etf-products, .fixed-income-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .etf-products, .fixed-income-products, .fund-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
   .faq-side { flex-basis: 100%; padding: 14px 12px; }
   .faq-side__list { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
   .faq-theme { width: auto; white-space: nowrap; }
-  .product-browser, .etf-browser, .fixed-income-browser { grid-template-columns: 1fr; }
-  .product-menu .product-tabs, .etf-class-menu, .fixed-income-class-menu {
+  .product-browser, .etf-browser, .fixed-income-browser, .fund-browser { grid-template-columns: 1fr; }
+  .product-menu .product-tabs, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu {
     flex-direction: row; flex-wrap: nowrap; overflow-x: auto; max-height: none;
   }
   .product-menu .product-tab, .etf-class-tab, .fixed-income-class-tab {
@@ -493,8 +496,8 @@ a:hover { color: var(--azul-escuro); }
 
   .faq-item summary { padding: 16px; gap: 12px; }
   .faq-item__a { padding: 0 16px 16px 16px; }
-  .etf-products, .fixed-income-products { grid-template-columns: 1fr; }
-  .product-menu, .etf-class-menu, .fixed-income-class-menu { padding: 14px; }
+  .etf-products, .fixed-income-products, .fund-products { grid-template-columns: 1fr; }
+  .product-menu, .etf-class-menu, .fixed-income-class-menu, .fund-class-menu { padding: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

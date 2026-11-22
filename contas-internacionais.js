@@ -42,6 +42,195 @@ if (tabList) {
   });
 }
 
+const fundGroups = [
+  {name:"Renda Fixa - Curta Duração", products:[
+    {name:"PIMCO Low Duration Income", isin:"IE00BDT57T44", ytd:-0.31},
+    {name:"Lord Abbett Short Duration Income", isin:"IE00BFNWXY26", ytd:0.24},
+    {name:"Muzinich Enhanced Yield Short-Term", isin:"IE00BF2T2K37", ytd:0.52}
+  ]},
+  {name:"Renda Fixa - Curta Duração Ligada à Inflação", products:[
+    {name:"AXA Global Inflation Short Duration", isin:"LU1353950568", ytd:0.68}
+  ]},
+  {name:"Renda Fixa - Flexível", products:[
+    {name:"PIMCO Income", isin:"IE00B7KFL990", ytd:-3.48},
+    {name:"BTG Pactual Global Fixed Income", isin:"LU2842190071", ytd:-2.84},
+    {name:"Morgan Stanley Global Fixed Income Opportunities", isin:"LU0694238766", ytd:-0.99}
+  ]},
+  {name:"Money Market", products:[
+    {name:'INVESCO US DOLLAR LIQUIDITY PORTFOLIO "RES" (USD) ACC', isin:"IE00BLDGKV28", ytd:2.44, return12m:"3.32%", minimum:"USD 1.000,00", redemption:"D+1"},
+    {name:"FT Western Asset US Government Liquidity", isin:"IE00B19Z6R17", ytd:2.31},
+    {name:"BTG Pactual Yield Liquidity A", isin:"LU2857896562", ytd:2.51}
+  ]},
+  {name:"Crédito Global (posição existente)", products:[
+    {name:"BTG Pactual Sicav Global Credit Fund", isin:"LU3435271443", return12m:"Não informado", minimum:"USD 1.000,00", redemption:"D+2/D+6", yield:"7.44% a.a."}
+  ]},
+  {name:"Renda Fixa - Agregado Global", products:[
+    {name:"PIMCO Total Return Bond", isin:"IE00B11XZ988", ytd:-3.95}
+  ]},
+  {name:"Renda Fixa - Grau de Investimento", products:[
+    {name:"JPM Global Corporate Bond", isin:"LU0408846375", ytd:-2.86},
+    {name:"Goldman Sachs - US Credit", isin:"LU0546920561", ytd:-4.40},
+    {name:"MAN GLG Global Inverstment Grade Opportunities", isin:"IE000GDY7UP9", ytd:-0.39}
+  ]},
+  {name:"Renda Fixa - High Yield", products:[
+    {name:"AXA US Short Duration High Yield", isin:"LU0292585030", ytd:-0.18},
+    {name:"Nomura US High Yield", isin:"IE00B3RW7J78", ytd:-0.38},
+    {name:"Blackrock Global High Yield Bond", isin:"LU0171284937", ytd:0.06},
+    {name:"Robeco High Yield", isin:"LU0594695099", ytd:0.23},
+    {name:"Oaktree Global Credit Fund R USD Acc", isin:"LU1617686933", ytd:0.53},
+    {name:"Nordea 1 - European High Yield Bond", isin:"LU0637316331", ytd:1.02}
+  ]},
+  {name:"Renda Fixa - Mercados Emergentes", products:[
+    {name:"Goldman Sachs EM Corporate Bond", isin:"LU0622305505", ytd:-0.11},
+    {name:"Loomis Sayles S/T EM Markets Bond", isin:"LU0980585243", ytd:-0.03},
+    {name:"BTG SICAV Latin American Corporate Debt", isin:"LU0866202517", ytd:0.96},
+    {name:"Neuberger Berman Emerging Markets Debt HC", isin:"IE00B986J944", ytd:-0.79}
+  ]},
+  {name:"Renda Fixa - Retorno Absoluto", products:[
+    {name:"Jupiter Strategic Absolute Return", isin:"IE000FBV19S5", ytd:2.00},
+    {name:"DNCA Invest Alpha Bonds", isin:"LU1860994273", ytd:2.08}
+  ]},
+  {name:"Ações - Global", products:[
+    {name:"BTG Pactual Sicav Global Equities", isin:"LU3060589838", ytd:9.72, return12m:"+6.31%", minimum:"USD 1.000,00", redemption:"D+2/D+6"},
+    {name:"Jupiter Merian World Equity", isin:"IE0005263466", ytd:12.42},
+    {name:"Wellington Global Quality Growth", isin:"LU1084869962", ytd:6.76},
+    {name:"WCM Select Global Growth Equity", isin:"LU2169560799", ytd:8.38},
+    {name:"JPM Global Select Equity", isin:"LU0070217475", ytd:5.76}
+  ]},
+  {name:"Ações - EUA Crescimento", products:[
+    {name:"Loomis Sayles US Growth", isin:"LU1429558221", ytd:-1.24},
+    {name:"AB American Growth Portfolio", isin:"LU0079474960", ytd:4.42}
+  ]},
+  {name:"Ações - EUA Valor", products:[
+    {name:"FTGF Clearbridge US Value Fund", isin:"IE00B19Z3581", ytd:10.58}
+  ]},
+  {name:"Ações - EUA Blend", products:[
+    {name:"PIMCO US StockPLUS", isin:"IE00B1D7YP71", ytd:11.38},
+    {name:"T.Rowe Price US Structured Research Equity Fund", isin:"LU2954937806", ytd:12.42}
+  ]},
+  {name:"Ações - EUA Blend 130/30", products:[
+    {name:"JP Morgan US Select Equity Plus", isin:"LU0292454872", ytd:7.88}
+  ]},
+  {name:"Ações - EUA Small Cap", products:[
+    {name:"T.Rowe Price US Smaller Companies", isin:"LU0133096635", ytd:7.74}
+  ]},
+  {name:"Ações - Europa", products:[
+    {name:"GS Europe CORE Portfolio", isin:"LU1599216030", ytd:8.35}
+  ]},
+  {name:"Ações - Japão", products:[
+    {name:"Nomura Japan Strategic Value", isin:"IE00B3XBYN16", ytd:12.04},
+    {name:"Franklin Templeton Japan Fund", isin:"LU0231790832", ytd:11.96}
+  ]},
+  {name:"Ações - Mercados Emergentes", products:[
+    {name:"Wellington Emerging Markets Research", isin:"LU1366343215", ytd:27.27},
+    {name:"Robeco QI Emerging Markets", isin:"LU0565011698", ytd:28.48},
+    {name:"Wellington Asia Technology", isin:"LU1751454437", ytd:37.44},
+    {name:"Schroder Asian Opportunities", isin:"LU0106259558", ytd:26.60}
+  ]},
+  {name:"Ações - Setores", products:[
+    {name:"Blackrock World Technology", isin:"LU0056508442", ytd:36.97},
+    {name:"BlueBox Funds Global Technology", isin:"LU1793345262", ytd:28.00},
+    {name:"Janus Henderson Global Life Science", isin:"IE0009355771", ytd:6.09},
+    {name:"AB International Health Care", isin:"LU0058720904", ytd:4.65}
+  ]},
+  {name:"Ações - Temáticos", products:[
+    {name:"Pictet - Robotics", isin:"LU1279333675", ytd:29.84}
+  ]},
+  {name:"REITs", products:[
+    {name:"Janus Henderson Global Property", isin:"LU0209137388", ytd:3.78},
+    {name:"Nordea 1 - Global Real Estate", isin:"LU0705260189", ytd:3.53}
+  ]},
+  {name:"Multi Ativos", products:[
+    {name:"BTG Pactual Sicav Balanced Fund", isin:"LU2451829373", ytd:1.89, return12m:"+1.89%", minimum:"USD 1.000,00", redemption:"D+2/D+6"},
+    {name:"Blackrock ESG Multi Asset", isin:"LU0494093205", ytd:9.17}
+  ]},
+  {name:"Alternativos Líquidos - Long Short Equity", products:[
+    {name:"Pictet TR - Atlas", isin:"LU1433232003", ytd:3.65},
+    {name:"Schroder GAIA Egerton", isin:"LU0548376150", ytd:2.60},
+    {name:"AQR Delphi L/S Equity", isin:"LU1842781202", ytd:12.65}
+  ]},
+  {name:"Alternativos Líquidos - EUA Baixa Volatilidade", products:[
+    {name:"JP Morgan US Hedged (Low Vol Fund)", isin:"LU1297690502", ytd:-0.15}
+  ]},
+  {name:"Alternativos Líquidos - Event Driven", products:[
+    {name:"Blackrock Global Event Driven", isin:"LU1251620883", ytd:2.40}
+  ]},
+  {name:"Alternativos Líquidos - Multiestrategia", products:[
+    {name:"Schroder GAIA Wellington Pagosa", isin:"LU1732474868", ytd:0.53}
+  ]}
+];
+
+function renderFundCard(group, fund) {
+  const performance = fund.ytd;
+  const performanceClass = performance === undefined || performance === null || performance === 0
+    ? "is-neutral"
+    : performance > 0 ? "is-positive" : "is-negative";
+  const ytd = performance === undefined || performance === null
+    ? "Não informado"
+    : `${performance > 0 ? "+" : ""}${performance.toFixed(2)}%`;
+  const details = [
+    `<div class="stat"><dt class="stat__label">Retorno 12M</dt><dd class="stat__value">${fund.return12m || "Não informado"}</dd></div>`,
+    `<div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${fund.isin}</dd></div>`
+  ];
+
+  if (fund.minimum) details.push(`<div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">${fund.minimum}</dd></div>`);
+  if (fund.redemption) details.push(`<div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">${fund.redemption}</dd></div>`);
+  if (fund.yield) details.push(`<div class="stat stat--full"><dt class="stat__label">Yield indicativo</dt><dd class="stat__value">${fund.yield}</dd></div>`);
+
+  return `
+    <article class="fund-card investment-card card">
+      <div class="card__head">
+        <span class="card__eyebrow">${group.name}</span>
+        <h4 class="card__title card__title--sm">${fund.name}</h4>
+      </div>
+      <div class="metric">
+        <span class="metric__value ${performanceClass}">${ytd}</span>
+        <span class="metric__label">YTD</span>
+      </div>
+      <dl class="investment-details stats stats--2">${details.join("")}</dl>
+    </article>`;
+}
+
+function renderFundBrowser(panel) {
+  if (!panel) return;
+
+  panel.innerHTML = `
+    <div class="fund-browser">
+      <aside class="fund-class-menu chips" aria-label="Temas de fundos de investimentos">
+        ${fundGroups.map((group,index)=>`<button class="fund-class-tab chip${index===0?" is-active":""}" type="button" data-fund-class="${index}" aria-pressed="${index===0}" aria-selected="${index===0}">${group.name}</button>`).join("")}
+      </aside>
+      <div class="fund-class-content"></div>
+    </div>`;
+
+  const content = panel.querySelector(".fund-class-content");
+  const classTabs = Array.from(panel.querySelectorAll(".fund-class-tab"));
+
+  function renderGroup(index) {
+    const group = fundGroups[index];
+    content.innerHTML = `<div class="fund-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">YTD conforme o Focus List Retail, com dados até 30 de setembro de 2026. Retorno 12M não informado na fonte quando indisponível; dados existentes dos fundos já publicados foram mantidos.</p><div class="fund-products grid grid--3">${
+      group.products.map((fund)=>renderFundCard(group, fund)).join("")
+    }</div>`;
+  }
+
+  classTabs.forEach((tab)=>{
+    tab.addEventListener("click",()=>{
+      classTabs.forEach((item)=>{
+        item.classList.remove("is-active");
+        item.setAttribute("aria-pressed","false");
+        item.setAttribute("aria-selected","false");
+      });
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-pressed","true");
+      tab.setAttribute("aria-selected","true");
+      renderGroup(Number(tab.dataset.fundClass));
+    });
+  });
+
+  renderGroup(0);
+}
+
+renderFundBrowser(document.getElementById("fund-browser"));
+
 const etfGroups = [
   {name:"Caixa e Curto Prazo", products:[
     ["iShares $ Treasury Bd 0-1yr ETF USD Acc","IB01","IE00BGSF1X88","0.07%","1.3%"],
@@ -220,7 +409,7 @@ if (etfPanel) {
   renderEtfGroup(0);
 }
 
-const usEtfGroups = [
+const usLegacyEtfGroups = [
   {name:"Short Term Treasury", products:[
     ["iShares $ Treasury Bd 1-3yr ETF USD Acc","IBTA","IE00BYXPSP02","0.07%","+1.3%"],
     ["iShares $ Treasury Bd 1-3y ETF USD Dist","IDBT","IE00B14X4S71","0.07%","+1.3%"]
@@ -303,19 +492,101 @@ function renderPlatformEtfs(panelId, groups, currencyNotice) {
   render(0);
 }
 
-const europaEtfGroups = [
-  {name:"Short Term Treasury", products:[["iShares $ Treasury Bond 1-3yr UCITS ETF","IBTE","IE00BDFK1573","Não informado","Não informado"]]},
-  {name:"US Treasury", products:[["Vanguard USD Treasury Bond UCITS ETF","VDTE","IE00BMX0B631","Não informado","Não informado"]]},
-  {name:"Global Aggregate", products:[["iShares Core Global Agg Bond UCITS ETF","AGGH","IE00BDBRDM35","Não informado","Não informado"]]},
-  {name:"Inflation Linked Short Duration", products:[["iShares $ TIPS 0-5 UCITS ETF","CBUL","IE000WIQIPT2","Não informado","Não informado"]]},
-  {name:"Short Duration Investment Grade", products:[["iShares $ Short Dur Corp Bond UCITS ETF","CEBU","IE000AWT6D61","Não informado","Não informado"]]},
-  {name:"Investment Grade", products:[["iShares $ Corp Bond UCITS ETF","LQEE","IE00BF3N6Y61","Não informado","Não informado"]]},
-  {name:"High Yield", products:[["iShares $ High Yield Corp Bond UCITS ETF","IHYE","IE00BF3N7102","Não informado","Não informado"]]},
-  {name:"Emerging Markets Sovereign", products:[["iShares J.P. Morgan $ EM Bond UCITS ETF","3SUD","IE00BJ5JPH63","Não informado","Não informado"]]}
+function mergeUsEtfsWithReference() {
+  const groups = etfGroups.map((group)=>({...group,products:[...group.products]}));
+  const groupsByName = new Map(groups.map((group)=>[group.name,group]));
+  const isins = new Set(groups.flatMap((group)=>group.products.map((product)=>product[2])));
+  const legacyCategories = {
+    "Short Term Treasury":"Caixa e Curto Prazo",
+    "US Treasury":"Títulos do Tesouro EUA e Governo",
+    "Global Aggregate":"Títulos Globais",
+    "Inflation Linked Short Duration":"Títulos Protegidos da Inflação",
+    "Short Duration Investment Grade":"Corporativo Grau de Investimento",
+    "Investment Grade":"Corporativo Grau de Investimento",
+    "High Yield":"High Yield",
+    "Emerging Markets Sovereign":"Títulos de Mercados Emergentes"
+  };
+
+  usLegacyEtfGroups.forEach((legacyGroup)=>{
+    const category = legacyCategories[legacyGroup.name];
+    const target = groupsByName.get(category);
+    if (!target) throw new Error(`Categoria UCITS sem correspondência: ${legacyGroup.name}`);
+
+    legacyGroup.products.forEach((product)=>{
+      if (!isins.has(product[2])) {
+        target.products.push(product);
+        isins.add(product[2]);
+      }
+    });
+  });
+
+  return groups;
+}
+
+function reorderPlatformEtfGroups(groups, order, rotation) {
+  const groupsByName = new Map(groups.map((group)=>[group.name,group]));
+
+  return order.map((name,index)=>{
+    const group = groupsByName.get(name);
+    if (!group) throw new Error(`Categoria UCITS ausente: ${name}`);
+
+    const shift = group.products.length > 1 ? (index + rotation) % group.products.length : 0;
+    return {
+      name:group.name,
+      products:[...group.products.slice(shift),...group.products.slice(0,shift)]
+    };
+  });
+}
+
+const usEtfGroupOrder = [
+  "EUA Large-Cap Blend (S&P 500)",
+  "EUA Crescimento",
+  "Ações Globais (MSCI World, FTSE All-World)",
+  "Títulos do Tesouro EUA e Governo",
+  "Caixa e Curto Prazo",
+  "EUA Valor",
+  "Corporativo Grau de Investimento",
+  "Japão",
+  "Títulos Globais",
+  "Mercados Emergentes",
+  "High Yield",
+  "Ásia, China e Índia",
+  "EUA Small e Mid Cap",
+  "Títulos Protegidos da Inflação",
+  "Europa e Desenvolvidos ex-EUA",
+  "Títulos de Mercados Emergentes",
+  "Tecnologia",
+  "Financeiro",
+  "Saúde e Biotecnologia"
 ];
 
-renderPlatformEtfs("us-panel-etfs", usEtfGroups, "ETF UCITS offshore em USD. As taxas e retornos devem ser confirmados na plataforma.");
-renderPlatformEtfs("europa-panel-etfs", europaEtfGroups, "ETF UCITS offshore em EUR com hedge cambial. Taxas e retornos não informados na fonte consultada; confira na plataforma.");
+const europaEtfGroupOrder = [
+  "Ações Globais (MSCI World, FTSE All-World)",
+  "Títulos Globais",
+  "Europa e Desenvolvidos ex-EUA",
+  "Caixa e Curto Prazo",
+  "Mercados Emergentes",
+  "Títulos do Tesouro EUA e Governo",
+  "Japão",
+  "Tecnologia",
+  "Corporativo Grau de Investimento",
+  "EUA Large-Cap Blend (S&P 500)",
+  "High Yield",
+  "Ásia, China e Índia",
+  "EUA Crescimento",
+  "Títulos Protegidos da Inflação",
+  "EUA Valor",
+  "Títulos de Mercados Emergentes",
+  "Financeiro",
+  "Saúde e Biotecnologia",
+  "EUA Small e Mid Cap"
+];
+
+const usEtfGroups = reorderPlatformEtfGroups(mergeUsEtfsWithReference(), usEtfGroupOrder, 1);
+const europaEtfGroups = reorderPlatformEtfGroups(etfGroups, europaEtfGroupOrder, 2);
+
+renderPlatformEtfs("us-panel-etfs", usEtfGroups, "Lista de referência replicada de BTG Contas Internacionais, com opções exclusivas do BTG US mantidas. Confirme disponibilidade e condições na plataforma.");
+renderPlatformEtfs("europa-panel-etfs", europaEtfGroups, "Lista de referência replicada de BTG Contas Internacionais. Confirme disponibilidade, moeda e condições na plataforma BTG Europa.");
 
 const fixedIncomeGroups = [
   {name:"Títulos Soberanos", products:[

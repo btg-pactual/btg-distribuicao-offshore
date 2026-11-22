@@ -62,7 +62,7 @@ const fundGroups = [
     {name:"BTG Pactual Yield Liquidity A", isin:"LU2857896562", ytd:2.51}
   ]},
   {name:"Crédito Global (posição existente)", products:[
-    {name:"BTG Pactual Sicav Global Credit Fund", isin:"LU3435271443", return12m:"Não informado", minimum:"USD 1.000,00", redemption:"D+2/D+6", yield:"7.44% a.a."}
+    {name:"BTG Pactual Sicav Global Credit Fund", isin:"LU3435271443", minimum:"USD 1.000,00", redemption:"D+2/D+6", yield:"7.44% a.a."}
   ]},
   {name:"Renda Fixa - Agregado Global", products:[
     {name:"PIMCO Total Return Bond", isin:"IE00B11XZ988", ytd:-3.95}
@@ -161,21 +161,23 @@ const fundGroups = [
 ];
 
 function renderFundCard(group, fund) {
-  const performance = fund.ytd;
-  const performanceClass = performance === undefined || performance === null || performance === 0
+  const performance = fund.return12m
+    ? Number.parseFloat(fund.return12m.replace(",", "."))
+    : Number.NaN;
+  const performanceClass = Number.isNaN(performance) || performance === 0
     ? "is-neutral"
     : performance > 0 ? "is-positive" : "is-negative";
-  const ytd = performance === undefined || performance === null
-    ? "Não informado"
-    : `${performance > 0 ? "+" : ""}${performance.toFixed(2)}%`;
+  const performanceMarkup = fund.yield
+    ? `<div class="metric"><span class="metric__value">Yield ${fund.yield}</span></div>`
+    : fund.return12m
+      ? `<div class="metric"><span class="metric__value ${performanceClass}">${fund.return12m}</span><span class="metric__label">Retorno 12M</span></div>`
+      : "";
   const details = [
-    `<div class="stat"><dt class="stat__label">Retorno 12M</dt><dd class="stat__value">${fund.return12m || "Não informado"}</dd></div>`,
-    `<div class="stat"><dt class="stat__label">ISIN</dt><dd class="stat__value">${fund.isin}</dd></div>`
+    `<div class="stat stat--full"><dt class="stat__label">ISIN</dt><dd class="stat__value">${fund.isin}</dd></div>`
   ];
 
   if (fund.minimum) details.push(`<div class="stat"><dt class="stat__label">Aporte mínimo</dt><dd class="stat__value">${fund.minimum}</dd></div>`);
   if (fund.redemption) details.push(`<div class="stat"><dt class="stat__label">Resgate</dt><dd class="stat__value">${fund.redemption}</dd></div>`);
-  if (fund.yield) details.push(`<div class="stat stat--full"><dt class="stat__label">Yield indicativo</dt><dd class="stat__value">${fund.yield}</dd></div>`);
 
   return `
     <article class="fund-card investment-card card">
@@ -183,10 +185,7 @@ function renderFundCard(group, fund) {
         <span class="card__eyebrow">${group.name}</span>
         <h4 class="card__title card__title--sm">${fund.name}</h4>
       </div>
-      <div class="metric">
-        <span class="metric__value ${performanceClass}">${ytd}</span>
-        <span class="metric__label">YTD</span>
-      </div>
+      ${performanceMarkup}
       <dl class="investment-details stats stats--2">${details.join("")}</dl>
     </article>`;
 }
@@ -207,7 +206,7 @@ function renderFundBrowser(panel) {
 
   function renderGroup(index) {
     const group = fundGroups[index];
-    content.innerHTML = `<div class="fund-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">YTD conforme o Focus List Retail, com dados até 30 de setembro de 2026. Retorno 12M não informado na fonte quando indisponível; dados existentes dos fundos já publicados foram mantidos.</p><div class="fund-products grid grid--3">${
+    content.innerHTML = `<div class="fund-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">Confira na plataforma as taxas atualizadas.</p><div class="fund-products grid grid--3">${
       group.products.map((fund)=>renderFundCard(group, fund)).join("")
     }</div>`;
   }
@@ -230,6 +229,7 @@ function renderFundBrowser(panel) {
 }
 
 renderFundBrowser(document.getElementById("fund-browser"));
+renderFundBrowser(document.getElementById("us-fund-browser"));
 
 const etfGroups = [
   {name:"Caixa e Curto Prazo", products:[
@@ -453,7 +453,7 @@ const usLegacyEtfGroups = [
   ]}
 ];
 
-function renderPlatformEtfs(panelId, groups, currencyNotice) {
+function renderPlatformEtfs(panelId, groups, panelNotice) {
   const panel = document.getElementById(panelId);
   if (!panel) return;
 
@@ -470,7 +470,7 @@ function renderPlatformEtfs(panelId, groups, currencyNotice) {
 
   function render(index) {
     const group = groups[index];
-    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">${currencyNotice}</p><div class="etf-products grid grid--3">${
+    content.innerHTML = `<div class="etf-group-head"><h3>${group.name}</h3></div><p class="product-rate-notice note">${panelNotice}</p><div class="etf-products grid grid--3">${
       group.products.map((product)=>renderEtfCard(group, product)).join("")
     }</div>`;
   }
@@ -585,8 +585,8 @@ const europaEtfGroupOrder = [
 const usEtfGroups = reorderPlatformEtfGroups(mergeUsEtfsWithReference(), usEtfGroupOrder, 1);
 const europaEtfGroups = reorderPlatformEtfGroups(etfGroups, europaEtfGroupOrder, 2);
 
-renderPlatformEtfs("us-panel-etfs", usEtfGroups, "Lista de referência replicada de BTG Contas Internacionais, com opções exclusivas do BTG US mantidas. Confirme disponibilidade e condições na plataforma.");
-renderPlatformEtfs("europa-panel-etfs", europaEtfGroups, "Lista de referência replicada de BTG Contas Internacionais. Confirme disponibilidade, moeda e condições na plataforma BTG Europa.");
+renderPlatformEtfs("us-panel-etfs", usEtfGroups, "Confira na plataforma as taxas atualizadas.");
+renderPlatformEtfs("europa-panel-etfs", europaEtfGroups, "Confira na plataforma as taxas atualizadas.");
 
 const fixedIncomeGroups = [
   {name:"Títulos Soberanos", products:[

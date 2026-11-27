@@ -573,7 +573,7 @@ const europaEtfGroups = reorderPlatformEtfGroups(etfGroups, europaEtfGroupOrder,
 renderPlatformEtfs("us-panel-etfs", usEtfGroups, "Confira na plataforma as taxas atualizadas.");
 renderPlatformEtfs("europa-panel-etfs", europaEtfGroups, "Confira na plataforma as taxas atualizadas.");
 
-const fixedIncomeGroups = [
+const contasFixedIncomeGroups = [
   {name:"Títulos Soberanos", products:[
     ["United States of America","Governo (Soberano)","T","4.250%","15/01/2028","4.21%","1.21","Aa1 / - / AA+u","100","70.744 MM","EUA","US91282CMF58"],
     ["United States of America","Governo (Soberano)","T","3.500%","15/12/2028","4.46%","2.05","Aa1 / - / AA+u","100","57.955 MM","EUA","US91282CPP04"],
@@ -607,6 +607,34 @@ const fixedIncomeGroups = [
     ["Vale SA","Mining","VALEBZ","6.125%","12/06/2033","101.61","5.82%","5.07","Baa2 / BBB / BBB+","Sr Unsecured","BR","200.000","1.000 MM","US91911TAR41"],
     ["Petroleo Brasileiro SA","Oil & Gas","PETBRA","6.500%","03/07/2033","101.23","6.26%","5.05","Ba1 / BB / BB","Sr Unsecured","NL","200.000","1.000 MM","US71647NBK46"],
     ["Embraer SA","Aerospace/Defense","EMBRBZ","5.980%","11/02/2035","101.48","5.75%","6.20","- / BBB / BBB","Sr Unsecured","NL","200.000","1.500 MM","US29082HAE27"]
+  ]}
+];
+
+const usFixedIncomeGroups = [
+  contasFixedIncomeGroups[0],
+  {name:"Títulos Corporativos", products:[
+    ["Costco Wholesale Corp","Retail","COST","1.600%","20/04/2030","89.37","4.92%","3.33","Aa3 / AA / AA","Sr Unsecured","EUA","2.000","1.750 MM","US22160KAP03"],
+    ["Walt Disney Co/The","Media","DIS","2.650%","13/01/2031","90.45","5.18%","3.91","A2 / A / WD","Sr Unsecured","EUA","2.000","2.500 MM","US254687FX90"],
+    ["Coca-Cola Co/The","Beverages","KO","1.375%","15/03/2031","85.53","5.06%","4.19","A1 / A+ / WD","Sr Unsecured","EUA","2.000","1.300 MM","US191216DE73"],
+    ["HCA Healthcare Inc","Healthcare-Services","HCA","5.450%","01/04/2031","99.48","5.58%","3.92","Baa2 / BBB / -","Sr Unsecured","EUA","2.000","1.750 MM","US404119CT49"],
+    ["Berkshire Hathaway Inc","Insurance","BRK","2.875%","15/03/2032","89.47","5.12%","4.90","Aa2 / AA / A+u","Sr Unsecured","EUA","2.000","1.000 MM","US084664DA63"],
+    ["Bank of America Corp","Banks","BAC","4.695%","23/04/2032","96.38","5.51%","3.93","A1 / A- / AA-","Sr Unsecured","EUA","2.000","3.250 MM","US06051GNA30"],
+    ["Dell Technologies Inc","Computers","DELL","4.750%","06/10/2032","95.18","5.71%","5.11","Baa2 / BBB+ / BBB+","Sr Unsecured","EUA","2.000","1.250 MM","US24703DBT72"],
+    ["Morgan Stanley","Banks","MS","6.342%","18/10/2033","102.50","5.84%","4.82","A1 / A- / A+","Sr Unsecured","EUA","1.000","3.000 MM","US61747YEY77"],
+    ["Eli Lilly & Co","Pharmaceuticals","LLY","4.650%","20/05/2033","95.57","5.46%","5.49","Aa3 / AA- / -","Sr Unsecured","EUA","2.000","1.250 MM","US532457DM76"],
+    ["Alphabet Inc","Internet","GOOGL","5.200%","15/08/2033","97.71","5.61%","5.62","Aa2 / AA+ / -","Sr Unsecured","EUA","2.000","2.500 MM","US02079KCR68"],
+    ["Goldman Sachs Group","Banks","GS","5.094%","20/04/2034","95.18","5.92%","5.31","A2 / BBB+ / A","Sr Unsecured","EUA","1.000","3.000 MM","US38141GF251"],
+    ["T-Mobile US Inc","Telecommunications","TMUS","5.300%","15/05/2035","94.74","6.09%","6.60","Baa1 / BBB+ / BBB+","Sr Unsecured","EUA","2.000","1.000 MM","US87264ADT97"],
+    ["Amazon.com Inc","Internet","AMZN","4.875%","13/03/2036","92.15","5.98%","7.32","A1 / AA / AA-","Sr Unsecured","EUA","2.000","1.748 MM","US023135DF00"],
+    ["NVIDIA Corp","Semiconductors","NVDA","4.950%","15/06/2036","92.77","5.94%","7.37","Aa1 / AA / -","Sr Unsecured","EUA","2.000","4.000 MM","US67066GAT13"]
+  ]},
+  {name:"Títulos Corporativos Emergentes", products:[
+    ["PRIO SA/Brazil","Oil & Gas","PRIOBZ","6.750%","15/10/2030","98.21","7.28%","3.37","Ba2 / - / BB+","Sr Unsecured","LU","200.000","700 MM","USL7S62BAA03"],
+    ["LD Celulose SA","Pulp & Paper","LNZAV","7.950%","26/01/2032","102.85","7.15%","3.47","Ba3 / - / BB","Secured / 1st lien","AT","200.000","650 MM","USA4S42PAA32"],
+    ["FS Industria De Biocomb","Alternate Energy","FSBIOE","8.625%","25/06/2033","92.80","10.14%","4.71","B1 / - / B+","Sr Unsecured","LU","200.000","500 MM","USL40756AG06"],
+    ["Minerva SA/Brazil","Food","BEEFBZ","8.875%","13/09/2033","92.95","10.33%","4.87","- / BB / BB","Sr Unsecured","LU","200.000","1.000 MM","USL6401PAM51"],
+    ["Grupo Nutresa SA","Food","NUTRES","9.000%","12/05/2035","106.06","7.99%","5.60","Baa3 / - / BB+","Sr Unsecured","CO","200.000","1.500 MM","USP4R21KAB22"],
+    ["BBVA Mexico SA","Banks","BBVASM","8.125%","08/01/2039","103.25","7.53%","5.26","Baa3 / - / BB+","Subordinated","US","200.000","900 MM","USP1S81BAB48"]
   ]}
 ];
 
@@ -697,6 +725,7 @@ function renderFixedIncomeCard(product, isSovereign, pieceLabel = "Peça", durat
 const fixedIncomePanel = document.getElementById("panel-renda-fixa") || document.getElementById("us-panel-renda-fixa");
 
 if (fixedIncomePanel) {
+  const fixedIncomeGroups = fixedIncomePanel.id === "us-panel-renda-fixa" ? usFixedIncomeGroups : contasFixedIncomeGroups;
   fixedIncomePanel.innerHTML = `
     <nav class="shop__list" role="tablist" aria-label="Classes de renda fixa internacional">
       ${fixedIncomeGroups.map((group,index)=>`<button class="side-sub${index===0?" is-active":""}" type="button" role="tab" data-fixed-income-class="${index}" aria-selected="${index===0}" tabindex="${index===0?0:-1}">${group.name}</button>`).join("")}

@@ -585,28 +585,28 @@ const fixedIncomeGroups = [
     ["United States of America","Governo (Soberano)","T","4.375%","15/05/2036","5.04%","7.53","Aa1 / - / AA+u","100","134.018 MM","EUA","US91282CQQ77"]
   ]},
   {name:"Títulos Corporativos", products:[
-    ["Costco Wholesale Corp","Retail","COST","1.600%","20/04/2030","89.37","4.92%","3.33","Aa3 / AA / AA","Sr Unsecured","EUA","2.000","1.750 MM","US22160KAP03"],
-    ["Walt Disney Co/The","Media","DIS","2.650%","13/01/2031","90.45","5.18%","3.91","A2 / A / WD","Sr Unsecured","EUA","2.000","2.500 MM","US254687FX90"],
-    ["Coca-Cola Co/The","Beverages","KO","1.375%","15/03/2031","85.53","5.06%","4.19","A1 / A+ / WD","Sr Unsecured","EUA","2.000","1.300 MM","US191216DE73"],
-    ["HCA Healthcare Inc","Healthcare-Services","HCA","5.450%","01/04/2031","99.48","5.58%","3.92","Baa2 / BBB / -","Sr Unsecured","EUA","2.000","1.750 MM","US404119CT49"],
-    ["Berkshire Hathaway Inc","Insurance","BRK","2.875%","15/03/2032","89.47","5.12%","4.90","Aa2 / AA / A+u","Sr Unsecured","EUA","2.000","1.000 MM","US084664DA63"],
-    ["Bank of America Corp","Banks","BAC","4.695%","23/04/2032","96.38","5.51%","3.93","A1 / A- / AA-","Sr Unsecured","EUA","2.000","3.250 MM","US06051GNA30"],
-    ["Dell Technologies Inc","Computers","DELL","4.750%","06/10/2032","95.18","5.71%","5.11","Baa2 / BBB+ / BBB+","Sr Unsecured","EUA","2.000","1.250 MM","US24703DBT72"],
-    ["Morgan Stanley","Banks","MS","6.342%","18/10/2033","102.50","5.84%","4.82","A1 / A- / A+","Sr Unsecured","EUA","1.000","3.000 MM","US61747YEY77"],
-    ["Eli Lilly & Co","Pharmaceuticals","LLY","4.650%","20/05/2033","95.57","5.46%","5.49","Aa3 / AA- / -","Sr Unsecured","EUA","2.000","1.250 MM","US532457DM76"],
-    ["Alphabet Inc","Internet","GOOGL","5.200%","15/08/2033","97.71","5.61%","5.62","Aa2 / AA+ / -","Sr Unsecured","EUA","2.000","2.500 MM","US02079KCR68"],
-    ["Goldman Sachs Group","Banks","GS","5.094%","20/04/2034","95.18","5.92%","5.31","A2 / BBB+ / A","Sr Unsecured","EUA","1.000","3.000 MM","US38141GF251"],
-    ["T-Mobile US Inc","Telecommunications","TMUS","5.300%","15/05/2035","94.74","6.09%","6.60","Baa1 / BBB+ / BBB+","Sr Unsecured","EUA","2.000","1.000 MM","US87264ADT97"],
-    ["Amazon.com Inc","Internet","AMZN","4.875%","13/03/2036","92.15","5.98%","7.32","A1 / AA / AA-","Sr Unsecured","EUA","2.000","1.748 MM","US023135DF00"],
-    ["NVIDIA Corp","Semiconductors","NVDA","4.950%","15/06/2036","92.77","5.94%","7.37","Aa1 / AA / -","Sr Unsecured","EUA","2.000","4.000 MM","US67066GAT13"]
+    ["Walt Disney Co/The","Media","DIS","2.650%","13/01/2031","91.19","5.02%","3.83","A2 / A / WD","Sr Unsecured","EUA","2.000","1.750 MM","US254687FX90"],
+    ["McDonald's Corp","Retail","MCD","4.400%","12/02/2031","97.73","5.00%","3.78","Baa1 / BBB+ / -","Sr Unsecured","EUA","2.000","2.500 MM","US58013MGB46"],
+    ["Coca-Cola Co/The","Beverages","KO","1.375%","15/03/2031","86.55","4.85%","4.10","A1 / A+ / WD","Sr Unsecured","EUA","2.000","1.300 MM","US191216DE73"],
+    ["HCA Healthcare Inc","Healthcare-Services","HCA","5.450%","01/04/2031","100.29","5.37%","3.83","Baa2 / BBB / -","Sr Unsecured","EUA","2.000","1.750 MM","US404119CT49"],
+    ["Berkshire Hathaway Inc","Insurance","BRK","2.875%","15/03/2032","90.84","4.84%","4.82","Aa2 / AA / A+u","Sr Unsecured","EUA","2.000","1.000 MM","US084664DA63"],
+    ["Dell Technologies Inc","Computers","DELL","4.750%","06/10/2032","94.76","5.81%","5.01","Baa2 / BBB+ / BBB+","Sr Unsecured","EUA","2.000","3.250 MM","US24703DBT72"],
+    ["Morgan Stanley","Banks","MS","6.342%","18/10/2033","103.77","5.59%","4.89","A1 / A- / A+","Sr Unsecured","EUA","2.000","1.250 MM","US61747YEY77"],
+    ["Meta Platforms Inc","Internet","META","6.250%","15/11/2033","101.21","6.03%","5.50","Aa3 / AA- / -","Sr Unsecured","EUA","1.000","3.000 MM","US30303MAN20"],
+    ["Eli Lilly & Co","Pharmaceuticals","LLY","4.650%","20/05/2033","97.03","5.19%","5.41","Aa3 / AA- / -","Sr Unsecured","EUA","2.000","1.250 MM","US532457DM76"],
+    ["Alphabet Inc","Internet","GOOGL","5.200%","15/08/2033","98.85","5.40%","5.54","Aa2 / AA+ / -","Sr Unsecured","EUA","2.000","2.500 MM","US02079KCR68"],
+    ["Goldman Sachs Group","Banks","GS","5.094%","20/04/2034","96.61","5.73%","5.37","A2 / BBB+ / A","Sr Unsecured","EUA","1.000","3.000 MM","US38141GF251"],
+    ["T-Mobile US Inc","Telecommunications","TMUS","5.300%","15/05/2035","96.20","5.87%","6.53","Baa1 / BBB+ / BBB+","Sr Unsecured","EUA","2.000","1.000 MM","US87264ADT97"],
+    ["Amazon.com Inc","Internet","AMZN","4.875%","13/03/2036","94.12","5.70%","7.27","A1 / AA / AA-","Sr Unsecured","EUA","2.000","1.748 MM","US023135DF00"],
+    ["NVIDIA Corp","Semiconductors","NVDA","4.950%","15/06/2036","93.60","5.83%","7.29","Aa1 / AA / -","Sr Unsecured","EUA","2.000","4.000 MM","US67066GAT13"]
   ]},
   {name:"Títulos Corporativos Emergentes", products:[
-    ["PRIO SA/Brazil","Oil & Gas","PRIOBZ","6.750%","15/10/2030","98.21","7.28%","3.37","Ba2 / - / BB+","Sr Unsecured","LU","200.000","700 MM","USL7S62BAA03"],
-    ["LD Celulose SA","Pulp & Paper","LNZAV","7.950%","26/01/2032","102.85","7.15%","3.47","Ba3 / - / BB","Secured / 1st lien","AT","200.000","650 MM","USA4S42PAA32"],
-    ["FS Industria De Biocomb","Alternate Energy","FSBIOE","8.625%","25/06/2033","92.80","10.14%","4.71","B1 / - / B+","Sr Unsecured","LU","200.000","500 MM","USL40756AG06"],
-    ["Minerva SA/Brazil","Food","BEEFBZ","8.875%","13/09/2033","92.95","10.33%","4.87","- / BB / BB","Sr Unsecured","LU","200.000","1.000 MM","USL6401PAM51"],
-    ["Grupo Nutresa SA","Food","NUTRES","9.000%","12/05/2035","106.06","7.99%","5.60","Baa3 / - / BB+","Sr Unsecured","CO","200.000","1.500 MM","USP4R21KAB22"],
-    ["BBVA Mexico SA","Banks","BBVASM","8.125%","08/01/2039","103.25","7.53%","5.26","Baa3 / - / BB+","Subordinated","US","200.000","900 MM","USP1S81BAB48"]
+    ["Banco Bradesco SA","Banks","BRADES","5.375%","20/01/2031","97.17","6.15%","3.62","Ba1 / BB / -","Sr Unsecured","KY","200.000","700 MM","US05947LBD91"],
+    ["Banco do Brasil SA","Banks","BANBRA","5.625%","23/10/2031","96.86","6.37%","4.22","Ba1 / - / BB","Sr Unsecured","KY","200.000","650 MM","USP3772WAL65"],
+    ["Suzano SA","Pulp & Paper","SUZANO","3.125%","15/01/2032","87.74","5.91%","4.59","- / BBB- / BBB-","Sr Unsecured","BR","200.000","500 MM","US86964WAK80"],
+    ["Vale SA","Mining","VALEBZ","6.125%","12/06/2033","101.61","5.82%","5.07","Baa2 / BBB / BBB+","Sr Unsecured","BR","200.000","1.000 MM","US91911TAR41"],
+    ["Petroleo Brasileiro SA","Oil & Gas","PETBRA","6.500%","03/07/2033","101.23","6.26%","5.05","Ba1 / BB / BB","Sr Unsecured","NL","200.000","1.000 MM","US71647NBK46"],
+    ["Embraer SA","Aerospace/Defense","EMBRBZ","5.980%","11/02/2035","101.48","5.75%","6.20","- / BBB / BBB","Sr Unsecured","NL","200.000","1.500 MM","US29082HAE27"]
   ]}
 ];
 
